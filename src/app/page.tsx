@@ -1,69 +1,313 @@
-import Image from "next/image";
+import Link from "next/link";
+import SectorSlider from "./sector-slider";
+import { CLIENTS, DIVISIONS } from "./nav";
+import { Arrow, CtaBand, Eyebrow, Ph } from "./ui";
+
+const STATS = [
+  ["10+", "Years of Service"],
+  ["29+", "Clients Served"],
+  ["3", "Core Divisions"],
+  ["24hr", "Enquiry Response"],
+  ["100%", "Commitment to Quality"],
+];
+
+const IMPACT = [
+  ["Experienced Engineers", "A dedicated sales and marketing team with real technical depth."],
+  ["Trusted Principals", "We represent manufacturers upstream and downstream."],
+  ["Innovative Solutions", "Fresh ideas that solve genuine industry challenges."],
+  ["Consistent Growth", "A decade of expanding our client base across the region."],
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <>
+      {/* ── Hero ───────────────────────────────────────────── */}
+      <section className="relative bg-gradient-to-b from-[var(--tint-a)] via-[var(--tint-b)] to-[var(--surface)]">
+        {/*
+          The clip belongs on this wrapper rather than the section. It has to
+          contain the artwork's parallax drift, but the stats bar below sits
+          deliberately half outside the section, and a clip on the section cuts
+          it in half.
+        */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Hero artwork bleeds off the right edge of the viewport. */}
+          <Ph
+            data-parallax
+            className="absolute inset-y-0 right-0 hidden w-[58%] [mask-image:linear-gradient(to_right,transparent,black_30%)] lg:block"
+          />
+        </div>
+        <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-6 pt-16 pb-40 lg:grid-cols-2 lg:pb-48">
+          <div>
+            <span
+              data-intro
+              className="inline-flex items-center gap-2 rounded-full bg-surface-2 px-4 py-1.5 text-xs font-medium text-text-1 shadow-sm ring-1 ring-line"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              <span className="size-1.5 rounded-full bg-brand" />
+              Trusted. Reliable. Global.
+            </span>
+
+            <h1
+              data-intro
+              className="mt-6 text-5xl font-bold leading-[1.08] tracking-tight text-text-1 sm:text-6xl"
             >
-              Learning
-            </a>{" "}
-            center.
+              Fueling Industries.
+              <br />
+              <span className="text-brand">Powering Tomorrow.</span>
+            </h1>
+
+            <p
+              data-intro
+              className="mt-6 max-w-md text-base leading-relaxed text-text-2"
+            >
+              Delivering top-quality products and services to the Oil and Gas,
+              Refinery, and Power generation sectors in the UAE.
+            </p>
+
+            <div data-intro className="mt-8 flex flex-wrap gap-4">
+              <Link
+                href="/products-services"
+                className="inline-flex items-center gap-3 btn bg-brand px-6 py-3.5 text-sm font-medium text-ink hover:bg-brand-dark"
+              >
+                Explore Solutions <Arrow />
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex items-center btn border border-brand bg-surface-2 px-6 py-3.5 text-sm font-medium text-brand hover:bg-[var(--tint-b)]"
+              >
+                Talk to an Expert
+              </Link>
+            </div>
+          </div>
+
+          <div className="relative">
+            <Ph className="aspect-[4/3] w-full rounded-xl lg:hidden" />
+            <div
+              data-intro
+              className="mt-4 flex items-start gap-2 lg:absolute lg:-top-24 lg:right-0 lg:mt-0"
+            >
+              <span className="mt-1.5 size-2 rounded-full ring-2 ring-brand" />
+              <div>
+                <p className="text-xs font-semibold text-text-1">Global Reach</p>
+                <p className="text-xs leading-snug text-text-2">
+                  Delivering value
+                  <br />
+                  across the world.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Stats bar, overlapping the hero base */}
+        <div className="absolute inset-x-0 bottom-0 z-10 translate-y-1/2">
+          <div className="mx-auto max-w-7xl px-6">
+            <dl
+              data-intro
+              className="grid grid-cols-2 gap-y-6 rounded-[18px] bg-surface-2/95 p-8 shadow-xl ring-1 ring-line backdrop-blur sm:grid-cols-3 lg:grid-cols-5 lg:divide-x lg:divide-line"
+            >
+              {STATS.map(([value, label]) => (
+                <div key={label} className="flex items-center gap-4 lg:px-6">
+                  <Ph className="size-10 shrink-0 rounded-lg" />
+                  <div>
+                    <dt data-count className="text-2xl font-bold text-text-1">
+                      {value}
+                    </dt>
+                    <dd className="text-xs leading-snug text-text-2">
+                      {label}
+                    </dd>
+                  </div>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      {/* ── We create impact ───────────────────────────────── */}
+      <section className="relative overflow-hidden bg-surface-2 pt-28 pb-24">
+        <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-12">
+          <div data-reveal className="lg:col-span-4">
+            <Eyebrow>We create impact</Eyebrow>
+            <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-text-1">
+              A trusted name in
+              <br />
+              Oil and Gas trading
+            </h2>
+            <p className="mt-6 max-w-sm text-sm leading-relaxed text-text-2">
+              Nextech General Trading is a reputable organization that delivers
+              top-quality products and services to the Oil and Gas, Refinery,
+              and Power generation sectors in the UAE.
+            </p>
+            <Link
+              href="/about"
+              className="mt-8 inline-flex items-center gap-3 btn border border-line px-5 py-3 text-sm font-medium text-brand hover:border-brand"
+            >
+              Learn More About Us <Arrow />
+            </Link>
+          </div>
+
+          <div className="grid gap-5 sm:grid-cols-2 lg:col-span-4">
+            {IMPACT.map(([title, copy]) => (
+              <div
+                key={title}
+                data-reveal
+                className="rounded-[18px] border border-line bg-surface-2 p-5 shadow-sm"
+              >
+                <Ph className="size-9 rounded-md" />
+                <h3 className="mt-6 text-sm font-semibold text-text-1">
+                  {title}
+                </h3>
+                <p className="mt-2 text-xs leading-relaxed text-text-2">
+                  {copy}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div data-reveal className="lg:col-span-4">
+            <Ph className="aspect-square w-full rounded-xl" />
+          </div>
+        </div>
+      </section>
+
+      {/* ── Sectors ────────────────────────────────────────── */}
+      <section className="bg-gradient-to-b from-[var(--tint-c)] to-[var(--tint-d)] py-24">
+        <div data-reveal className="mx-auto max-w-7xl px-6 text-center">
+          <Eyebrow>What we do best</Eyebrow>
+          <h2 className="mt-3 text-4xl font-bold tracking-tight text-text-1">
+            Solutions for <span className="text-brand">Every Critical Sector</span>
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-text-2">
+            We proudly represent manufacturers from both upstream and downstream
+            sectors, serving as a trusted partner in the dynamic world of energy
+            and industry.
           </p>
+
+          <SectorSlider />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* ── Capabilities ───────────────────────────────────── */}
+      <section className="bg-surface py-24">
+        <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-12">
+          <div data-reveal className="lg:col-span-4">
+            <Eyebrow>Our capabilities</Eyebrow>
+            <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-text-1">
+              Delivering Excellence
+              <br />
+              Across the Value Chain
+            </h2>
+            <p className="mt-5 max-w-xs text-sm leading-relaxed text-text-2">
+              Mechanical, Electrical and Instrumentation — supplied with the
+              technical expertise provided by our principals.
+            </p>
+            <Link
+              href="/products-services"
+              className="mt-7 inline-flex items-center gap-3 btn border border-line px-5 py-3 text-sm font-medium text-brand hover:border-brand"
+            >
+              View All Services <Arrow />
+            </Link>
+          </div>
+
+          <div className="grid gap-5 sm:grid-cols-3 lg:col-span-8">
+            {DIVISIONS.map(([title, copy]) => (
+              <article
+                key={title}
+                data-reveal
+                className="overflow-hidden rounded-[18px] border border-line bg-surface-2 shadow-sm"
+              >
+                <Ph className="aspect-[4/3] w-full" />
+                <div className="p-4">
+                  <div className="flex items-start justify-between gap-3">
+                    <h3 className="text-sm font-semibold leading-tight text-text-1">
+                      {title}
+                    </h3>
+                    <Arrow className="mt-0.5 text-text-2" />
+                  </div>
+                  <p className="mt-2 text-xs leading-relaxed text-text-2">
+                    {copy}
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* ── Clients ────────────────────────────────────────── */}
+      <section className="relative overflow-hidden bg-gradient-to-r from-[var(--tint-c)] via-[var(--tint-d)] to-[var(--tint-a)] py-12">
+        <div className="mx-auto max-w-7xl px-6">
+          <h2 data-reveal className="text-center text-lg font-semibold text-text-1">
+            Trusted by Industry Leaders Worldwide
+          </h2>
+          <div className="mt-8 flex items-center gap-4">
+            <button
+              type="button"
+              aria-label="Previous clients"
+              className="grid size-11 shrink-0 place-items-center rounded-full bg-surface-2 text-text-2 shadow ring-1 ring-line"
+            >
+              <Arrow className="rotate-180" />
+            </button>
+            <div className="flex flex-1 items-center justify-between gap-6 overflow-hidden">
+              {CLIENTS.slice(0, 6).map((name) => (
+                <div
+                  key={name}
+                  data-reveal
+                  className="grid h-10 flex-1 place-items-center rounded ph"
+                >
+                  <span className="px-2 text-center text-xs font-semibold text-text-1">
+                    {name}
+                  </span>
+                </div>
+              ))}
+            </div>
+            <button
+              type="button"
+              aria-label="Next clients"
+              className="grid size-11 shrink-0 place-items-center rounded-full bg-surface-2 text-text-2 shadow ring-1 ring-line"
+            >
+              <Arrow />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Sustainability ─────────────────────────────────── */}
+      <section className="grid bg-surface-2 lg:grid-cols-2">
+        <Ph data-reveal className="min-h-[320px] w-full" />
+        <div className="flex items-center bg-gradient-to-br from-[var(--surface)] to-[var(--tint-b)] px-6 py-16 lg:px-16">
+          <div data-reveal className="max-w-lg">
+            <Eyebrow>Sustainable future</Eyebrow>
+            <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-text-1">
+              Driving a Sustainable
+              <br />
+              and Responsible Tomorrow
+            </h2>
+            <p className="mt-5 max-w-sm text-sm leading-relaxed text-text-2">
+              With a decade of dedicated service, we deliver excellence, safety,
+              and sustainability, contributing to the growth and prosperity of
+              the UAE.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-6">
+              <Link
+                href="/about"
+                className="inline-flex items-center gap-3 btn bg-brand px-5 py-3 text-sm font-medium text-ink hover:bg-brand-dark"
+              >
+                Our Commitment <Arrow />
+              </Link>
+              <div className="flex items-center gap-3 rounded-lg border border-line bg-surface-2 px-4 py-3 shadow-sm">
+                <Ph className="size-8 rounded-md" />
+                <p className="text-xs leading-snug text-text-2">
+                  Building today for
+                  <br />a better tomorrow.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <CtaBand />
+    </>
   );
 }

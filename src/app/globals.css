@@ -1,26 +1,180 @@
 @import "tailwindcss";
 
+/*
+ * Brand stays fixed across themes (teal + ink are the identity); everything
+ * else is a semantic token so dark mode is defined once, here, rather than as
+ * a `dark:` class on every element.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --brand: #02c1b3;
+  --brand-dark: #019e93;
+  --ink: #08101a;
+
+  color-scheme: light;
+  --surface: #ffffff;
+  --surface-2: #ffffff;
+  --text-1: #1d1d1f;
+  --text-2: #86868b;
+  --line: rgba(0, 0, 0, 0.09);
+
+  /* Section washes, light → dark within each band. */
+  --tint-a: #e6f4f3;
+  --tint-b: #eefaf9;
+  --tint-c: #d5eeec;
+  --tint-d: #eef8f7;
+
+  --ph-bg: #e2efee;
+  --ph-line: rgba(2, 193, 179, 0.2);
+  --ph-edge: rgba(2, 193, 179, 0.22);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
+/*
+ * Three states. No data-theme = follow the OS. data-theme="light"/"dark" = an
+ * explicit choice from the toggle, which must beat the OS in both directions —
+ * hence the :not() on the media query as well as the standalone attribute rule.
+ */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --surface: #000000;
+    --surface-2: #1d1d1f;
+    --text-1: #f5f5f7;
+    --text-2: #98989d;
+    --line: rgba(255, 255, 255, 0.14);
+
+    --tint-a: #06211f;
+    --tint-b: #041a19;
+    --tint-c: #072e2b;
+    --tint-d: #05211f;
+
+    --ph-bg: #16211f;
+    --ph-line: rgba(2, 193, 179, 0.26);
+    --ph-edge: rgba(2, 193, 179, 0.3);
   }
 }
 
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --surface: #000000;
+  --surface-2: #1d1d1f;
+  --text-1: #f5f5f7;
+  --text-2: #98989d;
+  --line: rgba(255, 255, 255, 0.14);
+
+  --tint-a: #06211f;
+  --tint-b: #041a19;
+  --tint-c: #072e2b;
+  --tint-d: #05211f;
+
+  --ph-bg: #16211f;
+  --ph-line: rgba(2, 193, 179, 0.26);
+  --ph-edge: rgba(2, 193, 179, 0.3);
+}
+
+@theme inline {
+  --color-background: var(--surface);
+  --color-foreground: var(--text-1);
+  --color-brand: var(--brand);
+  --color-brand-dark: var(--brand-dark);
+  --color-ink: var(--ink);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-text-1: var(--text-1);
+  --color-text-2: var(--text-2);
+  --color-line: var(--line);
+
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+
+  /* Apple type scale: caption 13, body 17, title 32, hero 48. */
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 17px;
+  --text-lg: 19px;
+  --text-xl: 21px;
+  --text-2xl: 26px;
+  --text-3xl: 32px;
+  --text-4xl: 40px;
+  --text-5xl: 48px;
+  --text-6xl: 56px;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--surface);
+  color: var(--text-1);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/*
+ * GSAP animates these in, but it can only do so once React has hydrated —
+ * without a pre-hide they paint at full opacity first and then jump back to
+ * the start of the tween. `js-motion` is set by the boot script in layout.tsx
+ * before first paint, and removed again by its watchdog if GSAP never loads,
+ * so this can never strand content invisible.
+ */
+html.js-motion [data-intro],
+html.js-motion [data-reveal] {
+  opacity: 0;
+}
+
+/* Header lifts off the page once you scroll (class toggled by ScrollTrigger). */
+header.is-scrolled {
+  box-shadow: 0 1px 20px rgba(0, 0, 0, 0.07);
+}
+
+/* The fan slider animates transforms; honour a stated preference against motion. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/*
+ * The exact complement of the query Motion builds its animations under. If
+ * nothing is going to animate these in — reduced motion requested, or a
+ * browser that reports neither value — they must never be hidden to begin with.
+ */
+@media not (prefers-reduced-motion: no-preference) {
+  html.js-motion [data-intro],
+  html.js-motion [data-reveal] {
+    opacity: 1;
+  }
+
+  #scroll-progress {
+    display: none;
+  }
+}
+
+/* Lined placeholder standing in for artwork that ships later. */
+.ph {
+  background-color: var(--ph-bg);
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent 0 8px,
+    var(--ph-line) 8px 9px
+  );
+  box-shadow: inset 0 0 0 1px var(--ph-edge);
+}
+
+/* Pill controls: lift slightly on hover, settle on press. */
+.btn {
+  border-radius: 980px;
+  transition: transform 0.25s cubic-bezier(0.25, 0.1, 0.25, 1),
+    filter 0.25s cubic-bezier(0.25, 0.1, 0.25, 1),
+    background-color 0.25s cubic-bezier(0.25, 0.1, 0.25, 1),
+    border-color 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+.btn:hover {
+  transform: scale(1.02);
+  filter: brightness(1.06);
+}
+.btn:active {
+  transform: scale(0.99);
 }
