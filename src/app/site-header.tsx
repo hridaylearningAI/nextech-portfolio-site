@@ -1,22 +1,28 @@
 "use client";
 
+import { Symbol } from "./icons";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { COMPANY, NAV } from "./nav";
 import ThemeToggle from "./theme-toggle";
-import { Arrow, Logo, Ph } from "./ui";
+import { Arrow, Logo } from "./ui";
 
 export default function SiteHeader() {
   const pathname = usePathname();
 
+  const behindVideoHero = pathname === "/";
+
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-surface/80 backdrop-blur-xl">
-      <div className="mx-auto flex h-20 max-w-7xl items-center gap-8 px-6">
+    <header
+      className={`sticky top-0 z-50 border-b border-line bg-surface/80 backdrop-blur-xl ${behindVideoHero ? "is-cloaked" : ""}`}
+    >
+      <div className="site-container flex h-20 items-center gap-5">
         <Link href="/" aria-label="Nextech General Trading — home">
           <Logo />
         </Link>
 
-        <nav className="hidden flex-1 items-center justify-center gap-7 lg:flex">
+        <nav className="hidden flex-1 items-center justify-center gap-4 lg:flex">
           {NAV.map(([label, href]) => {
             const active = pathname === href;
             return (
@@ -24,7 +30,7 @@ export default function SiteHeader() {
                 key={href}
                 href={href}
                 aria-current={active ? "page" : undefined}
-                className={`relative py-6 text-sm font-medium ${
+                className={`relative py-6 text-xs font-medium ${
                   active ? "text-brand" : "text-text-1 hover:text-brand"
                 }`}
               >
@@ -40,9 +46,9 @@ export default function SiteHeader() {
         <div className="ml-auto flex items-center gap-4 lg:ml-0">
           <a
             href={COMPANY.phoneHref}
-            className="hidden items-center gap-2 text-sm font-medium text-text-1 md:flex"
+            className="hidden items-center gap-2 text-sm font-medium text-text-1 2xl:flex"
           >
-            <Ph className="size-4 rounded-full" />
+            <Symbol name="phone" className="size-4" />
             {COMPANY.phone}
           </a>
           <ThemeToggle />

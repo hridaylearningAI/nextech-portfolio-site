@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { CLIENTS } from "../nav";
-import { CtaBand, PageHero, Ph, SectionHead } from "../ui";
+import { CtaBand, PageHero, SectionHead } from "../ui";
 
 export const metadata: Metadata = {
   title: "Clients — Nextech General Trading",
@@ -19,8 +19,8 @@ export default function Clients() {
       />
 
       {/* ── Logo wall + testimonials form ──────────────────── */}
-      <section className="bg-surface py-24">
-        <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-3">
+      <section className="bg-surface section-space">
+        <div className="site-container grid gap-[clamp(1.5rem,3vw,4rem)] lg:grid-cols-3">
           <div className="lg:col-span-2">
             <SectionHead eyebrow="Our Clients" title="The companies who" accent="count on us." />
             <ul className="mt-10 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">

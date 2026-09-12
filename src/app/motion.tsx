@@ -44,153 +44,180 @@ export default function Motion() {
       // itself if they turn the preference on later. globals.css lifts the
       // pre-hide under the exact complement of this query, so the two can never
       // both be false and leave content stranded invisible.
-      mm.add(
-        "(prefers-reduced-motion: no-preference)",
-        () => {
-          // A hidden tab gets no requestAnimationFrame ticks, so a tween built
-          // there never advances and its target sits at the `from` state. That
-          // is what a link-preview bot, screenshot service or prerendered tab
-          // would capture: a blank page. When we can't animate, show outright.
-          const animatable = document.visibilityState === "visible";
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        // A hidden tab gets no requestAnimationFrame ticks, so a tween built
+        // there never advances and its target sits at the `from` state. That
+        // is what a link-preview bot, screenshot service or prerendered tab
+        // would capture: a blank page. When we can't animate, show outright.
+        const animatable = document.visibilityState === "visible";
 
-          // ── Page transition: content rises in, and on a route change the
-          // whole page slides up behind it. ───────────────────────────────
-          if (animatable) {
-            const tl = gsap.timeline();
+        // ── Page transition: content rises in, and on a route change the
+        // whole page slides up behind it. ───────────────────────────────
+        if (animatable) {
+          const tl = gsap.timeline();
 
-            if (isRouteChange) {
-              tl.from("main", { y: 16, autoAlpha: 0, duration: 0.4 }, 0);
-            }
-
-            tl.fromTo(
-              "[data-intro]",
-              { autoAlpha: 0, y: 22 },
-              { autoAlpha: 1, y: 0, stagger: 0.07 },
-              isRouteChange ? 0.12 : 0,
-            );
-          } else {
-            gsap.set("[data-intro]", { autoAlpha: 1, y: 0 });
+          if (isRouteChange) {
+            tl.from("main", { y: 16, autoAlpha: 0, duration: 0.4 }, 0);
           }
 
-          // A ScrollTrigger only fires onEnter when it *crosses* its start
-          // line. Anything already past that line when the trigger is built —
-          // above-the-fold content, or the whole upper page when the browser
-          // restores a scroll position — would sit hidden forever, so those
-          // elements are animated directly instead.
-          const alreadyPast = (el: Element, line: number) =>
-            el.getBoundingClientRect().top < window.innerHeight * line;
-
-          const revealIn = (els: Element[], delay = 0) =>
-            document.visibilityState === "visible"
-              ? gsap.fromTo(
-                  els,
-                  { autoAlpha: 0, y: 34 },
-                  { autoAlpha: 1, y: 0, stagger: 0.09, delay, overwrite: true },
-                )
-              : gsap.set(els, { autoAlpha: 1, y: 0 });
-
-          // ── Scroll reveals. batch() groups everything that crosses the line
-          // within the same interval so a row of cards staggers together
-          // instead of firing as four unrelated tweens. ────────────────────
-          ScrollTrigger.batch("[data-reveal]", {
-            start: "top 88%",
-            once: true,
-            onEnter: (els) => revealIn(els),
-          });
-
-          const visibleAtLoad = gsap.utils
-            .toArray<HTMLElement>("[data-reveal]")
-            .filter((el) => alreadyPast(el, 0.88));
-          if (visibleAtLoad.length) revealIn(visibleAtLoad, 0.15);
-
-          // ── Parallax on the hero artwork. ────────────────────────────────
-          gsap.utils.toArray<HTMLElement>("[data-parallax]").forEach((el) => {
-            gsap.to(el, {
-              yPercent: 12,
-              ease: "none",
-              scrollTrigger: {
-                trigger: el,
-                start: "top top",
-                end: "bottom top",
-                scrub: 0.6,
-              },
-            });
-          });
-
-          // ── Stat counters. Only the leading integer animates; whatever
-          // trails it ("+", "hr", "%") is preserved. ───────────────────────
-          gsap.utils.toArray<HTMLElement>("[data-count]").forEach((el) => {
-            // Stashed on the node the first time, because the effect can re-run
-            // (StrictMode, Fast Refresh) while a count is in flight — reading
-            // the live text again would take "0+" as the target and stick.
-            const original = el.dataset.countFrom ?? el.textContent ?? "";
-            el.dataset.countFrom = original;
-
-            const parsed = original.match(/^(\d+)(.*)$/);
-            if (!parsed) return;
-
-            const target = Number(parsed[1]);
-            const suffix = parsed[2];
-            const counter = { value: 0 };
-
-            // Built paused so it never renders "0+" over the real figure before
-            // it is triggered — the stats bar sits above the fold on the home
-            // page, where that was plainly visible.
-            const count = gsap.to(counter, {
-              value: target,
-              duration: 1.4,
-              ease: "power2.out",
-              paused: true,
-              onUpdate: () => {
-                el.textContent = Math.round(counter.value) + suffix;
-              },
-              // The tween can be killed mid-count by a route change; make sure
-              // the final figure is exact rather than whatever rounding left.
-              onComplete: () => {
-                el.textContent = original;
-              },
-            });
-
-            if (alreadyPast(el, 0.92)) {
-              count.play();
-            } else {
-              ScrollTrigger.create({
-                trigger: el,
-                start: "top 92%",
-                once: true,
-                onEnter: () => count.play(),
-              });
-            }
-          });
-
-          // ── Reading-progress bar. ────────────────────────────────────────
-          gsap.fromTo(
-            "#scroll-progress",
-            { scaleX: 0 },
-            {
-              scaleX: 1,
-              ease: "none",
-              scrollTrigger: { start: 0, end: "max", scrub: 0.3 },
-            },
+          tl.fromTo(
+            "[data-intro]",
+            { autoAlpha: 0, y: 22 },
+            { autoAlpha: 1, y: 0, stagger: 0.07 },
+            isRouteChange ? 0.12 : 0,
           );
+        } else {
+          gsap.set("[data-intro]", { autoAlpha: 1, y: 0 });
+        }
 
-          // ── Header picks up a shadow once you leave the top. ─────────────
-          ScrollTrigger.create({
-            start: 60,
-            end: "max",
-            toggleClass: { targets: "header", className: "is-scrolled" },
+        // A ScrollTrigger only fires onEnter when it *crosses* its start
+        // line. Anything already past that line when the trigger is built —
+        // above-the-fold content, or the whole upper page when the browser
+        // restores a scroll position — would sit hidden forever, so those
+        // elements are animated directly instead.
+        const alreadyPast = (el: Element, line: number) =>
+          el.getBoundingClientRect().top < window.innerHeight * line;
+
+        const revealIn = (els: Element[], delay = 0) =>
+          document.visibilityState === "visible"
+            ? gsap.fromTo(
+                els,
+                { autoAlpha: 0, y: 34 },
+                { autoAlpha: 1, y: 0, stagger: 0.09, delay, overwrite: true },
+              )
+            : gsap.set(els, { autoAlpha: 1, y: 0 });
+
+        // ── Scroll reveals. batch() groups everything that crosses the line
+        // within the same interval so a row of cards staggers together
+        // instead of firing as four unrelated tweens. ────────────────────
+        ScrollTrigger.batch("[data-reveal]", {
+          start: "top 88%",
+          once: true,
+          onEnter: (els) => revealIn(els),
+        });
+
+        const visibleAtLoad = gsap.utils
+          .toArray<HTMLElement>("[data-reveal]")
+          .filter((el) => alreadyPast(el, 0.88));
+        if (visibleAtLoad.length) revealIn(visibleAtLoad, 0.15);
+
+        // ── Parallax on the hero artwork. ────────────────────────────────
+        gsap.utils.toArray<HTMLElement>("[data-parallax]").forEach((el) => {
+          gsap.to(el, {
+            yPercent: 12,
+            ease: "none",
+            scrollTrigger: {
+              trigger: el,
+              start: "top top",
+              end: "bottom top",
+              scrub: 0.6,
+            },
           });
-        },
-      );
+        });
+
+        // ── Stat counters. Only the leading integer animates; whatever
+        // trails it ("+", "hr", "%") is preserved. ───────────────────────
+        gsap.utils.toArray<HTMLElement>("[data-count]").forEach((el) => {
+          // Stashed on the node the first time, because the effect can re-run
+          // (StrictMode, Fast Refresh) while a count is in flight — reading
+          // the live text again would take "0+" as the target and stick.
+          const original = el.dataset.countFrom ?? el.textContent ?? "";
+          el.dataset.countFrom = original;
+
+          const parsed = original.match(/^(\d+)(.*)$/);
+          if (!parsed) return;
+
+          const target = Number(parsed[1]);
+          const suffix = parsed[2];
+          const counter = { value: 0 };
+
+          // Built paused so it never renders "0+" over the real figure before
+          // it is triggered — the stats bar sits above the fold on the home
+          // page, where that was plainly visible.
+          const count = gsap.to(counter, {
+            value: target,
+            duration: 1.4,
+            ease: "power2.out",
+            paused: true,
+            onUpdate: () => {
+              el.textContent = Math.round(counter.value) + suffix;
+            },
+            // The tween can be killed mid-count by a route change; make sure
+            // the final figure is exact rather than whatever rounding left.
+            onComplete: () => {
+              el.textContent = original;
+            },
+          });
+
+          if (alreadyPast(el, 0.92)) {
+            count.play();
+          } else {
+            ScrollTrigger.create({
+              trigger: el,
+              start: "top 92%",
+              once: true,
+              onEnter: () => count.play(),
+            });
+          }
+        });
+
+        // ── Reading-progress bar. ────────────────────────────────────────
+        gsap.fromTo(
+          "#scroll-progress",
+          { scaleX: 0 },
+          {
+            scaleX: 1,
+            ease: "none",
+            scrollTrigger: { start: 0, end: "max", scrub: 0.3 },
+          },
+        );
+      });
+
+      // ── Header state ─────────────────────────────────────────────────────
+      // Outside the matchMedia block on purpose: these toggle classes, they do
+      // not animate anything. Someone on reduced motion still needs the header
+      // to come back after the video hero, and the CSS transition that carries
+      // it is already neutralised by the reduce-motion rule in globals.css.
+      //
+      // Both use onEnter/onLeaveBack rather than toggleClass. toggleClass is
+      // tied to the trigger's *active range*, so at the very bottom of the page
+      // the range ended, the class came off, and the header re-cloaked itself
+      // over the footer — which reads as the sticky header having given up.
+      // Latching the state in callbacks makes it depend only on having crossed
+      // the line, not on still sitting inside a range.
+      const header = document.querySelector("header");
+
+      if (header) {
+        // Picks up a shadow once you leave the top.
+        ScrollTrigger.create({
+          start: 60,
+          onEnter: () => header.classList.add("is-scrolled"),
+          onLeaveBack: () => header.classList.remove("is-scrolled"),
+        });
+
+        // Slides the cloaked header in once the video hero is most of the way
+        // gone. Later than feels necessary on purpose: the hero's own nav is a
+        // vertical rail centred in the section, so revealing any earlier lands
+        // the incoming header on top of it.
+        if (document.querySelector("[data-video-hero]")) {
+          ScrollTrigger.create({
+            trigger: "[data-video-hero]",
+            start: "bottom 40%",
+            onEnter: () => header.classList.add("is-revealed"),
+            onLeaveBack: () => header.classList.remove("is-revealed"),
+          });
+        }
+      }
 
       return () => {
         mm.revert();
+        // Latched imperatively, so it has to be unlatched by hand — otherwise a
+        // page with no video hero can inherit a stale reveal state.
+        header?.classList.remove("is-scrolled", "is-revealed");
         // A count killed part-way would otherwise be left reading "7+".
-        document
-          .querySelectorAll<HTMLElement>("[data-count]")
-          .forEach((el) => {
-            if (el.dataset.countFrom) el.textContent = el.dataset.countFrom;
-          });
+        document.querySelectorAll<HTMLElement>("[data-count]").forEach((el) => {
+          if (el.dataset.countFrom) el.textContent = el.dataset.countFrom;
+        });
       };
     },
     { dependencies: [pathname], revertOnUpdate: true },

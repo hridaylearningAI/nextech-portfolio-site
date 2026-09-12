@@ -8,14 +8,42 @@ export const NAV = [
   ["Contact Us", "/contact"],
 ] as const;
 
-/** Sectors the company supplies, per its own description. */
+/**
+ * Sectors the company supplies. Third field keys into ICONS in icons.tsx.
+ * Drives the home cards, the /industries grid and the footer column, so all
+ * three stay on one taxonomy.
+ */
 export const INDUSTRIES = [
-  ["Oil & Gas", "Top-quality products and services for the region's operators."],
-  ["Refinery", "Equipment and spares that keep refining operations running."],
-  ["Power Generation", "Supply for power producers and utility-scale facilities."],
-  ["Upstream", "Supporting exploration and production across the Emirates."],
-  ["Downstream", "Representing manufacturers serving downstream industry."],
-  ["Petrochemicals", "Materials and equipment for complex industrial processes."],
+  [
+    "Oil & Gas",
+    "Trusted supply for upstream, midstream and downstream operations.",
+    "rig",
+  ],
+  [
+    "Energy",
+    "Solutions for a more reliable and sustainable energy future.",
+    "bolt",
+  ],
+  [
+    "Petrochemicals",
+    "High-quality materials for a stronger, more efficient industry.",
+    "flask",
+  ],
+  [
+    "Marine",
+    "Supplying the marine industry with reliable equipment and spares.",
+    "ship",
+  ],
+  [
+    "Water Treatment",
+    "Products and systems for cleaner, safer water worldwide.",
+    "drop",
+  ],
+  [
+    "Industrial Solutions",
+    "A wide range of industrial products for diverse applications.",
+    "cog",
+  ],
 ] as const;
 
 export const COMPANY = {
@@ -52,7 +80,13 @@ export const DIVISIONS = [
   ],
 ] as const;
 
-export const SOCIALS = ["Facebook", "Twitter", "Instagram", "YouTube", "Skype"] as const;
+export const SOCIALS = [
+  "Facebook",
+  "Twitter",
+  "Instagram",
+  "YouTube",
+  "Skype",
+] as const;
 
 /** Client roster as listed on the live Clients page. */
 export const CLIENTS = [

@@ -1,11 +1,12 @@
+import { Symbol, SOCIAL_ICONS } from "./icons";
 import Link from "next/link";
 import { COMPANY, DIVISIONS, INDUSTRIES, NAV, SOCIALS } from "./nav";
-import { Arrow, Logo, Ph } from "./ui";
+import { Arrow, Logo } from "./ui";
 
 export default function SiteFooter() {
   return (
     <footer className="bg-surface pt-16">
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="site-container">
         <div className="grid gap-10 pb-12 sm:grid-cols-2 lg:grid-cols-5">
           <div>
             <Logo />
@@ -20,7 +21,7 @@ export default function SiteFooter() {
                   aria-label={n}
                   className="grid size-11 place-items-center"
                 >
-                  <span className="size-8 rounded-md ph" />
+                  <Symbol name={SOCIAL_ICONS[n]} className="size-5" />
                 </a>
               ))}
             </div>
@@ -31,7 +32,10 @@ export default function SiteFooter() {
             <ul className="mt-5 space-y-3">
               {NAV.filter(([, href]) => href !== "/").map(([label, href]) => (
                 <li key={href}>
-                  <Link href={href} className="text-xs text-text-2 hover:text-brand">
+                  <Link
+                    href={href}
+                    className="text-xs text-text-2 hover:text-brand"
+                  >
                     {label}
                   </Link>
                 </li>
@@ -59,19 +63,22 @@ export default function SiteFooter() {
             <h3 className="text-sm font-semibold text-text-1">Contact Us</h3>
             <ul className="mt-5 space-y-4 text-xs text-text-2">
               <li className="flex items-start gap-3">
-                <Ph className="mt-0.5 size-4 shrink-0 rounded" />
+                <Symbol name="phone" className="mt-0.5 size-4" />
                 <a href={COMPANY.phoneHref} className="hover:text-brand">
                   {COMPANY.phone}
                 </a>
               </li>
               <li className="flex items-start gap-3">
-                <Ph className="mt-0.5 size-4 shrink-0 rounded" />
-                <a href={`mailto:${COMPANY.email}`} className="hover:text-brand">
+                <Symbol name="email" className="mt-0.5 size-4" />
+                <a
+                  href={`mailto:${COMPANY.email}`}
+                  className="hover:text-brand"
+                >
                   {COMPANY.email}
                 </a>
               </li>
               <li className="flex items-start gap-3">
-                <Ph className="mt-0.5 size-4 shrink-0 rounded" />
+                <Symbol name="address" className="mt-0.5 size-4" />
                 <address className="leading-relaxed not-italic">
                   {COMPANY.addressLines.map((line) => (
                     <span key={line} className="block">
@@ -94,7 +101,7 @@ export default function SiteFooter() {
                 required
                 placeholder="Enter your email"
                 aria-label="Email address"
-                className="w-full rounded-full border border-line px-4 py-2.5 text-xs text-text-1 placeholder:text-text-2"
+                className="min-w-0 w-full rounded-full border border-line px-4 py-2.5 text-xs text-text-1 placeholder:text-text-2"
               />
               <button
                 type="submit"

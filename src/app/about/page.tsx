@@ -1,3 +1,4 @@
+import { Symbol } from "../icons";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Arrow, CtaBand, PageHero, Ph, SectionHead } from "../ui";
@@ -23,9 +24,18 @@ const STATS = [
 ];
 
 const PILLARS = [
-  ["Excellence", "Consistent quality across every product and service we deliver."],
-  ["Innovation", "Fresh ideas and solutions that solve real industry challenges."],
-  ["Sustainability", "Working towards a brighter, more responsible energy future."],
+  [
+    "Excellence",
+    "Consistent quality across every product and service we deliver.",
+  ],
+  [
+    "Innovation",
+    "Fresh ideas and solutions that solve real industry challenges.",
+  ],
+  [
+    "Sustainability",
+    "Working towards a brighter, more responsible energy future.",
+  ],
 ];
 
 const SECTORS = [
@@ -45,8 +55,8 @@ export default function About() {
       />
 
       {/* ── Who we are ─────────────────────────────────────── */}
-      <section className="bg-surface py-24">
-        <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 lg:grid-cols-2">
+      <section className="bg-surface section-space">
+        <div className="site-container grid items-center gap-[clamp(1.5rem,3vw,4rem)] lg:grid-cols-2">
           <Ph data-reveal className="aspect-[4/3] w-full rounded-xl" />
           <div data-reveal>
             <SectionHead eyebrow="Our Story" title="Who" accent="we are?" />
@@ -67,18 +77,31 @@ export default function About() {
 
       {/* ── Stats ──────────────────────────────────────────── */}
       <section className="bg-gradient-to-b from-[var(--tint-d)] to-[var(--surface)] py-16">
-        <dl className="mx-auto grid max-w-7xl grid-cols-2 gap-y-8 px-6 sm:grid-cols-3 lg:grid-cols-5 lg:divide-x lg:divide-line">
+        <dl className="site-container grid grid-cols-2 gap-y-8 sm:grid-cols-3 lg:grid-cols-5 lg:divide-x lg:divide-line">
           {STATS.map(([value, label]) => (
             <div
               key={label}
               data-reveal
               className="flex items-center gap-4 lg:px-6"
             >
-              <Ph className="size-10 shrink-0 rounded-lg" />
+              <Symbol
+                name={
+                  label.includes("Years")
+                    ? "calendar"
+                    : label.includes("Clients")
+                      ? "users"
+                      : label.includes("Divisions")
+                        ? "cog"
+                        : label.includes("Response")
+                          ? "clock"
+                          : "shield"
+                }
+                className="size-10 text-brand"
+              />
               <div>
                 <dt data-count className="text-2xl font-bold text-text-1">
-                {value}
-              </dt>
+                  {value}
+                </dt>
                 <dd className="text-xs leading-snug text-text-2">{label}</dd>
               </div>
             </div>
@@ -87,8 +110,8 @@ export default function About() {
       </section>
 
       {/* ── Commitment ─────────────────────────────────────── */}
-      <section className="bg-surface py-24">
-        <div className="mx-auto max-w-7xl px-6">
+      <section className="bg-surface section-space">
+        <div className="site-container">
           <SectionHead
             center
             eyebrow="What Drives Us"
@@ -102,7 +125,16 @@ export default function About() {
                 data-reveal
                 className="rounded-[18px] border border-line bg-surface-2 p-7 shadow-sm"
               >
-                <Ph className="size-10 rounded-lg" />
+                <Symbol
+                  name={
+                    title === "Excellence"
+                      ? "certificate"
+                      : title === "Innovation"
+                        ? "bolt"
+                        : "leaf"
+                  }
+                  className="size-10 text-brand"
+                />
                 <h3 className="mt-6 text-base font-semibold text-text-1">
                   {title}
                 </h3>
@@ -116,8 +148,8 @@ export default function About() {
       </section>
 
       {/* ── Sectors served ─────────────────────────────────── */}
-      <section className="bg-gradient-to-b from-[var(--tint-c)] to-[var(--tint-d)] py-24">
-        <div className="mx-auto max-w-7xl px-6">
+      <section className="bg-gradient-to-b from-[var(--tint-c)] to-[var(--tint-d)] section-space">
+        <div className="site-container">
           <SectionHead
             center
             eyebrow="Sectors We Serve"

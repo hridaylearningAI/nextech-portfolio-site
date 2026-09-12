@@ -1,3 +1,4 @@
+import { Symbol } from "./icons";
 import Link from "next/link";
 
 /**
@@ -9,26 +10,21 @@ export function Ph({ className = "", ...rest }: React.ComponentProps<"div">) {
 }
 
 export function Arrow({ className = "" }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 20 20"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.6"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={`size-4 shrink-0 ${className}`}
-      aria-hidden
-    >
-      <path d="M4 10h12M11 5l5 5-5 5" />
-    </svg>
-  );
+  return <Symbol name="arrow" className={`size-4 ${className}`} />;
 }
 
-export function Logo({ className = "" }: { className?: string }) {
+export function Logo({
+  className = "",
+  onDark = false,
+}: {
+  className?: string;
+  onDark?: boolean;
+}) {
   return (
-    <div className={className}>
-      <div className="text-2xl font-bold tracking-tight text-text-1">
+    <div className={className} data-brand-mark>
+      <div
+        className={`text-2xl font-bold tracking-tight ${onDark ? "text-white" : "text-text-1"}`}
+      >
         Nex<span className="text-brand">tech</span>
       </div>
       <div className="text-[11px] font-medium tracking-wide text-brand">
@@ -99,8 +95,11 @@ export function PageHero({
         data-parallax
         className="absolute inset-y-0 right-0 hidden w-2/5 opacity-70 [mask-image:linear-gradient(to_right,transparent,black_40%)] lg:block"
       />
-      <div className="relative mx-auto max-w-7xl px-6 py-24">
-        <nav data-intro className="mb-6 flex items-center gap-2 text-xs text-text-2">
+      <div className="site-container relative section-space">
+        <nav
+          data-intro
+          className="mb-6 flex items-center gap-2 text-xs text-text-2"
+        >
           <Link href="/" className="hover:text-brand">
             Home
           </Link>
@@ -131,7 +130,7 @@ export function PageHero({
 export function CtaBand() {
   return (
     <section className="bg-surface pt-16">
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="site-container">
         <div
           data-reveal
           className="flex flex-col gap-6 rounded-[18px] bg-brand px-8 py-8 md:flex-row md:items-center md:justify-between"
@@ -145,13 +144,13 @@ export function CtaBand() {
               tailored to your business needs.
             </p>
           </div>
-          <form className="flex w-full gap-3 md:w-auto">
+          <form className="flex w-full flex-wrap gap-3 md:w-auto md:flex-nowrap">
             <input
               type="email"
               required
               placeholder="Enter your email"
               aria-label="Email address"
-              className="w-full rounded-full bg-surface-2 px-5 py-3 text-sm text-text-1 placeholder:text-text-2 md:w-64"
+              className="min-w-0 flex-1 rounded-full bg-surface-2 px-5 py-3 text-sm text-text-1 placeholder:text-text-2 md:w-64"
             />
             <button
               type="submit"
@@ -187,7 +186,7 @@ export function LegalBody({
   sections: LegalSection[];
 }) {
   return (
-    <section className="bg-surface py-24">
+    <section className="bg-surface section-space">
       <div className="mx-auto max-w-3xl px-6">
         <p data-reveal className="text-xs font-medium text-text-2">
           Last updated: {updated}

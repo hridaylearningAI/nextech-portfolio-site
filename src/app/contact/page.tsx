@@ -1,3 +1,4 @@
+import { Symbol, SOCIAL_ICONS } from "../icons";
 import type { Metadata } from "next";
 import { COMPANY, SOCIALS } from "../nav";
 import { Arrow, CtaBand, PageHero, Ph, SectionHead } from "../ui";
@@ -25,10 +26,14 @@ export default function Contact() {
       />
 
       {/* ── Form + details ─────────────────────────────────── */}
-      <section className="bg-surface py-24">
-        <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-5">
+      <section className="bg-surface section-space">
+        <div className="site-container grid gap-[clamp(1.5rem,3vw,4rem)] lg:grid-cols-5">
           <div className="lg:col-span-3">
-            <SectionHead eyebrow="Drop a Line" title="Tell us what" accent="you need." />
+            <SectionHead
+              eyebrow="Drop a Line"
+              title="Tell us what"
+              accent="you need."
+            />
             <p className="mt-4 text-sm leading-relaxed text-text-2">
               Your email address will not be published. Required fields are
               marked *
@@ -47,9 +52,7 @@ export default function Contact() {
                 />
               </label>
               <label className="block">
-                <span className="text-xs font-medium text-text-1">
-                  Email *
-                </span>
+                <span className="text-xs font-medium text-text-1">Email *</span>
                 <input
                   required
                   type="email"
@@ -90,7 +93,7 @@ export default function Contact() {
               </h2>
               <ul className="mt-6 space-y-5">
                 <li className="flex items-start gap-4">
-                  <Ph className="mt-0.5 size-9 shrink-0 rounded-lg" />
+                  <Symbol name="address" className="mt-0.5 size-9 text-brand" />
                   <div>
                     <div className="text-xs font-medium text-text-2">
                       Address
@@ -106,7 +109,16 @@ export default function Contact() {
                 </li>
                 {DETAILS.map(([label, value, href]) => (
                   <li key={label} className="flex items-start gap-4">
-                    <Ph className="mt-0.5 size-9 shrink-0 rounded-lg" />
+                    <Symbol
+                      name={
+                        label === "Phone"
+                          ? "phone"
+                          : label === "Email"
+                            ? "email"
+                            : "website"
+                      }
+                      className="mt-0.5 size-9 text-brand"
+                    />
                     <div>
                       <div className="text-xs font-medium text-text-2">
                         {label}
@@ -127,7 +139,7 @@ export default function Contact() {
                   </li>
                 ))}
                 <li className="flex items-start gap-4">
-                  <Ph className="mt-0.5 size-9 shrink-0 rounded-lg" />
+                  <Symbol name="clock" className="mt-0.5 size-9 text-brand" />
                   <div>
                     <div className="text-xs font-medium text-text-2">
                       Working time
@@ -144,17 +156,17 @@ export default function Contact() {
               </ul>
 
               <div className="mt-7 border-t border-line pt-6">
-                <div className="text-xs font-medium text-text-2">
-                  Follow us
-                </div>
+                <div className="text-xs font-medium text-text-2">Follow us</div>
                 <div className="mt-3 flex gap-3">
                   {SOCIALS.map((n) => (
                     <a
                       key={n}
                       href="#"
                       aria-label={n}
-                      className="size-9 rounded-md ph"
-                    />
+                      className="grid size-11 place-items-center rounded-md text-brand"
+                    >
+                      <Symbol name={SOCIAL_ICONS[n]} className="size-5" />
+                    </a>
                   ))}
                 </div>
               </div>
@@ -165,7 +177,7 @@ export default function Contact() {
 
       {/* ── Map ────────────────────────────────────────────── */}
       <section className="bg-surface pb-20">
-        <div className="mx-auto max-w-7xl px-6">
+        <div className="site-container">
           <Ph data-reveal className="h-[360px] w-full rounded-xl" />
         </div>
       </section>

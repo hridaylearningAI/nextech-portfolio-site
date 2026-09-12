@@ -1,3 +1,4 @@
+import { Symbol } from "../icons";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { DIVISIONS } from "../nav";
@@ -27,8 +28,8 @@ export default function ProductsServices() {
       />
 
       {/* ── Three divisions ────────────────────────────────── */}
-      <section className="bg-surface py-24">
-        <div className="mx-auto max-w-7xl px-6">
+      <section className="bg-surface section-space">
+        <div className="site-container">
           <SectionHead
             center
             eyebrow="Our Divisions"
@@ -45,13 +46,20 @@ export default function ProductsServices() {
                 <div className="relative">
                   <Ph className="aspect-[4/3] w-full" />
                   <span className="absolute top-4 left-4 grid size-11 place-items-center rounded-lg bg-surface-2 shadow-sm">
-                    <Ph className="size-5 rounded" />
+                    <Symbol
+                      name={
+                        title === "Electrical"
+                          ? "bolt"
+                          : title === "Mechanical"
+                            ? "cog"
+                            : "clock"
+                      }
+                      className="size-5 text-brand"
+                    />
                   </span>
                 </div>
                 <div className="p-6">
-                  <h2 className="text-lg font-semibold text-text-1">
-                    {title}
-                  </h2>
+                  <h2 className="text-lg font-semibold text-text-1">{title}</h2>
                   <p className="mt-3 text-sm leading-relaxed text-text-2">
                     {copy}
                   </p>
@@ -69,8 +77,8 @@ export default function ProductsServices() {
       </section>
 
       {/* ── Our principals ─────────────────────────────────── */}
-      <section className="bg-gradient-to-b from-[var(--tint-c)] to-[var(--tint-d)] py-24">
-        <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 lg:grid-cols-2">
+      <section className="bg-gradient-to-b from-[var(--tint-c)] to-[var(--tint-d)] section-space">
+        <div className="site-container grid items-center gap-[clamp(1.5rem,3vw,4rem)] lg:grid-cols-2">
           <div>
             <SectionHead
               eyebrow="Our Principals"
@@ -90,8 +98,8 @@ export default function ProductsServices() {
       </section>
 
       {/* ── Why Nextech ────────────────────────────────────── */}
-      <section className="bg-surface py-24">
-        <div className="mx-auto max-w-7xl px-6">
+      <section className="bg-surface section-space">
+        <div className="site-container">
           <SectionHead
             center
             eyebrow="Why Nextech"
@@ -105,7 +113,18 @@ export default function ProductsServices() {
                 data-reveal
                 className="rounded-[18px] border border-line bg-surface-2 p-6 shadow-sm"
               >
-                <Ph className="size-10 rounded-lg" />
+                <Symbol
+                  name={
+                    title === "Technical Expertise"
+                      ? "cog"
+                      : title === "Trusted Principals"
+                        ? "handshake"
+                        : title === "Regional Reach"
+                          ? "globe"
+                          : "shield"
+                  }
+                  className="size-10 text-brand"
+                />
                 <h3 className="mt-6 text-sm font-semibold text-text-1">
                   {title}
                 </h3>

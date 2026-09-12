@@ -1,6 +1,10 @@
+import { Symbol } from "./icons";
 import Link from "next/link";
+import AboutIntro from "./about-intro";
+import SectorCards from "./sector-cards";
+import VideoHero from "./video-hero";
 import SectorSlider from "./sector-slider";
-import { CLIENTS, DIVISIONS } from "./nav";
+import { CLIENTS } from "./nav";
 import { Arrow, CtaBand, Eyebrow, Ph } from "./ui";
 
 const STATS = [
@@ -11,16 +15,10 @@ const STATS = [
   ["100%", "Commitment to Quality"],
 ];
 
-const IMPACT = [
-  ["Experienced Engineers", "A dedicated sales and marketing team with real technical depth."],
-  ["Trusted Principals", "We represent manufacturers upstream and downstream."],
-  ["Innovative Solutions", "Fresh ideas that solve genuine industry challenges."],
-  ["Consistent Growth", "A decade of expanding our client base across the region."],
-];
-
 export default function Home() {
   return (
     <>
+      <VideoHero />
       {/* ── Hero ───────────────────────────────────────────── */}
       <section className="relative bg-gradient-to-b from-[var(--tint-a)] via-[var(--tint-b)] to-[var(--surface)]">
         {/*
@@ -36,7 +34,7 @@ export default function Home() {
             className="absolute inset-y-0 right-0 hidden w-[58%] [mask-image:linear-gradient(to_right,transparent,black_30%)] lg:block"
           />
         </div>
-        <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-6 pt-16 pb-40 lg:grid-cols-2 lg:pb-48">
+        <div className="site-container relative grid items-center gap-[clamp(1.5rem,3vw,4rem)] pt-16 pb-40 lg:grid-cols-2 lg:pb-48">
           <div>
             <span
               data-intro
@@ -87,7 +85,9 @@ export default function Home() {
             >
               <span className="mt-1.5 size-2 rounded-full ring-2 ring-brand" />
               <div>
-                <p className="text-xs font-semibold text-text-1">Global Reach</p>
+                <p className="text-xs font-semibold text-text-1">
+                  Global Reach
+                </p>
                 <p className="text-xs leading-snug text-text-2">
                   Delivering value
                   <br />
@@ -100,14 +100,27 @@ export default function Home() {
 
         {/* Stats bar, overlapping the hero base */}
         <div className="absolute inset-x-0 bottom-0 z-10 translate-y-1/2">
-          <div className="mx-auto max-w-7xl px-6">
+          <div className="site-container">
             <dl
               data-intro
               className="grid grid-cols-2 gap-y-6 rounded-[18px] bg-surface-2/95 p-8 shadow-xl ring-1 ring-line backdrop-blur sm:grid-cols-3 lg:grid-cols-5 lg:divide-x lg:divide-line"
             >
               {STATS.map(([value, label]) => (
                 <div key={label} className="flex items-center gap-4 lg:px-6">
-                  <Ph className="size-10 shrink-0 rounded-lg" />
+                  <Symbol
+                    name={
+                      label.includes("Years")
+                        ? "calendar"
+                        : label.includes("Clients")
+                          ? "users"
+                          : label.includes("Divisions")
+                            ? "cog"
+                            : label.includes("Response")
+                              ? "clock"
+                              : "shield"
+                    }
+                    className="size-10 text-brand"
+                  />
                   <div>
                     <dt data-count className="text-2xl font-bold text-text-1">
                       {value}
@@ -123,121 +136,56 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── We create impact ───────────────────────────────── */}
-      <section className="relative overflow-hidden bg-surface-2 pt-28 pb-24">
-        <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-12">
-          <div data-reveal className="lg:col-span-4">
-            <Eyebrow>We create impact</Eyebrow>
-            <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-text-1">
-              A trusted name in
-              <br />
-              Oil and Gas trading
+      <AboutIntro />
+      <section className="bg-gradient-to-b from-[var(--tint-c)] to-[var(--tint-d)] section-space">
+        <div className="site-container text-center">
+          <div data-reveal>
+            <Eyebrow>What we do best</Eyebrow>
+            <h2 className="mt-3 text-4xl font-bold tracking-tight text-text-1">
+              Solutions for{" "}
+              <span className="text-brand">Every Critical Sector</span>
             </h2>
-            <p className="mt-6 max-w-sm text-sm leading-relaxed text-text-2">
-              Nextech General Trading is a reputable organization that delivers
-              top-quality products and services to the Oil and Gas, Refinery,
-              and Power generation sectors in the UAE.
+            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-text-2">
+              We proudly represent manufacturers from both upstream and
+              downstream sectors, serving as a trusted partner in the dynamic
+              world of energy and industry.
             </p>
-            <Link
-              href="/about"
-              className="mt-8 inline-flex items-center gap-3 btn border border-line px-5 py-3 text-sm font-medium text-brand hover:border-brand"
-            >
-              Learn More About Us <Arrow />
-            </Link>
           </div>
-
-          <div className="grid gap-5 sm:grid-cols-2 lg:col-span-4">
-            {IMPACT.map(([title, copy]) => (
-              <div
-                key={title}
-                data-reveal
-                className="rounded-[18px] border border-line bg-surface-2 p-5 shadow-sm"
-              >
-                <Ph className="size-9 rounded-md" />
-                <h3 className="mt-6 text-sm font-semibold text-text-1">
-                  {title}
-                </h3>
-                <p className="mt-2 text-xs leading-relaxed text-text-2">
-                  {copy}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <div data-reveal className="lg:col-span-4">
-            <Ph className="aspect-square w-full rounded-xl" />
-          </div>
+          <SectorCards />
         </div>
       </section>
-
-      {/* ── Sectors ────────────────────────────────────────── */}
-      <section className="bg-gradient-to-b from-[var(--tint-c)] to-[var(--tint-d)] py-24">
-        <div data-reveal className="mx-auto max-w-7xl px-6 text-center">
-          <Eyebrow>What we do best</Eyebrow>
-          <h2 className="mt-3 text-4xl font-bold tracking-tight text-text-1">
-            Solutions for <span className="text-brand">Every Critical Sector</span>
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-text-2">
-            We proudly represent manufacturers from both upstream and downstream
-            sectors, serving as a trusted partner in the dynamic world of energy
-            and industry.
-          </p>
-
-          <SectorSlider />
-        </div>
-      </section>
-
-      {/* ── Capabilities ───────────────────────────────────── */}
-      <section className="bg-surface py-24">
-        <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-12">
-          <div data-reveal className="lg:col-span-4">
+      <section className="bg-surface section-space">
+        <div className="site-container text-center">
+          <div data-reveal>
             <Eyebrow>Our capabilities</Eyebrow>
-            <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-text-1">
-              Delivering Excellence
-              <br />
-              Across the Value Chain
+            <h2 className="mt-3 text-4xl font-bold tracking-tight text-text-1">
+              Delivering Excellence{" "}
+              <span className="text-brand">Across the Value Chain</span>
             </h2>
-            <p className="mt-5 max-w-xs text-sm leading-relaxed text-text-2">
-              Mechanical, Electrical and Instrumentation — supplied with the
-              technical expertise provided by our principals.
+            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-text-2">
+              Mechanical, Electrical and Instrumentation &mdash; supplied with
+              the technical expertise provided by our principals, from upstream
+              through to downstream.
             </p>
-            <Link
-              href="/products-services"
-              className="mt-7 inline-flex items-center gap-3 btn border border-line px-5 py-3 text-sm font-medium text-brand hover:border-brand"
-            >
-              View All Services <Arrow />
-            </Link>
           </div>
-
-          <div className="grid gap-5 sm:grid-cols-3 lg:col-span-8">
-            {DIVISIONS.map(([title, copy]) => (
-              <article
-                key={title}
-                data-reveal
-                className="overflow-hidden rounded-[18px] border border-line bg-surface-2 shadow-sm"
-              >
-                <Ph className="aspect-[4/3] w-full" />
-                <div className="p-4">
-                  <div className="flex items-start justify-between gap-3">
-                    <h3 className="text-sm font-semibold leading-tight text-text-1">
-                      {title}
-                    </h3>
-                    <Arrow className="mt-0.5 text-text-2" />
-                  </div>
-                  <p className="mt-2 text-xs leading-relaxed text-text-2">
-                    {copy}
-                  </p>
-                </div>
-              </article>
-            ))}
-          </div>
+          <SectorSlider />
+          <Link
+            href="/products-services"
+            data-reveal
+            className="mt-12 inline-flex items-center gap-3 btn border border-line px-5 py-3 text-sm font-medium text-brand hover:border-brand"
+          >
+            View All Services <Arrow />
+          </Link>
         </div>
       </section>
 
       {/* ── Clients ────────────────────────────────────────── */}
       <section className="relative overflow-hidden bg-gradient-to-r from-[var(--tint-c)] via-[var(--tint-d)] to-[var(--tint-a)] py-12">
-        <div className="mx-auto max-w-7xl px-6">
-          <h2 data-reveal className="text-center text-lg font-semibold text-text-1">
+        <div className="site-container">
+          <h2
+            data-reveal
+            className="text-center text-lg font-semibold text-text-1"
+          >
             Trusted by Industry Leaders Worldwide
           </h2>
           <div className="mt-8 flex items-center gap-4">
@@ -296,7 +244,7 @@ export default function Home() {
                 Our Commitment <Arrow />
               </Link>
               <div className="flex items-center gap-3 rounded-lg border border-line bg-surface-2 px-4 py-3 shadow-sm">
-                <Ph className="size-8 rounded-md" />
+                <Symbol name="leaf" className="size-8 text-brand" />
                 <p className="text-xs leading-snug text-text-2">
                   Building today for
                   <br />a better tomorrow.

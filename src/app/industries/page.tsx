@@ -27,8 +27,8 @@ export default function Industries() {
       />
 
       {/* ── Sector grid ────────────────────────────────────── */}
-      <section className="bg-surface py-24">
-        <div className="mx-auto max-w-7xl px-6">
+      <section className="bg-surface section-space">
+        <div className="site-container">
           <SectionHead
             center
             eyebrow="Where We Work"
@@ -50,7 +50,7 @@ export default function Industries() {
                   </h3>
                 </div>
                 <div className="p-5">
-                  <p className=" text-sm leading-relaxed text-text-2">
+                  <p className="text-sm leading-relaxed text-text-2">
                     {copy}
                   </p>
                 </div>
@@ -61,8 +61,8 @@ export default function Industries() {
       </section>
 
       {/* ── How we serve ───────────────────────────────────── */}
-      <section className="bg-gradient-to-b from-[var(--tint-c)] to-[var(--tint-d)] py-24">
-        <div className="mx-auto max-w-7xl px-6">
+      <section className="bg-gradient-to-b from-[var(--tint-c)] to-[var(--tint-d)] section-space">
+        <div className="site-container">
           <SectionHead
             center
             eyebrow="How We Serve"
@@ -89,8 +89,8 @@ export default function Industries() {
       </section>
 
       {/* ── Divisions cross-link ───────────────────────────── */}
-      <section className="bg-surface py-24">
-        <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 lg:grid-cols-2">
+      <section className="bg-surface section-space">
+        <div className="site-container grid items-center gap-[clamp(1.5rem,3vw,4rem)] lg:grid-cols-2">
           <Ph data-reveal className="aspect-[4/3] w-full rounded-xl" />
           <div>
             <SectionHead
