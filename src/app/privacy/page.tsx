@@ -3,7 +3,7 @@ import { COMPANY } from "../nav";
 import { CtaBand, LegalBody, PageHero, type LegalSection } from "../ui";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — Nextech General Trading",
+  title: "Privacy Policy - Nextech General Trading",
   description:
     "How Nextech General Trading collects, uses and protects personal information submitted through this website.",
 };

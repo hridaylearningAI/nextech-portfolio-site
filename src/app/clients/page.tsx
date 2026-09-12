@@ -3,7 +3,7 @@ import { CLIENTS } from "../nav";
 import { CtaBand, PageHero, SectionHead } from "../ui";
 
 export const metadata: Metadata = {
-  title: "Clients — Nextech General Trading",
+  title: "Clients - Nextech General Trading",
   description:
     "ADNOC, Borouge, Shell, Total, ENOC, Emirates Steel and more across the UAE energy sector.",
 };

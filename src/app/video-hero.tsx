@@ -33,7 +33,7 @@ export default function VideoHero() {
       {/* ── Mark, top-left of the screen ───────────────────────── */}
       <Link
         href="/"
-        aria-label="Nextech General Trading — home"
+        aria-label="Nextech General Trading, home"
         data-intro
         className="absolute top-7 left-6 sm:top-8 sm:left-10"
       >
@@ -77,15 +77,6 @@ export default function VideoHero() {
           );
         })}
       </nav>
-
-      {/* ── Wordless scroll cue ────────────────────────────────── */}
-      <span
-        data-intro
-        aria-hidden
-        className="absolute bottom-10 left-1/2 -translate-x-1/2"
-      >
-        <span className="scroll-cue" />
-      </span>
     </section>
   );
 }

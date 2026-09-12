@@ -18,7 +18,7 @@ export default function SiteHeader() {
       className={`sticky top-0 z-50 border-b border-line bg-surface/80 backdrop-blur-xl ${behindVideoHero ? "is-cloaked" : ""}`}
     >
       <div className="site-container flex h-20 items-center gap-5">
-        <Link href="/" aria-label="Nextech General Trading — home">
+        <Link href="/" aria-label="Nextech General Trading, home">
           <Logo />
         </Link>
 

@@ -4,7 +4,7 @@ import { INDUSTRIES } from "../nav";
 import { Arrow, CtaBand, PageHero, Ph, SectionHead } from "../ui";
 
 export const metadata: Metadata = {
-  title: "Industries — Nextech General Trading",
+  title: "Industries - Nextech General Trading",
   description:
     "Serving the Oil and Gas, Refinery and Power generation sectors across the UAE.",
 };
@@ -96,7 +96,7 @@ export default function Industries() {
             <SectionHead
               eyebrow="Our Capabilities"
               title="Depth across the" accent="entire value chain."
-              copy="Mechanical, Electrical and Instrumentation — supplied with the technical expertise provided by our principals."
+              copy="Mechanical, Electrical and Instrumentation, supplied with the technical expertise of our principals."
             />
             <Link
               href="/products-services"

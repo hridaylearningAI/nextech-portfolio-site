@@ -4,7 +4,7 @@ import { COMPANY, SOCIALS } from "../nav";
 import { Arrow, CtaBand, PageHero, Ph, SectionHead } from "../ui";
 
 export const metadata: Metadata = {
-  title: "Contact Us — Nextech General Trading",
+  title: "Contact Us - Nextech General Trading",
   description:
     "Global Tower, Electra Street, Abu Dhabi. We answer all enquiries within 24 hours on business days.",
 };

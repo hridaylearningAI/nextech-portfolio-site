@@ -5,7 +5,7 @@ import { DIVISIONS } from "../nav";
 import { Arrow, CtaBand, PageHero, Ph, SectionHead } from "../ui";
 
 export const metadata: Metadata = {
-  title: "Products & Services — Nextech General Trading",
+  title: "Products & Services - Nextech General Trading",
   description:
     "Mechanical, Electrical and Instrumentation products and services for the UAE energy sector.",
 };
@@ -24,7 +24,7 @@ export default function ProductsServices() {
         eyebrow="Products & Services"
         title="Delivering Excellence"
         accent="Across the Value Chain."
-        copy="Mechanical, Electrical and Instrumentation — supplied with the technical expertise provided by our principals."
+        copy="Mechanical, Electrical and Instrumentation, supplied with the technical expertise of our principals."
       />
 
       {/* ── Three divisions ────────────────────────────────── */}

@@ -111,7 +111,10 @@ export default function SiteFooter() {
                 <Arrow className="-rotate-45" />
               </button>
             </form>
-            <ul className="mt-6 space-y-2">
+            <h3 className="mt-8 text-sm font-semibold text-text-1">
+              Divisions
+            </h3>
+            <ul className="mt-5 space-y-3">
               {DIVISIONS.map(([label]) => (
                 <li key={label}>
                   <Link

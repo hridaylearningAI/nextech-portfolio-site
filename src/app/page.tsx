@@ -140,8 +140,7 @@ export default function Home() {
       <section className="bg-gradient-to-b from-[var(--tint-c)] to-[var(--tint-d)] section-space">
         <div className="site-container text-center">
           <div data-reveal>
-            <Eyebrow>What we do best</Eyebrow>
-            <h2 className="mt-3 text-4xl font-bold tracking-tight text-text-1">
+            <h2 className="text-4xl font-bold tracking-tight text-text-1">
               Solutions for{" "}
               <span className="text-brand">Every Critical Sector</span>
             </h2>
@@ -155,27 +154,33 @@ export default function Home() {
         </div>
       </section>
       <section className="bg-surface section-space">
-        <div className="site-container text-center">
-          <div data-reveal>
-            <Eyebrow>Our capabilities</Eyebrow>
-            <h2 className="mt-3 text-4xl font-bold tracking-tight text-text-1">
-              Delivering Excellence{" "}
-              <span className="text-brand">Across the Value Chain</span>
-            </h2>
-            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-text-2">
-              Mechanical, Electrical and Instrumentation &mdash; supplied with
-              the technical expertise provided by our principals, from upstream
-              through to downstream.
-            </p>
+        <div className="site-container">
+          {/* Left header with the action on the same row, rather than another
+              centred heading over a grid. Sectors above already uses that
+              family, and two in a row is what makes a page read as templated. */}
+          <div
+            data-reveal
+            className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between"
+          >
+            <div>
+              <h2 className="max-w-xl text-4xl font-bold tracking-tight text-text-1">
+                Delivering Excellence{" "}
+                <span className="text-brand">Across the Value Chain</span>
+              </h2>
+              <p className="mt-4 max-w-lg text-sm leading-relaxed text-text-2">
+                Mechanical, Electrical and Instrumentation, supplied with the
+                technical expertise of our principals, from upstream through to
+                downstream.
+              </p>
+            </div>
+            <Link
+              href="/products-services"
+              className="inline-flex shrink-0 items-center gap-3 btn border border-line px-5 py-3 text-sm font-medium text-brand hover:border-brand"
+            >
+              View All Services <Arrow />
+            </Link>
           </div>
           <SectorSlider />
-          <Link
-            href="/products-services"
-            data-reveal
-            className="mt-12 inline-flex items-center gap-3 btn border border-line px-5 py-3 text-sm font-medium text-brand hover:border-brand"
-          >
-            View All Services <Arrow />
-          </Link>
         </div>
       </section>
 

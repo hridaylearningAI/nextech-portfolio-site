@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Arrow, CtaBand, PageHero, Ph, SectionHead } from "../ui";
 
 export const metadata: Metadata = {
-  title: "About Us — Nextech General Trading",
+  title: "About Us - Nextech General Trading",
   description:
     "Nextech General Trading delivers top-quality products and services to the Oil and Gas, Refinery, and Power generation sectors in the UAE.",
 };

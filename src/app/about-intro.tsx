@@ -48,8 +48,8 @@ export default function AboutIntro() {
             Nextech General Trading is at the heart of the UAE, connecting
             global industries with reliable solutions. We are driven by a
             commitment to quality, sustainability and long-term partnerships
-            &mdash; supporting progress across energy, infrastructure and
-            industrial development.
+            that support progress across energy, infrastructure and industrial
+            development.
           </p>
           <Link
             href="/about"
