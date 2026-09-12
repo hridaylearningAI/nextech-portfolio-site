@@ -25,7 +25,12 @@ const Globe3D = dynamic(
   },
 );
 
-const flag = (code: string) => `https://flagcdn.com/w80/${code}.png`;
+/**
+ * Self-hosted in public/flags. These were pulled from flagcdn once and
+ * committed: an 11-image dependency on a third-party CDN is a third party
+ * deciding whether this section renders.
+ */
+const flag = (code: string) => `/flags/${code}.png`;
 
 export default function GlobalReach() {
   // The globe spins by default. Someone who asked for reduced motion should
@@ -118,7 +123,13 @@ export default function GlobalReach() {
               className="h-[420px] w-full lg:h-[520px]"
               markers={markers}
               config={{
-                autoRotateSpeed: spin,
+                // Self-hosted and downscaled. Upstream's defaults are a
+                // 4096x2048 JPEG plus a 2048x1024 PNG on a third-party CDN,
+                // 1.8MB that took ~10s to arrive cold. These are 2048x1024 and
+                // 1024x512 WebP, 205KB together, and the sphere is never drawn
+                // much wider than 500px so the detail is not missed.
+                textureUrl: "/textures/earth.webp",
+                bumpMapUrl: "/textures/earth-bump.webp",
                 showAtmosphere: true,
                 atmosphereColor: "#02c1b3",
                 // Low intensity with a soft falloff. Higher values read as a
