@@ -1,4 +1,5 @@
 import { Symbol } from "../icons";
+import GlobalReach from "../global-reach";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Arrow, CtaBand, PageHero, Ph, SectionHead } from "../ui";
@@ -108,6 +109,8 @@ export default function About() {
           ))}
         </dl>
       </section>
+
+      <GlobalReach />
 
       {/* ── Commitment ─────────────────────────────────────── */}
       <section className="bg-surface section-space">

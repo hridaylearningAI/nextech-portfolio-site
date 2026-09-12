@@ -120,3 +120,22 @@ export const CLIENTS = [
   "Abu Dhabi Distribution Company",
   "Al Ain Distribution Company",
 ] as const;
+
+/**
+ * Markets the company actively trades in. One source for both the globe
+ * markers and the readable list beside it, so the two can never drift.
+ * Coordinates are capital cities; the ISO 3166-1 alpha-2 code drives the flag.
+ */
+export const COUNTRIES = [
+  ["Spain", "es", 40.4168, -3.7038],
+  ["Italy", "it", 41.9028, 12.4964],
+  ["India", "in", 28.6139, 77.209],
+  ["United Kingdom", "gb", 51.5074, -0.1278],
+  ["China", "cn", 39.9042, 116.4074],
+  ["United States", "us", 38.9072, -77.0369],
+  ["Singapore", "sg", 1.3521, 103.8198],
+  ["Australia", "au", -35.2809, 149.13],
+  ["Qatar", "qa", 25.2854, 51.531],
+  ["Poland", "pl", 52.2297, 21.0122],
+  ["Turkey", "tr", 39.9334, 32.8597],
+] as const;
