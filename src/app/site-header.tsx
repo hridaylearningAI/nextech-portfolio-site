@@ -4,7 +4,8 @@ import { Symbol } from "./icons";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { COMPANY, NAV } from "./nav";
+import { COMPANY, NAV_FLAT } from "./nav";
+import MobileMenu from "./mobile-menu";
 import ThemeToggle from "./theme-toggle";
 import { Arrow, Logo } from "./ui";
 
@@ -23,7 +24,7 @@ export default function SiteHeader() {
         </Link>
 
         <nav className="hidden flex-1 items-center justify-center gap-4 lg:flex">
-          {NAV.map(([label, href]) => {
+          {NAV_FLAT.map(({ label, href }) => {
             const active = pathname === href;
             return (
               <Link
@@ -54,10 +55,11 @@ export default function SiteHeader() {
           <ThemeToggle />
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 btn bg-brand px-4 py-2.5 text-sm font-medium text-ink hover:bg-brand-dark"
+            className="hidden items-center sm:inline-flex gap-2 btn bg-brand px-4 py-2.5 text-sm font-medium text-ink hover:bg-brand-dark"
           >
             Get a Quote <Arrow />
           </Link>
+          <MobileMenu />
         </div>
       </div>
     </header>

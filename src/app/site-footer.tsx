@@ -1,6 +1,6 @@
 import { Symbol, SOCIAL_ICONS } from "./icons";
 import Link from "next/link";
-import { COMPANY, DIVISIONS, INDUSTRIES, NAV, SOCIALS } from "./nav";
+import { COMPANY, DIVISIONS, INDUSTRIES, NAV_FLAT, SOCIALS } from "./nav";
 import { Arrow, Logo } from "./ui";
 
 export default function SiteFooter() {
@@ -30,7 +30,7 @@ export default function SiteFooter() {
           <div>
             <h3 className="text-sm font-semibold text-text-1">Quick Links</h3>
             <ul className="mt-5 space-y-3">
-              {NAV.filter(([, href]) => href !== "/").map(([label, href]) => (
+              {NAV_FLAT.map(({ label, href }) => (
                 <li key={href}>
                   <Link
                     href={href}
@@ -49,7 +49,7 @@ export default function SiteFooter() {
               {INDUSTRIES.map(([label]) => (
                 <li key={label}>
                   <Link
-                    href="/industries"
+                    href="/industries-clients"
                     className="text-xs text-text-2 hover:text-brand"
                   >
                     {label}
@@ -118,7 +118,7 @@ export default function SiteFooter() {
               {DIVISIONS.map(([label]) => (
                 <li key={label}>
                   <Link
-                    href="/products-services"
+                    href="/supplies"
                     className="text-xs text-text-2 hover:text-brand"
                   >
                     {label}

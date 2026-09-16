@@ -5,6 +5,9 @@ import { useEffect, useMemo, useState } from "react";
 import type { GlobeMarker } from "@/components/ui/3d-globe";
 import { COUNTRIES } from "./nav";
 
+/** Head office. Every country on the globe draws a route back to it. */
+const HQ = { label: "Abu Dhabi, UAE", code: "ae", lat: 24.4539, lng: 54.3773 };
+
 /**
  * three + drei + fiber is roughly half a megabyte. Loading it on the client
  * only, and only for this page, keeps it out of every other route's bundle.
@@ -81,15 +84,30 @@ export default function GlobalReach() {
             renders if WebGL is unavailable. */}
         <div data-reveal className="lg:col-span-5">
           <h2 className="text-3xl font-bold leading-tight tracking-tight text-text-1 sm:text-4xl">
-            Trading across <span className="text-brand">eleven countries</span>
+            Partners <span className="text-brand">Across the Globe</span>
           </h2>
           <p className="mt-4 max-w-md text-sm leading-relaxed text-text-2">
-            From our base in Abu Dhabi we source from and supply to markets
-            across Europe, Asia, the Gulf and the Americas. These are the
-            countries we actively trade in today.
+            Every route leads back to our head office in Abu Dhabi, where we
+            work with principals and customers across Europe, Asia, the Gulf,
+            Australia and the Americas.
           </p>
 
-          <ul className="mt-9 grid grid-cols-1 gap-x-6 gap-y-1 sm:grid-cols-2">
+          <div className="mt-9 flex items-center gap-3 rounded-xl bg-surface-2 px-4 py-3 shadow-sm ring-1 ring-line">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={flag(HQ.code)}
+              alt=""
+              width={20}
+              height={15}
+              className="h-[15px] w-5 shrink-0 rounded-[2px] object-cover ring-1 ring-black/10"
+            />
+            <p className="text-sm text-text-1">
+              <span className="font-semibold">Head office</span>
+              <span className="text-text-2"> in {HQ.label}</span>
+            </p>
+          </div>
+
+          <ul className="mt-4 grid grid-cols-1 gap-x-6 gap-y-1 sm:grid-cols-2">
             {COUNTRIES.map(([label, code]) => (
               <li
                 key={code}
@@ -122,7 +140,19 @@ export default function GlobalReach() {
             <Globe3D
               className="h-[420px] w-full lg:h-[520px]"
               markers={markers}
+              hub={{
+                lat: HQ.lat,
+                lng: HQ.lng,
+                label: HQ.label,
+                src: flag(HQ.code),
+                // Larger than the partner flags so the hub reads first.
+                size: 22,
+              }}
               config={{
+                autoRotateSpeed: spin,
+                arcColor: "#02c1b3",
+                // Same switch as the rotation: reduced motion gets still arcs.
+                animateArcs: spin > 0,
                 // Self-hosted and downscaled. Upstream's defaults are a
                 // 4096x2048 JPEG plus a 2048x1024 PNG on a third-party CDN,
                 // 1.8MB that took ~10s to arrive cold. These are 2048x1024 and
@@ -142,9 +172,9 @@ export default function GlobalReach() {
                 // revolution. Lift ambient enough that the facing side always reads.
                 ambientIntensity: 1.15,
                 pointLightIntensity: 1.1,
-                // Open on Europe, the Gulf and South Asia, where most of these
-                // markets are. Without this the first thing on screen is an
-                // empty Pacific.
+                // Opens centred on Abu Dhabi (longitude -90 minus this angle in
+                // degrees), so the hub and the routes into it are the first
+                // thing on screen rather than an empty Pacific.
                 initialRotation: { x: 0, y: -2.53 },
               }}
             />

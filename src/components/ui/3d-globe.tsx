@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef, useMemo, useState, useCallback, Suspense } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { OrbitControls, Html, useTexture } from "@react-three/drei";
+import { OrbitControls, Html, Line, useTexture } from "@react-three/drei";
 import * as THREE from "three";
 import { cn } from "@/lib/utils";
 
@@ -60,6 +60,10 @@ export interface Globe3DConfig {
   pointLightIntensity?: number;
   /** Background color (null for transparent) */
   backgroundColor?: string | null;
+  /** Colour of the hub marker's ring and of the arcs to it */
+  arcColor?: string;
+  /** Flow the dashes along each arc towards the hub (set false for reduced motion) */
+  animateArcs?: boolean;
 }
 
 interface Globe3DProps {
@@ -73,6 +77,11 @@ interface Globe3DProps {
   onMarkerClick?: (marker: GlobeMarker) => void;
   /** Callback when a marker is hovered */
   onMarkerHover?: (marker: GlobeMarker | null) => void;
+  /**
+   * Optional hub, e.g. a head office. Rendered as a highlighted marker, with a
+   * dashed arc drawn from every other marker to it.
+   */
+  hub?: GlobeMarker;
 }
 
 // ============================================================================
@@ -106,6 +115,40 @@ function latLngToVector3(
   return new THREE.Vector3(x, y, z);
 }
 
+/**
+ * Points along the great circle between two markers, lifted off the surface so
+ * the arc reads as a flight path rather than a line painted on the map. Longer
+ * routes are lifted higher, which keeps them from grazing the globe.
+ */
+function arcPoints(
+  from: GlobeMarker,
+  to: GlobeMarker,
+  radius: number,
+  segments = 64,
+): THREE.Vector3[] {
+  const a = latLngToVector3(from.lat, from.lng, 1);
+  const b = latLngToVector3(to.lat, to.lng, 1);
+  const angle = a.angleTo(b);
+  const sinAngle = Math.sin(angle);
+  const lift = 0.05 + 0.24 * (angle / Math.PI);
+
+  const points: THREE.Vector3[] = [];
+  for (let i = 0; i <= segments; i++) {
+    const t = i / segments;
+    // Spherical interpolation, so points are evenly spaced along the route.
+    const direction =
+      sinAngle < 1e-6
+        ? a.clone()
+        : a
+            .clone()
+            .multiplyScalar(Math.sin((1 - t) * angle) / sinAngle)
+            .add(b.clone().multiplyScalar(Math.sin(t * angle) / sinAngle));
+    const height = radius * (1.002 + lift * Math.sin(Math.PI * t));
+    points.push(direction.normalize().multiplyScalar(height));
+  }
+  return points;
+}
+
 // ============================================================================
 // Marker Component (static - rotation handled by parent group)
 // ============================================================================
@@ -116,6 +159,8 @@ interface MarkerProps {
   defaultSize: number;
   onClick?: (marker: GlobeMarker) => void;
   onHover?: (marker: GlobeMarker | null) => void;
+  /** Ring colour for a highlighted (hub) marker. Omit for a normal marker. */
+  highlight?: string;
 }
 
 function Marker({
@@ -124,6 +169,7 @@ function Marker({
   defaultSize,
   onClick,
   onHover,
+  highlight,
 }: MarkerProps) {
   const [hovered, setHovered] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
@@ -233,28 +279,103 @@ function Marker({
             transition: "opacity 0.15s ease-out",
           }}
         >
-          <div
-            className={cn(
-              "cursor-pointer overflow-hidden rounded-full bg-neutral-900 shadow-lg transition-transform duration-200",
-              hovered && "scale-125 shadow-xl ring-1 ring-white/50",
+          <div className="relative">
+            {/* The hub gets a pulsing halo in its accent colour. The global
+                reduced-motion rule stops the pulse after one cycle. */}
+            {highlight && (
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-0 animate-ping rounded-full"
+                style={{ boxShadow: `0 0 0 2px ${highlight}` }}
+              />
             )}
-            style={{
-              width: `${chipSize}px`,
-              height: `${chipSize}px`,
-            }}
-            onMouseEnter={handlePointerEnter}
-            onMouseLeave={handlePointerLeave}
-            onClick={handleClick}
-          >
-            <img
-              src={marker.src}
-              alt={marker.label || "Marker"}
-              className="h-full w-full object-cover"
-              draggable={false}
-            />
+            <div
+              className={cn(
+                "cursor-pointer overflow-hidden rounded-full bg-neutral-900 shadow-lg transition-transform duration-200",
+                hovered && "scale-125 shadow-xl ring-1 ring-white/50",
+              )}
+              style={{
+                width: `${chipSize}px`,
+                height: `${chipSize}px`,
+                boxShadow: highlight ? `0 0 0 2px ${highlight}` : undefined,
+              }}
+              onMouseEnter={handlePointerEnter}
+              onMouseLeave={handlePointerLeave}
+              onClick={handleClick}
+            >
+              <img
+                src={marker.src}
+                alt={marker.label || "Marker"}
+                className="h-full w-full object-cover"
+                draggable={false}
+              />
+            </div>
           </div>
         </Html>
       </group>
+    </group>
+  );
+}
+
+// ============================================================================
+// Arcs to the hub
+// ============================================================================
+
+interface ArcsProps {
+  markers: GlobeMarker[];
+  hub: GlobeMarker;
+  radius: number;
+  color: string;
+  animate: boolean;
+}
+
+/**
+ * Dashed routes from every marker to the hub. Drawn with drei's Line (a fat
+ * line in screen-space pixels, so it stays visible on high-DPI screens) and
+ * depth tested, so the far side of each route is hidden by the globe itself.
+ */
+function Arcs({ markers, hub, radius, color, animate }: ArcsProps) {
+  const routes = useMemo(
+    () =>
+      markers
+        .filter((m) => m.lat !== hub.lat || m.lng !== hub.lng)
+        .map((m) => ({
+          key: `${m.lat},${m.lng}`,
+          points: arcPoints(m, hub, radius),
+        })),
+    [markers, hub, radius],
+  );
+
+  const group = useRef<THREE.Group>(null);
+
+  // Decreasing dashOffset moves the dashes forward along each line, which
+  // runs from the marker to the hub, so the flow reads as inbound.
+  useFrame((_, delta) => {
+    if (!animate || !group.current) return;
+    group.current.traverse((obj) => {
+      const material = (obj as THREE.Mesh).material as
+        (THREE.Material & { dashOffset?: number }) | undefined;
+      if (material && typeof material.dashOffset === "number") {
+        material.dashOffset -= delta * 0.12;
+      }
+    });
+  });
+
+  return (
+    <group ref={group}>
+      {routes.map((route) => (
+        <Line
+          key={route.key}
+          points={route.points}
+          color={color}
+          lineWidth={1.2}
+          dashed
+          dashSize={0.045}
+          gapSize={0.035}
+          transparent
+          opacity={0.85}
+        />
+      ))}
     </group>
   );
 }
@@ -266,6 +387,7 @@ function Marker({
 interface RotatingGlobeProps {
   config: Required<Globe3DConfig>;
   markers: GlobeMarker[];
+  hub?: GlobeMarker;
   onMarkerClick?: (marker: GlobeMarker) => void;
   onMarkerHover?: (marker: GlobeMarker | null) => void;
 }
@@ -273,6 +395,7 @@ interface RotatingGlobeProps {
 function RotatingGlobe({
   config,
   markers,
+  hub,
   onMarkerClick,
   onMarkerHover,
 }: RotatingGlobeProps) {
@@ -344,6 +467,28 @@ function RotatingGlobe({
           onHover={onMarkerHover}
         />
       ))}
+
+      {/* Hub, and the routes to it - inside the rotating group so they turn
+          with the Earth rather than staying fixed to the camera */}
+      {hub && (
+        <>
+          <Arcs
+            markers={markers}
+            hub={hub}
+            radius={config.radius}
+            color={config.arcColor}
+            animate={config.animateArcs}
+          />
+          <Marker
+            marker={hub}
+            radius={config.radius}
+            defaultSize={config.markerSize}
+            onClick={onMarkerClick}
+            onHover={onMarkerHover}
+            highlight={config.arcColor}
+          />
+        </>
+      )}
     </group>
   );
 }
@@ -411,12 +556,19 @@ function Atmosphere({ radius, color, intensity, blur }: AtmosphereProps) {
 
 interface SceneProps {
   markers: GlobeMarker[];
+  hub?: GlobeMarker;
   config: Required<Globe3DConfig>;
   onMarkerClick?: (marker: GlobeMarker) => void;
   onMarkerHover?: (marker: GlobeMarker | null) => void;
 }
 
-function Scene({ markers, config, onMarkerClick, onMarkerHover }: SceneProps) {
+function Scene({
+  markers,
+  hub,
+  config,
+  onMarkerClick,
+  onMarkerHover,
+}: SceneProps) {
   const { camera } = useThree();
 
   // Set initial camera position (pulled back to accommodate markers)
@@ -444,6 +596,7 @@ function Scene({ markers, config, onMarkerClick, onMarkerHover }: SceneProps) {
       <RotatingGlobe
         config={config}
         markers={markers}
+        hub={hub}
         onMarkerClick={onMarkerClick}
         onMarkerHover={onMarkerHover}
       />
@@ -517,6 +670,8 @@ const defaultConfig: Required<Globe3DConfig> = {
   ambientIntensity: 0.6,
   pointLightIntensity: 1.5,
   backgroundColor: null,
+  arcColor: "#7dd3fc",
+  animateArcs: true,
 };
 
 export function Globe3D({
@@ -525,6 +680,7 @@ export function Globe3D({
   className,
   onMarkerClick,
   onMarkerHover,
+  hub,
 }: Globe3DProps) {
   const mergedConfig = useMemo(
     () => ({ ...defaultConfig, ...config }),
@@ -553,6 +709,7 @@ export function Globe3D({
         <Suspense fallback={<LoadingFallback />}>
           <Scene
             markers={markers}
+            hub={hub}
             config={mergedConfig}
             onMarkerClick={onMarkerClick}
             onMarkerHover={onMarkerHover}

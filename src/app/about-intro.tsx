@@ -4,7 +4,7 @@ import { Arrow, Eyebrow, Ph } from "./ui";
 
 const FEATURES: [React.ReactNode, string, string][] = [
   [ICONS.globe, "Global Reach", "Local Expertise"],
-  [ICONS.users, "Trusted by", "Leading Industries"],
+  [ICONS.users, "Trusted by", "Leading Clients"],
   [ICONS.shield, "Sustainable", "Growth Focus"],
   [ICONS.cog, "Reliable Supply", "Chain Solutions"],
 ];
@@ -52,7 +52,7 @@ export default function AboutIntro() {
             development.
           </p>
           <Link
-            href="/about"
+            href="/who-we-are"
             className="mt-8 inline-flex items-center gap-3 btn bg-brand px-6 py-3.5 text-sm font-medium text-ink hover:bg-brand-dark"
           >
             Our Story <Arrow />

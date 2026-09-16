@@ -51,15 +51,21 @@ export default function Motion() {
         // would capture: a blank page. When we can't animate, show outright.
         const animatable = document.visibilityState === "visible";
 
-        // ── Page transition: content rises in, and on a route change the
-        // whole page slides up behind it. ───────────────────────────────
-        if (animatable) {
-          const tl = gsap.timeline();
+        // ── Page entrance: content rises in. On a route change the whole
+        // page slides up behind it. When the cover in page-transition.tsx is
+        // handling the change, its reveal owns the entrance instead, timed to
+        // the waves draining, so nothing runs here.
+        const covered =
+          isRouteChange &&
+          Boolean(document.documentElement.dataset.pageTransition);
 
+        if (covered) {
+          // page-transition.tsx reveals [data-intro].
+        } else if (animatable) {
+          const tl = gsap.timeline();
           if (isRouteChange) {
             tl.from("main", { y: 16, autoAlpha: 0, duration: 0.4 }, 0);
           }
-
           tl.fromTo(
             "[data-intro]",
             { autoAlpha: 0, y: 22 },

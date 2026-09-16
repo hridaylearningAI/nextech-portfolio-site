@@ -7,6 +7,7 @@ import {
   FacebookLogoIcon,
   FactoryIcon,
   FlaskIcon,
+  GaugeIcon,
   GearIcon,
   GlobeHemisphereWestIcon,
   GlobeIcon,
@@ -14,18 +15,57 @@ import {
   InstagramLogoIcon,
   LeafIcon,
   LightningIcon,
+  HardHatIcon,
   MapPinIcon,
+  PlugIcon,
   PhoneIcon,
   ShieldCheckIcon,
   ShippingContainerIcon,
   SkypeLogoIcon,
   DropIcon,
   UsersIcon,
+  WrenchIcon,
   XLogoIcon,
   YoutubeLogoIcon,
+  BlueprintIcon,
+  ChartBarIcon,
+  ClipboardTextIcon,
+  CompassIcon,
+  DiamondIcon,
+  EyeIcon,
+  KanbanIcon,
+  MagnifyingGlassIcon,
+  SealCheckIcon,
+  SpeakerHighIcon,
+  SpeakerSlashIcon,
+  TargetIcon,
+  TrendUpIcon,
+  UserIcon,
+  UsersThreeIcon,
+  CraneIcon,
+  PauseIcon,
+  PlayIcon,
 } from "@phosphor-icons/react/dist/ssr";
 
 const GLYPHS = {
+  pause: PauseIcon,
+  play: PlayIcon,
+  blueprint: BlueprintIcon,
+  chart: ChartBarIcon,
+  clipboard: ClipboardTextIcon,
+  compass: CompassIcon,
+  diamond: DiamondIcon,
+  eye: EyeIcon,
+  kanban: KanbanIcon,
+  search: MagnifyingGlassIcon,
+  seal: SealCheckIcon,
+  soundOn: SpeakerHighIcon,
+  soundOff: SpeakerSlashIcon,
+  target: TargetIcon,
+  trend: TrendUpIcon,
+  user: UserIcon,
+  team: UsersThreeIcon,
+  crane: CraneIcon,
   arrow: ArrowRightIcon,
   calendar: CalendarCheckIcon,
   certificate: CertificateIcon,
@@ -34,6 +74,10 @@ const GLYPHS = {
   facebook: FacebookLogoIcon,
   rig: FactoryIcon,
   flask: FlaskIcon,
+  gauge: GaugeIcon,
+  hardhat: HardHatIcon,
+  plug: PlugIcon,
+  wrench: WrenchIcon,
   cog: GearIcon,
   globe: GlobeHemisphereWestIcon,
   website: GlobeIcon,
@@ -55,14 +99,17 @@ export type IconName = keyof typeof GLYPHS;
 export function Symbol({
   name,
   className = "size-6",
+  weight = "regular",
 }: {
   name: IconName;
   className?: string;
+  /** Phosphor stroke weight. "thin"/"light" read as line drawing. */
+  weight?: "thin" | "light" | "regular" | "bold";
 }) {
   const Glyph = GLYPHS[name];
   return (
     <Glyph
-      weight="regular"
+      weight={weight}
       className={`shrink-0 ${className}`}
       aria-hidden="true"
     />

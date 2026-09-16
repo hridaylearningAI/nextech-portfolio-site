@@ -1,33 +1,64 @@
-/** Nav as laid out in the design. */
-export const NAV = [
-  ["Home", "/"],
-  ["About Us", "/about"],
-  ["Industries", "/industries"],
-  ["Products & Services", "/products-services"],
-  ["Clients", "/clients"],
-  ["Contact Us", "/contact"],
+/**
+ * Site navigation. "What we do" is a grouping label rather than a page: the
+ * vertical rail on the home page has the room to show it above its two
+ * children, while the horizontal header flattens the tree, because a bar has
+ * nowhere sensible to put a label you cannot click. NAV_FLAT is that
+ * flattening, derived rather than written out, so the two cannot drift.
+ */
+export type NavItem = { label: string; href: string };
+export type NavNode = NavItem | { label: string; children: NavItem[] };
+
+export const NAV: NavNode[] = [
+  { label: "Who we are", href: "/who-we-are" },
+  {
+    label: "What we do",
+    children: [
+      { label: "Supplies", href: "/supplies" },
+      { label: "Services", href: "/services" },
+    ],
+  },
+  { label: "Industries & Clients", href: "/industries-clients" },
+  { label: "Contact Us", href: "/contact" },
+];
+
+export const NAV_FLAT: NavItem[] = NAV.flatMap((node) =>
+  "children" in node ? node.children : [node],
+);
+
+/**
+ * The figures in the bar at the foot of the video hero.
+ * NOTE: the fifth label is still the old copy. The brief gave "100% __" with
+ * the label left blank, so this is a placeholder awaiting the real one.
+ */
+export const STATS = [
+  ["30+", "Global Partners", "handshake"],
+  ["300+", "Approved Products", "certificate"],
+  ["5", "Core Divisions", "cog"],
+  ["24hr", "Response", "clock"],
+  ["100%", "Commitment to Quality", "shield"],
 ] as const;
 
 /**
- * Sectors the company supplies. Third field keys into ICONS in icons.tsx.
- * Drives the home cards, the /industries grid and the footer column, so all
- * three stay on one taxonomy.
+ * Industries served. Third field keys into ICONS in icons.tsx. Drives the home
+ * cards, the /industries-clients grid and the footer column, so all three stay
+ * on one taxonomy.
  */
 export const INDUSTRIES = [
   [
-    "Oil & Gas",
+    "Oil and Gas",
     "Trusted supply for upstream, midstream and downstream operations.",
     "rig",
   ],
+  ["Water", "Products and systems for cleaner, safer water worldwide.", "drop"],
   [
-    "Energy",
-    "Solutions for a more reliable and sustainable energy future.",
-    "bolt",
-  ],
-  [
-    "Petrochemicals",
+    "Petrochemical",
     "High-quality materials for a stronger, more efficient industry.",
     "flask",
+  ],
+  [
+    "Utility",
+    "Equipment and spares for utility networks and the operators who run them.",
+    "plug",
   ],
   [
     "Marine",
@@ -35,14 +66,9 @@ export const INDUSTRIES = [
     "ship",
   ],
   [
-    "Water Treatment",
-    "Products and systems for cleaner, safer water worldwide.",
-    "drop",
-  ],
-  [
-    "Industrial Solutions",
-    "A wide range of industrial products for diverse applications.",
-    "cog",
+    "Energy",
+    "Solutions for a more reliable and sustainable energy future.",
+    "bolt",
   ],
 ] as const;
 
@@ -65,18 +91,32 @@ export const COMPANY = {
 } as const;
 
 /** The three divisions — these are the site's Quick Links too. */
+/** The five divisions. Third field keys into ICONS in icons.tsx. */
 export const DIVISIONS = [
   [
-    "Mechanical",
-    "Valves, pumps, piping and rotating equipment supplied to specification for upstream and downstream plant.",
+    "Mechanical & Flow Control",
+    "Valves, pumps, piping and rotating equipment supplied to specification.",
+    "wrench",
   ],
   [
     "Electrical",
-    "Power distribution, cabling and electrical packages for refinery and power generation facilities.",
+    "Power distribution, cabling and electrical packages for plant and utilities.",
+    "bolt",
   ],
   [
     "Instrumentation",
-    "Measurement, control and analyser systems from principals we represent across the region.",
+    "Measurement, control and analyser systems from the principals we represent.",
+    "gauge",
+  ],
+  [
+    "Heavy Process & Industrial Equipment",
+    "Large process packages and industrial equipment built for demanding duty.",
+    "rig",
+  ],
+  [
+    "Chemicals & Safety Equipment",
+    "Process chemicals alongside protective and safety equipment for site.",
+    "hardhat",
   ],
 ] as const;
 
@@ -139,3 +179,51 @@ export const COUNTRIES = [
   ["Poland", "pl", 52.2297, 21.0122],
   ["Turkey", "tr", 39.9334, 32.8597],
 ] as const;
+
+/**
+ * The six services under What we do. Third field keys into ICONS in icons.tsx.
+ */
+export const SERVICES = [
+  [
+    "Civil Works & Mechanical Services",
+    "Site civil works, mechanical installation, fabrication and maintenance support for operating plant.",
+    "crane",
+  ],
+  [
+    "Electrical & Power Systems",
+    "Installation, testing and maintenance of power distribution, lighting and electrical systems.",
+    "bolt",
+  ],
+  [
+    "Instrumentation & Control",
+    "Installation, calibration and commissioning of field instruments and control systems.",
+    "gauge",
+  ],
+  [
+    "Engineering Services",
+    "Specification review, technical evaluation and engineering support from enquiry through to handover.",
+    "blueprint",
+  ],
+  [
+    "Consultancy & Advisory",
+    "Market, supplier and regulatory guidance for principals and operators working in the UAE.",
+    "compass",
+  ],
+  [
+    "Project Management",
+    "Planning, coordination and delivery management that keeps packages on schedule.",
+    "kanban",
+  ],
+] as const;
+
+/**
+ * URL-safe id from a label, e.g. "Mechanical & Flow Control" ->
+ * "mechanical-flow-control". One implementation, so the home slider's deep
+ * links and the supplies page's anchors can never be spelled differently.
+ */
+export const slugify = (label: string) =>
+  label
+    .toLowerCase()
+    .replace(/&/g, " ")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");

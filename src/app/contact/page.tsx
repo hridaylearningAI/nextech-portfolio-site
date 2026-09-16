@@ -1,6 +1,7 @@
 import { Symbol, SOCIAL_ICONS } from "../icons";
 import type { Metadata } from "next";
 import { COMPANY, SOCIALS } from "../nav";
+import QuoteBanner from "../quote-banner";
 import { Arrow, CtaBand, PageHero, Ph, SectionHead } from "../ui";
 
 export const metadata: Metadata = {
@@ -38,7 +39,11 @@ export default function Contact() {
               Your email address will not be published. Required fields are
               marked *
             </p>
-            <form data-reveal className="mt-8 grid gap-5 sm:grid-cols-2">
+            <form
+              id="enquiry"
+              data-reveal
+              className="mt-8 grid gap-5 sm:grid-cols-2"
+            >
               <label className="block">
                 <span className="text-xs font-medium text-text-1">
                   Your name *
@@ -172,6 +177,14 @@ export default function Contact() {
               </div>
             </div>
           </aside>
+        </div>
+      </section>
+
+      {/* ── Quote call to action: between the form and the map,
+          so it never sits back to back with the teal closing band ── */}
+      <section className="bg-surface pb-16">
+        <div className="site-container">
+          <QuoteBanner href="#enquiry" />
         </div>
       </section>
 

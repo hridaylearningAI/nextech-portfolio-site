@@ -1,19 +1,11 @@
 import { Symbol } from "./icons";
 import Link from "next/link";
 import AboutIntro from "./about-intro";
-import SectorCards from "./sector-cards";
+import IndustriesSection from "./industries-section";
 import VideoHero from "./video-hero";
 import SectorSlider from "./sector-slider";
-import { CLIENTS } from "./nav";
+import { CLIENTS, STATS } from "./nav";
 import { Arrow, CtaBand, Eyebrow, Ph } from "./ui";
-
-const STATS = [
-  ["10+", "Years of Service"],
-  ["29+", "Clients Served"],
-  ["3", "Core Divisions"],
-  ["24hr", "Enquiry Response"],
-  ["100%", "Commitment to Quality"],
-];
 
 export default function Home() {
   return (
@@ -63,7 +55,7 @@ export default function Home() {
 
             <div data-intro className="mt-8 flex flex-wrap gap-4">
               <Link
-                href="/products-services"
+                href="/services"
                 className="inline-flex items-center gap-3 btn bg-brand px-6 py-3.5 text-sm font-medium text-ink hover:bg-brand-dark"
               >
                 Explore Solutions <Arrow />
@@ -105,22 +97,9 @@ export default function Home() {
               data-intro
               className="grid grid-cols-2 gap-y-6 rounded-[18px] bg-surface-2/95 p-8 shadow-xl ring-1 ring-line backdrop-blur sm:grid-cols-3 lg:grid-cols-5 lg:divide-x lg:divide-line"
             >
-              {STATS.map(([value, label]) => (
+              {STATS.map(([value, label, icon]) => (
                 <div key={label} className="flex items-center gap-4 lg:px-6">
-                  <Symbol
-                    name={
-                      label.includes("Years")
-                        ? "calendar"
-                        : label.includes("Clients")
-                          ? "users"
-                          : label.includes("Divisions")
-                            ? "cog"
-                            : label.includes("Response")
-                              ? "clock"
-                              : "shield"
-                    }
-                    className="size-10 text-brand"
-                  />
+                  <Symbol name={icon} className="size-10 text-brand" />
                   <div>
                     <dt data-count className="text-2xl font-bold text-text-1">
                       {value}
@@ -137,52 +116,24 @@ export default function Home() {
       </section>
 
       <AboutIntro />
+      {/* ── What we supply: the five divisions ─────────────── */}
       <section className="bg-gradient-to-b from-[var(--tint-c)] to-[var(--tint-d)] section-space">
         <div className="site-container text-center">
           <div data-reveal>
             <h2 className="text-4xl font-bold tracking-tight text-text-1">
-              Solutions for{" "}
-              <span className="text-brand">Every Critical Sector</span>
+              Five Divisions, <span className="text-brand">One Standard</span>
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-text-2">
-              We proudly represent manufacturers from both upstream and
-              downstream sectors, serving as a trusted partner in the dynamic
-              world of energy and industry.
+              Mechanical and flow control, electrical, instrumentation, heavy
+              process equipment and chemicals, supplied with the technical
+              expertise of the principals we represent.
             </p>
-          </div>
-          <SectorCards />
-        </div>
-      </section>
-      <section className="bg-surface section-space">
-        <div className="site-container">
-          {/* Left header with the action on the same row, rather than another
-              centred heading over a grid. Sectors above already uses that
-              family, and two in a row is what makes a page read as templated. */}
-          <div
-            data-reveal
-            className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between"
-          >
-            <div>
-              <h2 className="max-w-xl text-4xl font-bold tracking-tight text-text-1">
-                Delivering Excellence{" "}
-                <span className="text-brand">Across the Value Chain</span>
-              </h2>
-              <p className="mt-4 max-w-lg text-sm leading-relaxed text-text-2">
-                Mechanical, Electrical and Instrumentation, supplied with the
-                technical expertise of our principals, from upstream through to
-                downstream.
-              </p>
-            </div>
-            <Link
-              href="/products-services"
-              className="inline-flex shrink-0 items-center gap-3 btn border border-line px-5 py-3 text-sm font-medium text-brand hover:border-brand"
-            >
-              View All Services <Arrow />
-            </Link>
           </div>
           <SectorSlider />
         </div>
       </section>
+
+      <IndustriesSection />
 
       {/* ── Clients ────────────────────────────────────────── */}
       <section className="relative overflow-hidden bg-gradient-to-r from-[var(--tint-c)] via-[var(--tint-d)] to-[var(--tint-a)] py-12">
@@ -243,7 +194,7 @@ export default function Home() {
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-6">
               <Link
-                href="/about"
+                href="/who-we-are"
                 className="inline-flex items-center gap-3 btn bg-brand px-5 py-3 text-sm font-medium text-ink hover:bg-brand-dark"
               >
                 Our Commitment <Arrow />

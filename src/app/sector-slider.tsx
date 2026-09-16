@@ -3,15 +3,15 @@
 import Link from "next/link";
 import { useState, type CSSProperties } from "react";
 import { Symbol, type IconName } from "./icons";
+import { DIVISIONS, slugify } from "./nav";
 import { Arrow, Ph } from "./ui";
 
-const SECTORS: [string, string, IconName][] = [
-  ["Upstream", "Supporting exploration and production operations across the Emirates.", "rig"],
-  ["Refinery", "Equipment and spares that keep refining operations running.", "flask"],
-  ["Oil & Gas", "Top-quality products and services for the region's operators.", "rig"],
-  ["Power Generation", "Supply for power producers and utility-scale facilities.", "bolt"],
-  ["Downstream", "Representing manufacturers serving downstream industry.", "cog"],
-];
+/**
+ * Reads DIVISIONS rather than keeping its own list: the same five divisions
+ * are counted in the hero stats and listed in the footer, and three
+ * hand-maintained copies is three chances to disagree.
+ */
+const SECTORS = DIVISIONS as readonly (readonly [string, string, IconName])[];
 const wrap = (index: number) => ((index % SECTORS.length) + SECTORS.length) % SECTORS.length;
 
 export default function SectorSlider() {
@@ -28,7 +28,7 @@ export default function SectorSlider() {
   return (
     <section
       className="sector-fan mt-12"
-      aria-label="Explore the value chain"
+      aria-label="Explore our divisions"
       aria-roledescription="carousel"
       data-instant={instant}
       onKeyDown={(event) => {
@@ -71,7 +71,7 @@ export default function SectorSlider() {
                 <h3>{title}</h3>
                 <p>{copy}</p>
                 <Link
-                  href="/industries"
+                  href={`/supplies#${slugify(title)}`}
                   tabIndex={selected ? 0 : -1}
                   aria-hidden={!selected}
                   aria-label={`Explore ${title}`}

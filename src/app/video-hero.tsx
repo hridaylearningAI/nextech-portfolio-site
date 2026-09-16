@@ -46,37 +46,44 @@ export default function VideoHero() {
         clean line against the screen edge. Each row is padded to a 44px hit
         target rather than spaced with gap, so the targets meet without
         visually crowding the labels.
+
+        Sits a little above centre, per the brief.
       */}
-      <nav className="absolute top-1/2 right-6 flex -translate-y-1/2 flex-col items-end sm:right-10">
-        {NAV.map(([label, href]) => {
-          const active = href === "/";
-          return (
-            <Link
-              key={href}
-              href={href}
-              data-intro
-              aria-current={active ? "page" : undefined}
-              className="group flex items-center justify-end gap-3 py-3"
-            >
-              {/* Rule grows out of the label on hover; held open for the
-                  current page so the active item reads without relying on
-                  colour alone. */}
-              <span
-                className={`h-px bg-brand transition-[width] duration-300 ease-out ${
-                  active ? "w-6" : "w-0 group-hover:w-6"
-                }`}
-              />
-              <span
-                className={`text-sm font-medium tracking-wide transition-colors ${
-                  active ? "text-brand" : "text-white/75 group-hover:text-white"
-                }`}
-              >
-                {label}
+      <nav className="absolute top-[42%] right-6 flex -translate-y-1/2 flex-col items-end sm:right-10">
+        {NAV.map((node) =>
+          "children" in node ? (
+            <div key={node.label} className="flex flex-col items-end">
+              {/* A grouping label, not a link. The rail has the vertical room
+                  to show it, so the two pages under it never need a hover
+                  menu to be discovered. */}
+              <span className="pt-3 pb-1 text-[11px] font-semibold tracking-[0.18em] text-white/45 uppercase">
+                {node.label}
               </span>
-            </Link>
-          );
-        })}
+              {node.children.map((child) => (
+                <RailLink key={child.href} {...child} />
+              ))}
+            </div>
+          ) : (
+            <RailLink key={node.href} {...node} />
+          ),
+        )}
       </nav>
     </section>
+  );
+}
+
+function RailLink({ label, href }: { label: string; href: string }) {
+  return (
+    <Link
+      href={href}
+      data-intro
+      className="group flex items-center justify-end gap-3 py-3"
+    >
+      {/* Rule grows out of the label on hover. */}
+      <span className="h-px w-0 bg-brand transition-[width] duration-300 ease-out group-hover:w-6" />
+      <span className="text-sm font-medium tracking-wide text-white/75 transition-colors group-hover:text-white">
+        {label}
+      </span>
+    </Link>
   );
 }

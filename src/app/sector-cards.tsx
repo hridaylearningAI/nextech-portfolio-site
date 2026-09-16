@@ -9,7 +9,7 @@ export default function SectorCards() {
       {INDUSTRIES.map(([title, copy, icon]) => (
         <Link
           key={title}
-          href="/industries"
+          href="/industries-clients"
           data-reveal
           className="sector-neu-card"
         >
