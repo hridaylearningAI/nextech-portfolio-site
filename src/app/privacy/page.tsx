@@ -83,7 +83,7 @@ const SECTIONS: LegalSection[] = [
   {
     heading: "International transfers",
     body: [
-      "We operate from the United Arab Emirates, and some of our service providers may process information in other countries. Where information is transferred outside the UAE, we take reasonable steps to ensure it remains protected to a standard consistent with this policy.",
+      "We operate from the United Arab Emirates, and some of our service providers may process information in other countries. Where information is transferred outside the United Arab Emirates, we take reasonable steps to ensure it remains protected to a standard consistent with this policy.",
     ],
   },
   {

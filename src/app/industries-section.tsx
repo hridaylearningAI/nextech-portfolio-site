@@ -3,7 +3,7 @@ import SectorCards from "./sector-cards";
 import { Arrow } from "./ui";
 
 /**
- * "Solutions for Every Critical Sector": the six industry cards. Shared by the
+ * "Solutions for Every Industrial Sector": the six industry cards. Shared by the
  * home page and Who we are, so the two can never list different industries.
  *
  * `tinted` swaps the plain surface for the tinted band, for pages where a
@@ -28,7 +28,7 @@ export default function IndustriesSection({
           <div>
             <h2 className="max-w-xl text-4xl font-bold tracking-tight text-text-1">
               Solutions for{" "}
-              <span className="text-brand">Every Critical Sector</span>
+              <span className="text-brand">Every Industrial Sector</span>
             </h2>
             <p className="mt-4 max-w-lg text-sm leading-relaxed text-text-2">
               We proudly represent manufacturers from both upstream and

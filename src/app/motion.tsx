@@ -142,7 +142,7 @@ export default function Motion() {
           // page, where that was plainly visible.
           const count = gsap.to(counter, {
             value: target,
-            duration: 1.4,
+            duration: 2.2,
             ease: "power2.out",
             paused: true,
             onUpdate: () => {

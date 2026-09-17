@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { NAV } from "./nav";
-import { Logo, Ph } from "./ui";
+import { Arrow, Logo, Ph } from "./ui";
 
 /**
  * Full-viewport opener. Carries its own logo and nav because the sticky
@@ -52,16 +52,27 @@ export default function VideoHero() {
       <nav className="absolute top-[42%] right-6 flex -translate-y-1/2 flex-col items-end sm:right-10">
         {NAV.map((node) =>
           "children" in node ? (
-            <div key={node.label} className="flex flex-col items-end">
-              {/* A grouping label, not a link. The rail has the vertical room
-                  to show it, so the two pages under it never need a hover
-                  menu to be discovered. */}
-              <span className="pt-3 pb-1 text-[11px] font-semibold tracking-[0.18em] text-white/45 uppercase">
+            <div
+              key={node.label}
+              className="group relative flex flex-col items-end"
+            >
+              <button
+                type="button"
+                aria-haspopup="menu"
+                className="flex items-center justify-end gap-3 py-3 text-sm font-medium tracking-wide text-white/75 transition-colors hover:text-white"
+              >
+                <span className="h-px w-0 bg-brand transition-[width] duration-300 ease-out group-hover:w-6" />
                 {node.label}
-              </span>
-              {node.children.map((child) => (
-                <RailLink key={child.href} {...child} />
-              ))}
+                <Arrow className="size-3 rotate-90 transition-transform group-hover:-rotate-90 group-focus-within:-rotate-90" />
+              </button>
+              <div
+                role="menu"
+                className="hidden flex-col items-end pr-2 group-hover:flex group-focus-within:flex"
+              >
+                {node.children.map((child) => (
+                  <RailLink key={child.href} {...child} />
+                ))}
+              </div>
             </div>
           ) : (
             <RailLink key={node.href} {...node} />

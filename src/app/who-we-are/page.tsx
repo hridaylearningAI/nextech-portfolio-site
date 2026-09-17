@@ -10,11 +10,11 @@ import VideoBanner from "./video-banner";
 export const metadata: Metadata = {
   title: "Who We Are - Nextech General Trading",
   description:
-    "Nextech General Trading delivers top-quality products and services to the Oil and Gas, Refinery, and Power generation sectors in the UAE.",
+    "Nextech General Trading delivers top-quality products and services to the Oil and Gas, Refinery, and Power generation sectors in the United Arab Emirates.",
 };
 
 const WHO_WE_ARE = [
-  "Nextech General Trading is a reputable organization that delivers top-quality products and services to the Oil and Gas, Refinery, and Power generation sectors in the UAE. Over the past decade, we have maintained consistent growth and successfully expanded our client base within the region.",
+  "Nextech General Trading is a reputable organization that delivers top-quality products and services to the Oil and Gas, Refinery, and Power generation sectors in the United Arab Emirates. Over the past decade, we have maintained consistent growth and successfully expanded our client base within the region.",
   "Our dedicated team of experienced engineers in sales and marketing, combined with the technical expertise provided by our principals, empowers our customers to overcome industry challenges. We offer innovative ideas and solutions that ensure the successful achievement of end objectives.",
   "We proudly represent manufacturers from both upstream and downstream sectors, serving as a trusted partner in the dynamic world of energy and industry. At Nextech General Trading, our commitment is to excellence, innovation, and sustainable solutions for a brighter energy future.",
 ];
@@ -31,14 +31,14 @@ const VALUES: [string, IconName][] = [
 const CREDENTIALS: [string, string, string, IconName | null][] = [
   [
     "Headquartered in",
-    "Abu Dhabi, UAE",
+    "Abu Dhabi, United Arab Emirates",
     "Strategically located to serve key markets efficiently.",
     "address",
   ],
   [
     "ICV Certified",
     "Supplier",
-    "Committed to increasing local value and supporting UAE objectives.",
+    "Committed to increasing local value and supporting United Arab Emirates objectives.",
     null,
   ],
   [
@@ -52,7 +52,7 @@ const CREDENTIALS: [string, string, string, IconName | null][] = [
 const WHY: [string, string, IconName][] = [
   [
     "Industry Leadership",
-    "Over a decade of experience in UAE Oil, Gas, Petrochemical and Utilities sectors.",
+    "Over a decade of experience in the United Arab Emirates Oil, Gas, Petrochemical and Utilities sectors.",
     "chart",
   ],
   [
@@ -67,7 +67,7 @@ const WHY: [string, string, IconName][] = [
   ],
   [
     "Trusted Relationships",
-    "Regular customer visits enable us to maintain close relationships with key persons. We also invite our business partners to UAE for joint business meetings, seminars, and technical presentations.",
+    "Regular customer visits enable us to maintain close relationships with key persons. We also invite our business partners to the United Arab Emirates for joint business meetings, seminars, and technical presentations.",
     "handshake",
   ],
   [
@@ -90,7 +90,7 @@ export default function WhoWeAre() {
         eyebrow="Who we are"
         title="Built on Trust."
         accent="Driven by Excellence."
-        copy="A trusted name in the world of Oil and Gas trading, based in the dynamic heart of the UAE."
+        copy="A trusted name in the world of Oil and Gas trading, based in the dynamic heart of the United Arab Emirates."
       />
 
       {/* ── Who we are ─────────────────────────────────────── */}
@@ -242,8 +242,8 @@ export default function WhoWeAre() {
             <SectionHead
               center
               eyebrow="Why Nextech"
-              title="Why principals and operators"
-              accent="choose us."
+              title="Why"
+              accent="Nextech"
             />
             <ul className="mt-12 grid gap-x-12 md:grid-cols-2">
               {WHY.map(([title, copy, icon]) => (

@@ -193,7 +193,7 @@ function CategoryList({
           onClick={() => setOpen((v) => !v)}
           className="mt-4 text-sm font-medium text-brand hover:text-brand-dark"
         >
-          {open ? "Show fewer" : `Show all ${category.items.length}`}
+          {open ? "Show fewer" : "Show all"}
         </button>
       )}
     </div>

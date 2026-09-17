@@ -50,7 +50,8 @@ export default function Home() {
               className="mt-6 max-w-md text-base leading-relaxed text-text-2"
             >
               Delivering top-quality products and services to the Oil and Gas,
-              Refinery, and Power generation sectors in the UAE.
+              Refinery, and Power generation sectors in the United Arab
+              Emirates.
             </p>
 
             <div data-intro className="mt-8 flex flex-wrap gap-4">
@@ -121,7 +122,8 @@ export default function Home() {
         <div className="site-container text-center">
           <div data-reveal>
             <h2 className="text-4xl font-bold tracking-tight text-text-1">
-              Five Divisions, <span className="text-brand">One Standard</span>
+              Five Product Divisions,{" "}
+              <span className="text-brand">One Standard</span>
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-text-2">
               Mechanical and flow control, electrical, instrumentation, heavy
@@ -190,15 +192,9 @@ export default function Home() {
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-text-2">
               With a decade of dedicated service, we deliver excellence, safety,
               and sustainability, contributing to the growth and prosperity of
-              the UAE.
+              the United Arab Emirates.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-6">
-              <Link
-                href="/who-we-are"
-                className="inline-flex items-center gap-3 btn bg-brand px-5 py-3 text-sm font-medium text-ink hover:bg-brand-dark"
-              >
-                Our Commitment <Arrow />
-              </Link>
               <div className="flex items-center gap-3 rounded-lg border border-line bg-surface-2 px-4 py-3 shadow-sm">
                 <Symbol name="leaf" className="size-8 text-brand" />
                 <p className="text-xs leading-snug text-text-2">

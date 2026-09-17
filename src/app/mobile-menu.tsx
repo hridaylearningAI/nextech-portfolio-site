@@ -101,24 +101,27 @@ export default function MobileMenu() {
           <nav aria-label="Main" className="mt-4 flex-1 overflow-y-auto">
             {NAV.map((node) =>
               "children" in node ? (
-                <div key={node.label} className="border-b border-line pt-5">
-                  <span className="text-[11px] font-semibold tracking-[0.18em] text-text-2 uppercase">
+                <details key={node.label} className="group border-b border-line">
+                  <summary className="flex cursor-pointer list-none items-center justify-between py-4 text-lg font-semibold text-text-1 [&::-webkit-details-marker]:hidden">
                     {node.label}
-                  </span>
-                  {node.children.map((child) => (
-                    <Link
-                      key={child.href}
-                      href={child.href}
-                      aria-current={
-                        pathname === child.href ? "page" : undefined
-                      }
-                      className={`${linkClass(child.href)} last:border-b-0`}
-                    >
-                      {child.label}
-                      <Arrow />
-                    </Link>
-                  ))}
-                </div>
+                    <Arrow className="rotate-90 transition-transform group-open:-rotate-90" />
+                  </summary>
+                  <div className="pb-2 pl-4">
+                    {node.children.map((child) => (
+                      <Link
+                        key={child.href}
+                        href={child.href}
+                        aria-current={
+                          pathname === child.href ? "page" : undefined
+                        }
+                        className={`${linkClass(child.href)} last:border-b-0`}
+                      >
+                        {child.label}
+                        <Arrow />
+                      </Link>
+                    ))}
+                  </div>
+                </details>
               ) : (
                 <Link
                   key={node.href}

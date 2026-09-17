@@ -14,6 +14,7 @@ import {
   HandshakeIcon,
   InstagramLogoIcon,
   LeafIcon,
+  LinkedinLogoIcon,
   LightningIcon,
   HardHatIcon,
   MapPinIcon,
@@ -84,6 +85,7 @@ const GLYPHS = {
   handshake: HandshakeIcon,
   instagram: InstagramLogoIcon,
   leaf: LeafIcon,
+  linkedin: LinkedinLogoIcon,
   bolt: LightningIcon,
   address: MapPinIcon,
   phone: PhoneIcon,
@@ -139,9 +141,5 @@ export const ICONS: Record<string, React.ReactNode> = Object.fromEntries(
   ]),
 );
 export const SOCIAL_ICONS: Record<string, IconName> = {
-  Facebook: "facebook",
-  Twitter: "twitter",
-  Instagram: "instagram",
-  YouTube: "youtube",
-  Skype: "skype",
+  LinkedIn: "linkedin",
 };

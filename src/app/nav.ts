@@ -1,9 +1,7 @@
 /**
  * Site navigation. "What we do" is a grouping label rather than a page: the
- * vertical rail on the home page has the room to show it above its two
- * children, while the horizontal header flattens the tree, because a bar has
- * nowhere sensible to put a label you cannot click. NAV_FLAT is that
- * flattening, derived rather than written out, so the two cannot drift.
+ * navigation surfaces render its children as a dropdown or disclosure.
+ * NAV_FLAT remains available for flat link lists such as the footer.
  */
 export type NavItem = { label: string; href: string };
 export type NavNode = NavItem | { label: string; children: NavItem[] };
@@ -17,7 +15,7 @@ export const NAV: NavNode[] = [
       { label: "Services", href: "/services" },
     ],
   },
-  { label: "Industries & Clients", href: "/industries-clients" },
+  { label: "Clients", href: "/industries-clients" },
   { label: "Contact Us", href: "/contact" },
 ];
 
@@ -77,7 +75,8 @@ export const COMPANY = {
   phoneHref: "tel:+97124461080",
   email: "info@nextechgt.ae",
   site: "www.nextechgt.ae",
-  addressShort: "Global Tower, Electra Street, Abu Dhabi, UAE",
+  addressShort:
+    "Global Tower, Electra Street, Abu Dhabi, United Arab Emirates",
   addressLines: [
     "Nextech General Trading L.L.C – O.P.C",
     "8th Floor, Office #802",
@@ -87,7 +86,7 @@ export const COMPANY = {
   ],
   hours: ["8:00am – 5:00pm ( Mon – Fri )", "Sat & Sun Closed"],
   blurb:
-    "Nextech General Trading based in the dynamic heart of the UAE, is a trusted name in the world of Oil and Gas trading. With a decade of dedicated service, we deliver excellence, safety, and sustainability, contributing to the growth and prosperity of the UAE.",
+    "Nextech General Trading based in the dynamic heart of the United Arab Emirates, is a trusted name in the world of Oil and Gas trading. With a decade of dedicated service, we deliver excellence, safety, and sustainability, contributing to the growth and prosperity of the United Arab Emirates.",
 } as const;
 
 /** The three divisions — these are the site's Quick Links too. */
@@ -120,13 +119,7 @@ export const DIVISIONS = [
   ],
 ] as const;
 
-export const SOCIALS = [
-  "Facebook",
-  "Twitter",
-  "Instagram",
-  "YouTube",
-  "Skype",
-] as const;
+export const SOCIALS = ["LinkedIn"] as const;
 
 /** Client roster as listed on the live Clients page. */
 export const CLIENTS = [
@@ -167,15 +160,14 @@ export const CLIENTS = [
  * Coordinates are capital cities; the ISO 3166-1 alpha-2 code drives the flag.
  */
 export const COUNTRIES = [
+  ["India", "in", 28.6139, 77.209],
+  ["USA", "us", 38.9072, -77.0369],
   ["Spain", "es", 40.4168, -3.7038],
   ["Italy", "it", 41.9028, 12.4964],
-  ["India", "in", 28.6139, 77.209],
   ["United Kingdom", "gb", 51.5074, -0.1278],
   ["China", "cn", 39.9042, 116.4074],
-  ["United States", "us", 38.9072, -77.0369],
   ["Singapore", "sg", 1.3521, 103.8198],
   ["Australia", "au", -35.2809, 149.13],
-  ["Qatar", "qa", 25.2854, 51.531],
   ["Poland", "pl", 52.2297, 21.0122],
   ["Turkey", "tr", 39.9334, 32.8597],
 ] as const;
@@ -206,7 +198,7 @@ export const SERVICES = [
   ],
   [
     "Consultancy & Advisory",
-    "Market, supplier and regulatory guidance for principals and operators working in the UAE.",
+    "Market, supplier and regulatory guidance for principals and operators working in the United Arab Emirates.",
     "compass",
   ],
   [

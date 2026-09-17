@@ -1,59 +1,22 @@
-import { Symbol } from "../icons";
 import type { Metadata } from "next";
-import { CLIENTS, INDUSTRIES } from "../nav";
-import { CtaBand, PageHero, Ph, SectionHead } from "../ui";
+import { CLIENTS } from "../nav";
+import { CtaBand, PageHero, SectionHead } from "../ui";
 
 export const metadata: Metadata = {
-  title: "Industries & Clients - Nextech General Trading",
+  title: "Clients - Nextech General Trading",
   description:
-    "The sectors we serve across the UAE, and the operators, utilities and industrial groups who buy from us.",
+    "The operators, utilities and industrial groups who buy from Nextech General Trading.",
 };
 
 export default function IndustriesClients() {
   return (
     <>
       <PageHero
-        eyebrow="Industries & Clients"
+        eyebrow="Clients"
         title="Where our products"
         accent="go to work."
-        copy="Six sectors, and the operators, utilities and industrial groups across the Emirates who rely on them."
+        copy="The operators, utilities and industrial groups across the Emirates who rely on our products and services."
       />
-
-      {/* ── Industries ─────────────────────────────────────── */}
-      <section className="bg-surface section-space">
-        <div className="site-container">
-          <SectionHead
-            center
-            eyebrow="Industries"
-            title="Six sectors,"
-            accent="one standard."
-            copy="We proudly represent manufacturers from both upstream and downstream sectors, serving as a trusted partner in the dynamic world of energy and industry."
-          />
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {INDUSTRIES.map(([title, copy, icon]) => (
-              <article
-                key={title}
-                data-reveal
-                className="overflow-hidden rounded-[18px] border border-line bg-surface-2 shadow-sm transition-shadow hover:shadow-lg"
-              >
-                <div className="relative">
-                  <Ph className="aspect-[16/10] w-full" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 to-transparent" />
-                  <span className="absolute bottom-4 left-5 flex items-center gap-3">
-                    <Symbol name={icon} className="size-6 text-white" />
-                    <h2 className="text-lg font-semibold text-white">
-                      {title}
-                    </h2>
-                  </span>
-                </div>
-                <div className="p-5">
-                  <p className="text-sm leading-relaxed text-text-2">{copy}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ── Clients ────────────────────────────────────────── */}
       <section className="bg-gradient-to-b from-[var(--tint-c)] to-[var(--tint-d)] section-space">

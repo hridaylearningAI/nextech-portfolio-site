@@ -45,7 +45,8 @@ export default function AboutIntro() {
             for a Stronger Tomorrow
           </h2>
           <p className="mt-5 max-w-md text-sm leading-relaxed text-text-2">
-            Nextech General Trading is at the heart of the UAE, connecting
+            Nextech General Trading is at the heart of the United Arab Emirates,
+            connecting
             global industries with reliable solutions. We are driven by a
             commitment to quality, sustainability and long-term partnerships
             that support progress across energy, infrastructure and industrial

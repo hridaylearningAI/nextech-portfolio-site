@@ -7,7 +7,7 @@ import { Arrow, CtaBand, PageHero, Ph, SectionHead } from "../ui";
 export const metadata: Metadata = {
   title: "Services - Nextech General Trading",
   description:
-    "Civil and mechanical works, electrical and power systems, instrumentation and control, engineering, consultancy and project management across the UAE.",
+    "Civil and mechanical works, electrical and power systems, instrumentation and control, engineering, consultancy and project management across the United Arab Emirates.",
 };
 
 const PROCESS = [
@@ -36,7 +36,10 @@ const PROCESS = [
 const WHY = [
   ["Technical Expertise", "Engineers who understand the specification."],
   ["Trusted Principals", "Manufacturers we directly represent."],
-  ["Regional Reach", "A decade of delivery across the UAE."],
+  [
+    "Regional Reach",
+    "A decade of delivery across the United Arab Emirates.",
+  ],
   ["End Objectives", "Solutions measured by your outcome."],
 ];
 
@@ -45,8 +48,8 @@ export default function Services() {
     <>
       <PageHero
         eyebrow="Services"
-        title="Not just supply."
-        accent="The work around it."
+        title="Integrated supply."
+        accent="Expertise at every stage."
         copy="Specification support, sourcing against the principals we represent, inspection before dispatch and consolidated delivery to site."
       />
 
@@ -56,11 +59,11 @@ export default function Services() {
           <SectionHead
             center
             eyebrow="What We Do"
-            title="Six services,"
+            title="Services,"
             accent="one accountable partner."
           />
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {SERVICES.map(([title, copy, icon], i) => (
+            {SERVICES.map(([title, copy, icon]) => (
               <article
                 key={title}
                 data-reveal
@@ -72,9 +75,6 @@ export default function Services() {
                   <Ph className="aspect-[4/3] w-full transition-transform duration-500 ease-out group-hover:scale-[1.03]" />
                   <span className="absolute top-4 left-4 grid size-11 place-items-center rounded-lg bg-surface-2 shadow-sm">
                     <Symbol name={icon} className="size-5 text-brand" />
-                  </span>
-                  <span className="absolute top-4 right-4 rounded-full bg-black/45 px-2.5 py-1 text-[11px] font-semibold text-white tabular-nums backdrop-blur-sm">
-                    {String(i + 1).padStart(2, "0")}
                   </span>
                 </div>
                 <div className="p-6">

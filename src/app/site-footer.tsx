@@ -112,7 +112,7 @@ export default function SiteFooter() {
               </button>
             </form>
             <h3 className="mt-8 text-sm font-semibold text-text-1">
-              Divisions
+              Product Divisions
             </h3>
             <ul className="mt-5 space-y-3">
               {DIVISIONS.map(([label]) => (

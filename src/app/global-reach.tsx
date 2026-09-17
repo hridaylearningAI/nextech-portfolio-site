@@ -6,7 +6,12 @@ import type { GlobeMarker } from "@/components/ui/3d-globe";
 import { COUNTRIES } from "./nav";
 
 /** Head office. Every country on the globe draws a route back to it. */
-const HQ = { label: "Abu Dhabi, UAE", code: "ae", lat: 24.4539, lng: 54.3773 };
+const HQ = {
+  label: "Abu Dhabi, United Arab Emirates",
+  code: "ae",
+  lat: 24.4539,
+  lng: 54.3773,
+};
 
 /**
  * three + drei + fiber is roughly half a megabyte. Loading it on the client
@@ -88,8 +93,8 @@ export default function GlobalReach() {
           </h2>
           <p className="mt-4 max-w-md text-sm leading-relaxed text-text-2">
             Every route leads back to our head office in Abu Dhabi, where we
-            work with principals and customers across Europe, Asia, the Gulf,
-            Australia and the Americas.
+            work with supplies across Europe, Asia, the Gulf, Australia and the
+            Americas.
           </p>
 
           <div className="mt-9 flex items-center gap-3 rounded-xl bg-surface-2 px-4 py-3 shadow-sm ring-1 ring-line">
