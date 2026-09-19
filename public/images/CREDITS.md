@@ -14,6 +14,13 @@ Created with the built-in OpenAI image generation tool. These are illustrative s
 - `sourcing-story-generated.webp` — technical sourcing desk and equipment samples.
 - `abu-dhabi-illustration-generated.webp` — Abu Dhabi-inspired waterfront illustration.
 
+## Credential emblems — September 20, 2026
+
+Created with the built-in OpenAI image generation tool. Decorative illustrations, not official certification marks. The original ICV logo is preserved separately. Prompts are recorded in `design/credential-image-prompts.json`.
+
+- `abu-dhabi-emblem.webp` — stylized Abu Dhabi skyline emblem.
+- `turnkey-emblem.webp` — gear, key and checkmark service emblem.
+
 ## Original assets
 
 - `hero-offshore.webp` — https://www.pexels.com/photo/16830015/

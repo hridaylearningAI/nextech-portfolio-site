@@ -26,26 +26,24 @@ const VALUES: [string, IconName][] = [
   ["Creative Teamwork", "team"],
 ];
 
-/** The three headline credentials. `icon: null` marks the ICV pillar, which
- *  shows the certification mark itself instead of a glyph. */
-const CREDENTIALS: [string, string, string, IconName | null][] = [
+const CREDENTIALS: [string, string, string, string][] = [
   [
     "Headquartered in",
     "Abu Dhabi, United Arab Emirates",
     "Strategically located to serve key markets efficiently.",
-    "address",
+    "/images/abu-dhabi-emblem.webp",
   ],
   [
     "ICV Certified",
     "Supplier",
     "Committed to increasing local value and supporting United Arab Emirates objectives.",
-    null,
+    "/logos/icv.webp",
   ],
   [
     "Turnkey",
     "Solutions",
     "End-to-end support from sourcing to delivery and beyond.",
-    "handshake",
+    "/images/turnkey-emblem.webp",
   ],
 ];
 
@@ -210,26 +208,22 @@ export default function WhoWeAre() {
       <section className="bg-surface section-space">
         <div className="site-container">
           <ul className="grid overflow-hidden rounded-[18px] border border-line bg-surface-2 shadow-sm md:grid-cols-3 md:divide-x md:divide-line">
-            {CREDENTIALS.map(([lead, headline, copy, icon]) => (
+            {CREDENTIALS.map(([lead, headline, copy, image]) => (
               <li
                 key={headline}
                 data-reveal
                 className="flex flex-col items-center border-b border-line px-8 py-10 text-center last:border-b-0 md:border-b-0"
               >
-                {icon ? (
-                  <span className="grid h-20 place-items-center">
-                    <Symbol name={icon} className="size-14 text-brand" />
-                  </span>
-                ) : (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src="/logos/icv.webp"
-                    alt="In-Country Value (ICV) certified"
-                    width={91}
-                    height={80}
-                    className="h-20 w-auto"
-                  />
-                )}
+                {/* Shared dimensions keep the emblems and original ICV mark aligned. */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={image}
+                  alt={lead === "ICV Certified" ? "In-Country Value (ICV) certified" : ""}
+                  width={96}
+                  height={96}
+                  loading="lazy"
+                  className="size-24 shrink-0 rounded-sm bg-white object-contain"
+                />
                 <p className="mt-6 text-xs font-bold tracking-[0.12em] text-text-1 uppercase">
                   {lead}
                 </p>
