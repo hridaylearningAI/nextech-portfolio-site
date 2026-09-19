@@ -261,7 +261,7 @@ html {
 
 /* Sector cards: the reference's soft raised surface, scoped to this section. */
 .sector-neu-grid {
-  --neu-surface: #e8f3f3;
+  --neu-surface: #edf6f6;
   --neu-highlight: #ffffff;
   --neu-shadow: #b9cfce;
   --neu-ink: #173e49;
@@ -270,8 +270,10 @@ html {
 .sector-neu-card {
   position: relative;
   isolation: isolate;
+  display: flex;
+  flex-direction: column;
   min-width: 0;
-  min-height: 360px;
+  min-height: 390px;
   overflow: hidden;
   border: 1px solid color-mix(in srgb, var(--neu-highlight) 45%, transparent);
   border-radius: 28px;
@@ -280,11 +282,46 @@ html {
     -7px -7px 18px color-mix(in srgb, var(--neu-highlight) 85%, transparent),
     8px 10px 20px color-mix(in srgb, var(--neu-shadow) 65%, transparent),
     inset 1px 1px 2px var(--neu-highlight);
-  transition: transform 200ms cubic-bezier(0.23, 1, 0.32, 1);
+  transition:
+    transform 240ms cubic-bezier(0.23, 1, 0.32, 1),
+    flex-grow 380ms cubic-bezier(0.23, 1, 0.32, 1),
+    filter 300ms ease,
+    opacity 300ms ease;
+}
+
+/* On the six-across row the cards share the width, so the one under the
+   pointer can take more of it and the others give it up: flex-grow animates,
+   which reads as the row making room rather than a card scaling over its
+   neighbours. Narrower layouts keep their columns and only get the focus
+   effect below. */
+@media (min-width: 1280px) {
+  .sector-neu-grid {
+    display: flex;
+  }
+  .sector-neu-card {
+    flex: 1 1 0;
+  }
 }
 @media (hover: hover) and (pointer: fine) {
   .sector-neu-card:hover {
     transform: translateY(-3px);
+  }
+  /* Everything that is not the card being read falls out of focus, the way a
+     lens racks focus onto one subject. Keyboard focus gets the same treatment,
+     so it is not a pointer-only affordance. */
+  .sector-neu-grid:has(.sector-neu-card:hover) .sector-neu-card:not(:hover),
+  .sector-neu-grid:has(.sector-neu-card:focus-visible)
+    .sector-neu-card:not(:focus-visible) {
+    filter: blur(3px) saturate(0.78);
+    opacity: 0.6;
+    transform: scale(0.97);
+  }
+}
+@media (min-width: 1280px) and (hover: hover) and (pointer: fine) {
+  .sector-neu-grid:has(.sector-neu-card:hover) .sector-neu-card:hover,
+  .sector-neu-grid:has(.sector-neu-card:focus-visible)
+    .sector-neu-card:focus-visible {
+    flex-grow: 1.6;
   }
 }
 .sector-neu-card:active {
@@ -299,7 +336,7 @@ html {
 .sector-neu-content {
   position: relative;
   z-index: 1;
-  padding: 24px 20px 70px;
+  padding: 24px 20px 24px;
 }
 .sector-neu-icon {
   display: grid;
@@ -328,40 +365,88 @@ html {
   line-height: 1.6;
 }
 .sector-neu-arrow {
+  position: absolute;
+  top: 6px;
+  left: 6px;
   display: grid;
   place-items: center;
   width: 44px;
   height: 44px;
-  margin-top: 22px;
   color: var(--neu-ink);
   background: var(--neu-surface);
   border-radius: 50%;
   box-shadow:
     -3px -3px 7px var(--neu-highlight),
-    4px 4px 9px var(--neu-shadow);
+    4px 4px 9px var(--neu-shadow),
+    inset 1px 1px 1px color-mix(in srgb, var(--neu-highlight) 80%, transparent);
   transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
 }
-.sector-neu-art {
+.sector-neu-media {
+  position: relative;
+  height: 156px;
+  flex-shrink: 0;
+  margin: auto 12px 12px;
+}
+.sector-neu-image-wrap {
   position: absolute;
-  inset: auto 0 0;
-  height: 135px;
-  z-index: 0;
-  opacity: 0.55;
-  mask-image: linear-gradient(to bottom, transparent, #000 90%);
+  inset: 0;
+  overflow: hidden;
+  border-radius: 18px;
+  /* The transparent circular cutout exposes the actual card surface, so the
+     photograph hugs the control in either theme without a painted-on patch. */
+  mask-image: radial-gradient(
+    circle 40px at 28px 28px,
+    transparent 39.5px,
+    #000 40.5px
+  );
+}
+.sector-neu-image-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow:
+    inset 0 1px 3px rgb(8 30 35 / 22%),
+    inset 0 -1px 1px rgb(255 255 255 / 24%);
   pointer-events: none;
+}
+.sector-neu-art {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 240ms cubic-bezier(0.23, 1, 0.32, 1);
+  pointer-events: none;
+}
+:root[data-theme="dark"] .sector-neu-art {
+  opacity: 0.75;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .sector-neu-art {
+    opacity: 0.75;
+  }
 }
 @media (hover: hover) and (pointer: fine) {
   .sector-neu-card:hover .sector-neu-arrow {
-    transform: translateX(3px);
+    transform: translate(2px, -2px);
+  }
+  .sector-neu-card:hover .sector-neu-art {
+    transform: scale(1.035);
   }
 }
 .sector-neu-card:active .sector-neu-arrow {
+  transform: scale(0.96);
   box-shadow:
     inset 3px 3px 7px var(--neu-shadow),
     inset -3px -3px 7px var(--neu-highlight);
 }
 .sector-neu-card:focus-visible .sector-neu-arrow {
   transform: none;
+}
+.sector-neu-card:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 5px;
 }
 :root[data-theme="dark"] .sector-neu-grid {
   --neu-surface: #142c2d;
@@ -380,9 +465,59 @@ html {
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .sector-neu-arrow {
+  .sector-neu-arrow,
+  .sector-neu-art {
     transition: none;
   }
+  .sector-neu-grid:has(.sector-neu-card:hover) .sector-neu-card:hover,
+  .sector-neu-grid:has(.sector-neu-card:focus-visible)
+    .sector-neu-card:focus-visible {
+    flex-grow: 1;
+  }
+  .sector-neu-card:hover,
+  .sector-neu-card:active,
+  .sector-neu-card:hover .sector-neu-art,
+  .sector-neu-card:hover .sector-neu-arrow,
+  .sector-neu-card:active .sector-neu-arrow {
+    transform: none;
+  }
+}
+
+/* Equal-width copies make the final frame identical to the first. */
+.client-marquee-viewport {
+  overflow: hidden;
+  padding-block: 4px;
+}
+.client-marquee-viewport:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 4px;
+}
+.client-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: client-marquee-scroll 150s linear infinite;
+}
+.client-marquee-group {
+  display: flex;
+  flex-shrink: 0;
+  gap: 24px;
+  padding-right: 24px;
+}
+@keyframes client-marquee-scroll {
+  to { transform: translateX(-50%); }
+}
+.client-marquee-viewport:focus-within .client-marquee-track {
+  animation-play-state: paused;
+}
+@media (hover: hover) and (pointer: fine) {
+  .client-marquee-viewport:hover .client-marquee-track {
+    animation-play-state: paused;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .client-marquee-viewport { overflow-x: auto; }
+  .client-marquee-track { animation: none; }
+  .client-marquee-group[aria-hidden="true"] { display: none; }
 }
 
 /* Shared fluid shell: generous large-screen width, readable copy unchanged. */

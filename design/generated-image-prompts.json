@@ -1,0 +1,48 @@
+{
+  "generator": "Built-in image_gen",
+  "date": "2026-09-18",
+  "assets": [
+    {
+      "key": "instrumentation",
+      "name": "services/instrumentation-control-generated.webp",
+      "prompt": "Use case: photorealistic-natural. Create one premium industrial editorial photograph for Nextech General Trading's Instrumentation & Control service card. Landscape 4:3 composition. Close view of a technician's gloved hands calibrating a stainless-steel industrial pressure transmitter on a tidy workbench using a handheld process calibrator with simple plausible display, connected test leads and a pressure gauge. Equipment sharply resolved in the central upper two thirds, enough context to understand the procedure. Soft natural workshop light, restrained steel blue, charcoal and subtle teal, realistic materials and wear, quiet professional atmosphere. Credible physical connections, no futuristic interface, no legible branding, no added text, no watermark, no collage. This is an illustrative scene, not a photograph of a specific company.",
+      "source": "/Users/hridaygoswami/.codex/generated_images/01a0b404-9f21-7543-992a-af55733f5607/exec-1283b4c0-9c74-4ca9-b1a9-92b043bb9e08.png"
+    },
+    {
+      "key": "safety",
+      "name": "divisions/chemicals-safety-equipment-generated.webp",
+      "prompt": "Use case: photorealistic-natural. Portrait 3:4 photograph for an industrial Chemicals & Safety Equipment division. Carefully arranged industrial safety equipment on a charcoal workbench: white hard hat, clear goggles, chemical-resistant gloves, half-face respirator with two cartridges, folded protective coverall; sealed chemical containers softly visible in orderly warehouse behind. Equipment fills upper and middle frame; lower quarter can receive website text overlay. All objects physically plausible, no people, no labels or text. Soft daylight, steel blue and restrained teal tones, authentic premium editorial product photography, no futuristic styling, no collage.",
+      "source": "/Users/hridaygoswami/.codex/generated_images/01a0b404-9f21-7543-992a-af55733f5607/exec-176a6306-e462-40d4-875f-65ba3827c572.png"
+    },
+    {
+      "key": "mechanical",
+      "name": "divisions/mechanical-flow-control-generated.webp",
+      "prompt": "Use case: photorealistic-natural. Portrait 3:4 premium industrial editorial photograph. Close three-quarter view of a substantial blue flanged industrial valve with black handwheel connected to stainless process pipes in a clean industrial plant. Valve and pipe joints occupy upper two thirds and remain identifiable in a centered 4:3 crop too. No sky, no people, no text, no branding, no watermark. Correct circular flanges, believable fasteners and pipe connections, steel texture, subtle wear. Soft daylight, charcoal and cool steel-blue palette. Lower quarter quiet darker pipework suitable for website text overlay. Clear focus on mechanical and flow-control equipment.",
+      "source": "/Users/hridaygoswami/.codex/generated_images/01a0b404-9f21-7543-992a-af55733f5607/exec-ddd79304-3093-4249-b160-bd064dc787ab.png"
+    },
+    {
+      "key": "inspection",
+      "name": "inspection-generated.webp",
+      "prompt": "Use case: photorealistic-natural. Landscape 4:3 premium industrial editorial photograph of quality inspection before dispatch: technician in navy workwear and safety glasses measuring the flange of a large clean steel industrial valve on a workshop bench with a vernier caliper. Main focal point the valve, gloved hands and measuring tool, face secondary. Shipping crates and organized shelving softly out of focus behind. Credible hand anatomy and tool contact with flange, no sparks, no generic assembly line. Natural soft daylight, subdued blue and steel tones, real material texture, no logos, no legible paperwork, no watermark. Illustrative scene for a general trading company's quality and sourcing section.",
+      "source": "/Users/hridaygoswami/.codex/generated_images/01a0b404-9f21-7543-992a-af55733f5607/exec-66d4614f-1cfb-46de-b417-9da5fc05831a.png"
+    },
+    {
+      "key": "supply",
+      "name": "supply-partnership-generated.webp",
+      "prompt": "Use case: photorealistic-natural. Landscape 3:2 editorial image for an industrial trading company's About introduction. Two professionals in navy workwear reviewing a small flanged valve and a tablet at an organized equipment dispatch counter inside a bright modern industrial warehouse. One person of Middle Eastern appearance and one of South Asian appearance, natural candid collaboration, correct hands, practical safety glasses. Subjects grouped center-right and upper half so left quarter and lower-right corner can receive website copy overlay. Shelves of boxed industrial parts, metal components in soft background. Soft daylight, steel blue, warm neutral skin tones, understated teal accents. Authentic working atmosphere, no handshake cliché, no logos, no legible text, no watermark. Illustrative people, not a real company team.",
+      "source": "/Users/hridaygoswami/.codex/generated_images/01a0b404-9f21-7543-992a-af55733f5607/exec-6386401d-5fd4-436c-9dd8-f2fc125f1a1f.png"
+    },
+    {
+      "key": "story",
+      "name": "sourcing-story-generated.webp",
+      "prompt": "Use case: photorealistic-natural. Landscape 4:3 premium editorial still life for an industrial general trading company's story. A technical sourcing desk with precisely machined stainless flanged valve and pressure gauge samples, rolled engineering drawings, a closed navy specification folder, laptop partially visible, neat pen and measuring caliper. Bright modern workspace, out-of-focus warehouse glazing in background. No people. Drawings show restrained plausible linework without readable claims or text. Central subject fills frame and looks tangible. Sophisticated natural daylight, cool steel blue, charcoal, warm grey and quiet teal accents. No logos, no watermark, no futuristic UI, no collage. Communicate technical expertise and reliable sourcing through the objects, not a fictional team photograph.",
+      "source": "/Users/hridaygoswami/.codex/generated_images/01a0b404-9f21-7543-992a-af55733f5607/exec-e770d141-1397-4c03-adcb-a6b3faf167e8.png"
+    },
+    {
+      "key": "city",
+      "name": "abu-dhabi-illustration-generated.webp",
+      "prompt": "Use case: illustration-story. Create a sophisticated architectural illustration of Abu Dhabi's Corniche waterfront and recognizable Etihad Towers cluster, not Dubai. Very wide 3:1 horizontal banner composition for a company's contact page. Elegant painterly architectural rendering with fine grain, calm pale turquoise water in foreground, warm limestone promenade, subtle palms, Abu Dhabi towers against a pale warm sky, restrained steel-blue, sand and teal palette. Clearly an illustration rather than documentary photography, refined and realistic architectural proportions, no fantastical buildings, no Burj Khalifa, no Burj Al Arab, no text, no logos, no map pins, no collage. Skyline positioned across middle third so it survives a shallow banner crop.",
+      "source": "/Users/hridaygoswami/.codex/generated_images/01a0b404-9f21-7543-992a-af55733f5607/exec-5631e92f-51e8-4c18-aa08-351f95da4387.png"
+    }
+  ]
+}

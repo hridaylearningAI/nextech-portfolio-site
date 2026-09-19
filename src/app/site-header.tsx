@@ -4,6 +4,7 @@ import { Symbol } from "./icons";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useRef } from "react";
 import { COMPANY, NAV } from "./nav";
 import MobileMenu from "./mobile-menu";
 import ThemeToggle from "./theme-toggle";
@@ -11,6 +12,24 @@ import { Arrow, Logo } from "./ui";
 
 export default function SiteHeader() {
   const pathname = usePathname();
+  const nav = useRef<HTMLElement>(null);
+
+  // A tablet has no hover, so the dropdown opens on a tap and nothing ever
+  // takes it back: the panel would still be sitting there on the next page, or
+  // after a tap somewhere else. Close it on both.
+  useEffect(() => {
+    const closeAll = () =>
+      nav.current
+        ?.querySelectorAll<HTMLDetailsElement>("details[open]")
+        .forEach((d) => (d.open = false));
+
+    closeAll();
+    const onOutside = (e: PointerEvent) => {
+      if (!nav.current?.contains(e.target as Node)) closeAll();
+    };
+    document.addEventListener("pointerdown", onOutside);
+    return () => document.removeEventListener("pointerdown", onOutside);
+  }, [pathname]);
 
   const behindVideoHero = pathname === "/";
 
@@ -23,7 +42,10 @@ export default function SiteHeader() {
           <Logo />
         </Link>
 
-        <nav className="hidden flex-1 items-center justify-center gap-4 lg:flex">
+        <nav
+          ref={nav}
+          className="hidden flex-1 items-center justify-center gap-4 lg:flex"
+        >
           {NAV.map((node) => {
             if ("children" in node) {
               const active = node.children.some(
@@ -34,11 +56,18 @@ export default function SiteHeader() {
                 <details
                   key={node.label}
                   className="group relative"
+                  // Hover opens it for a mouse only. On a touch screen these
+                  // fire as emulated events on a tap, which would fight the
+                  // tap that <details> already handles.
                   onMouseEnter={(event) => {
-                    event.currentTarget.open = true;
+                    if (matchMedia("(hover: hover)").matches) {
+                      event.currentTarget.open = true;
+                    }
                   }}
                   onMouseLeave={(event) => {
-                    event.currentTarget.open = false;
+                    if (matchMedia("(hover: hover)").matches) {
+                      event.currentTarget.open = false;
+                    }
                   }}
                 >
                   <summary
@@ -49,13 +78,13 @@ export default function SiteHeader() {
                     {node.label}
                     <Symbol
                       name="arrow"
-                      className="size-3 rotate-90 transition-transform group-hover:-rotate-90 group-open:-rotate-90"
+                      className="size-3 rotate-90 transition-transform group-open:-rotate-90 [@media(hover:hover)]:group-hover:-rotate-90"
                     />
                     {active && (
                       <span className="absolute inset-x-0 bottom-4 h-0.5 rounded bg-brand" />
                     )}
                   </summary>
-                  <div className="absolute top-full left-1/2 hidden min-w-44 -translate-x-1/2 rounded-xl border border-line bg-surface-2 p-2 shadow-xl group-hover:block group-focus-within:block group-open:block">
+                  <div className="absolute top-full left-1/2 hidden min-w-44 -translate-x-1/2 rounded-xl border border-line bg-surface-2 p-2 shadow-xl group-focus-within:block group-open:block [@media(hover:hover)]:group-hover:block">
                     {node.children.map((child) => (
                       <Link
                         key={child.href}

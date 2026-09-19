@@ -12,14 +12,10 @@ const nextConfig: NextConfig = {
         destination: "/supplies",
         permanent: true,
       },
+      { source: "/industries", destination: "/clients", permanent: true },
       {
-        source: "/industries",
-        destination: "/industries-clients",
-        permanent: true,
-      },
-      {
-        source: "/clients",
-        destination: "/industries-clients",
+        source: "/industries-clients",
+        destination: "/clients",
         permanent: true,
       },
     ];
@@ -32,7 +28,7 @@ const nextConfig: NextConfig = {
         // would be re-fetched on every visit. These are content assets that only
         // change when we replace them, and a replacement means a new filename,
         // so they are safe to cache for a year.
-        source: "/:dir(textures|flags|logos|videos)/:file*",
+        source: "/:dir(textures|flags|logos|videos|images)/:path*",
         headers: [
           {
             key: "Cache-Control",

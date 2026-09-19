@@ -37,7 +37,7 @@ export default function IndustriesSection({
             </p>
           </div>
           <Link
-            href="/industries-clients"
+            href="/clients"
             className="inline-flex shrink-0 items-center gap-3 btn border border-line px-5 py-3 text-sm font-medium text-brand hover:border-brand"
           >
             All Industries <Arrow />

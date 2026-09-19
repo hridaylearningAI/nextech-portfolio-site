@@ -101,7 +101,10 @@ export default function MobileMenu() {
           <nav aria-label="Main" className="mt-4 flex-1 overflow-y-auto">
             {NAV.map((node) =>
               "children" in node ? (
-                <details key={node.label} className="group border-b border-line">
+                <details
+                  key={node.label}
+                  className="group border-b border-line"
+                >
                   <summary className="flex cursor-pointer list-none items-center justify-between py-4 text-lg font-semibold text-text-1 [&::-webkit-details-marker]:hidden">
                     {node.label}
                     <Arrow className="rotate-90 transition-transform group-open:-rotate-90" />

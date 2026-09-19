@@ -9,6 +9,37 @@ export function Ph({ className = "", ...rest }: React.ComponentProps<"div">) {
   return <div {...rest} className={`ph ${className}`} aria-hidden />;
 }
 
+/**
+ * A photograph in a slot that used to hold a Ph: same className API, so the
+ * positioning, masks and aspect ratios around it are unchanged. It always
+ * crops to fill, because every slot on the site is a fixed shape.
+ *
+ * Plain <img> rather than next/image: these are pre-sized WebP files served
+ * from public/ with a year-long immutable cache (see next.config.ts), so the
+ * optimiser has nothing left to do. `alt=""` is right for the decorative
+ * slots; pass real alt text when the picture carries meaning.
+ */
+export function Photo({
+  className = "",
+  alt = "",
+  fit = "cover",
+  ...rest
+}: React.ComponentProps<"img"> & {
+  /** "contain" for artwork that must not be cropped, such as a client logo. */
+  fit?: "cover" | "contain";
+}) {
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      loading="lazy"
+      decoding="async"
+      {...rest}
+      alt={alt}
+      className={`${fit === "contain" ? "object-contain" : "object-cover"} ${className}`}
+    />
+  );
+}
+
 export function Arrow({ className = "" }: { className?: string }) {
   return <Symbol name="arrow" className={`size-4 ${className}`} />;
 }
@@ -91,9 +122,10 @@ export function PageHero({
 }) {
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-[var(--tint-a)] to-[var(--tint-b)]">
-      <Ph
+      <Photo
+        src="/images/page-hero.webp"
         data-parallax
-        className="absolute inset-y-0 right-0 hidden w-2/5 opacity-70 [mask-image:linear-gradient(to_right,transparent,black_40%)] lg:block"
+        className="absolute inset-y-0 right-0 hidden h-full w-2/5 opacity-70 [mask-image:linear-gradient(to_right,transparent,black_40%)] lg:block"
       />
       <div className="site-container relative section-space">
         <nav

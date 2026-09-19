@@ -4,8 +4,9 @@ import AboutIntro from "./about-intro";
 import IndustriesSection from "./industries-section";
 import VideoHero from "./video-hero";
 import SectorSlider from "./sector-slider";
-import { CLIENTS, STATS } from "./nav";
-import { Arrow, CtaBand, Eyebrow, Ph } from "./ui";
+import { STATS } from "./nav";
+import ClientMarquee from "./client-marquee";
+import { Arrow, CtaBand, Eyebrow, Photo } from "./ui";
 
 export default function Home() {
   return (
@@ -21,9 +22,13 @@ export default function Home() {
         */}
         <div className="absolute inset-0 overflow-hidden">
           {/* Hero artwork bleeds off the right edge of the viewport. */}
-          <Ph
+          <Photo
+            src="/images/hero-offshore.webp"
+            alt="An offshore oil and gas platform surrounded by blue water"
+            loading="eager"
+            fetchPriority="high"
             data-parallax
-            className="absolute inset-y-0 right-0 hidden w-[58%] [mask-image:linear-gradient(to_right,transparent,black_30%)] lg:block"
+            className="absolute inset-y-0 right-0 hidden h-full w-[58%] [mask-image:linear-gradient(to_right,transparent,black_30%)] lg:block"
           />
         </div>
         <div className="site-container relative grid items-center gap-[clamp(1.5rem,3vw,4rem)] pt-16 pb-40 lg:grid-cols-2 lg:pb-48">
@@ -71,7 +76,12 @@ export default function Home() {
           </div>
 
           <div className="relative">
-            <Ph className="aspect-[4/3] w-full rounded-xl lg:hidden" />
+            <Photo
+              src="/images/hero-offshore.webp"
+              alt="An offshore oil and gas platform surrounded by blue water"
+              loading="eager"
+              className="aspect-[4/3] w-full rounded-xl lg:hidden"
+            />
             <div
               data-intro
               className="mt-4 flex items-start gap-2 lg:absolute lg:-top-24 lg:right-0 lg:mt-0"
@@ -146,41 +156,17 @@ export default function Home() {
           >
             Trusted by Industry Leaders Worldwide
           </h2>
-          <div className="mt-8 flex items-center gap-4">
-            <button
-              type="button"
-              aria-label="Previous clients"
-              className="grid size-11 shrink-0 place-items-center rounded-full bg-surface-2 text-text-2 shadow ring-1 ring-line"
-            >
-              <Arrow className="rotate-180" />
-            </button>
-            <div className="flex flex-1 items-center justify-between gap-6 overflow-hidden">
-              {CLIENTS.slice(0, 6).map((name) => (
-                <div
-                  key={name}
-                  data-reveal
-                  className="grid h-10 flex-1 place-items-center rounded ph"
-                >
-                  <span className="px-2 text-center text-xs font-semibold text-text-1">
-                    {name}
-                  </span>
-                </div>
-              ))}
-            </div>
-            <button
-              type="button"
-              aria-label="Next clients"
-              className="grid size-11 shrink-0 place-items-center rounded-full bg-surface-2 text-text-2 shadow ring-1 ring-line"
-            >
-              <Arrow />
-            </button>
-          </div>
+          <ClientMarquee />
         </div>
       </section>
 
       {/* ── Sustainability ─────────────────────────────────── */}
       <section className="grid bg-surface-2 lg:grid-cols-2">
-        <Ph data-reveal className="min-h-[320px] w-full" />
+        <Photo
+          src="/images/sustainability.webp"
+          data-reveal
+          className="min-h-[320px] w-full"
+        />
         <div className="flex items-center bg-gradient-to-br from-[var(--surface)] to-[var(--tint-b)] px-6 py-16 lg:px-16">
           <div data-reveal className="max-w-lg">
             <Eyebrow>Sustainable future</Eyebrow>

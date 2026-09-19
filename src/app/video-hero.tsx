@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { NAV } from "./nav";
-import { Arrow, Logo, Ph } from "./ui";
+import { Arrow, Logo } from "./ui";
 
 /**
  * Full-viewport opener. Carries its own logo and nav because the sticky
@@ -18,10 +18,22 @@ export default function VideoHero() {
       data-video-hero
       className="relative isolate h-[100svh] min-h-[560px] overflow-hidden"
     >
-      {/* Swap for:
-          <video autoPlay muted loop playsInline poster="..."
-                 className="absolute inset-0 -z-20 size-full object-cover" /> */}
-      <Ph data-parallax className="absolute inset-0 -z-20" />
+      {/*
+        Client-supplied industry compilation with a matching opening-frame
+        poster. Muted and playsInline allow autoplay on mobile browsers.
+      */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        poster="/videos/nextech-compilation-poster.webp"
+        aria-hidden
+        className="absolute inset-0 -z-20 size-full object-cover"
+      >
+        <source src="/videos/Nextech Hero video.mp4" type="video/mp4" />
+      </video>
 
       {/*
         Scrim. Keeps the mark and the nav legible over footage whose brightness
@@ -29,6 +41,9 @@ export default function VideoHero() {
         rather than a large grey rectangle.
       */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/55 via-black/25 to-black/65" />
+      {/* Second scrim down the right edge: the rail sits there, and the footage
+          puts a low sun exactly behind it. */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-l from-black/60 via-black/10 to-transparent" />
 
       {/* ── Mark, top-left of the screen ───────────────────────── */}
       <Link

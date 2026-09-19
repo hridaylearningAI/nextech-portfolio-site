@@ -2,7 +2,7 @@ import { Symbol, SOCIAL_ICONS } from "../icons";
 import type { Metadata } from "next";
 import { COMPANY, SOCIALS } from "../nav";
 import QuoteBanner from "../quote-banner";
-import { Arrow, CtaBand, PageHero, Ph, SectionHead } from "../ui";
+import { Arrow, CtaBand, PageHero, Photo, SectionHead } from "../ui";
 
 export const metadata: Metadata = {
   title: "Contact Us - Nextech General Trading",
@@ -191,7 +191,12 @@ export default function Contact() {
       {/* ── Map ────────────────────────────────────────────── */}
       <section className="bg-surface pb-20">
         <div className="site-container">
-          <Ph data-reveal className="h-[360px] w-full rounded-xl" />
+          <Photo
+            src="/images/abu-dhabi-illustration-generated.webp"
+            alt="Architectural illustration inspired by Abu Dhabi's waterfront and Etihad Towers"
+            data-reveal
+            className="h-[200px] w-full rounded-xl sm:h-[280px] lg:h-[360px]"
+          />
         </div>
       </section>
 

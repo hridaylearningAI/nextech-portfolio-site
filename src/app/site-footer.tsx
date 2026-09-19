@@ -49,7 +49,7 @@ export default function SiteFooter() {
               {INDUSTRIES.map(([label]) => (
                 <li key={label}>
                   <Link
-                    href="/industries-clients"
+                    href="/clients"
                     className="text-xs text-text-2 hover:text-brand"
                   >
                     {label}

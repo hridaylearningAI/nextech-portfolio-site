@@ -15,7 +15,7 @@ export const NAV: NavNode[] = [
       { label: "Services", href: "/services" },
     ],
   },
-  { label: "Clients", href: "/industries-clients" },
+  { label: "Clients", href: "/clients" },
   { label: "Contact Us", href: "/contact" },
 ];
 
@@ -38,7 +38,7 @@ export const STATS = [
 
 /**
  * Industries served. Third field keys into ICONS in icons.tsx. Drives the home
- * cards, the /industries-clients grid and the footer column, so all three stay
+ * cards, the /clients grid and the footer column, so all three stay
  * on one taxonomy.
  */
 export const INDUSTRIES = [
@@ -75,8 +75,7 @@ export const COMPANY = {
   phoneHref: "tel:+97124461080",
   email: "info@nextechgt.ae",
   site: "www.nextechgt.ae",
-  addressShort:
-    "Global Tower, Electra Street, Abu Dhabi, United Arab Emirates",
+  addressShort: "Global Tower, Electra Street, Abu Dhabi, United Arab Emirates",
   addressLines: [
     "Nextech General Trading L.L.C – O.P.C",
     "8th Floor, Office #802",

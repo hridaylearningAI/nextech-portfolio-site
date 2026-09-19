@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ICONS, Icon } from "./icons";
-import { Arrow, Eyebrow, Ph } from "./ui";
+import { Arrow, Eyebrow, Photo } from "./ui";
 
 const FEATURES: [React.ReactNode, string, string][] = [
   [ICONS.globe, "Global Reach", "Local Expertise"],
@@ -14,7 +14,11 @@ export default function AboutIntro() {
     <section className="bg-surface-2 pt-40 pb-[var(--section-space)] sm:pt-28">
       <div className="site-container grid gap-12 lg:grid-cols-12 lg:gap-0">
         <div data-reveal className="relative lg:col-span-5">
-          <Ph className="aspect-[3/2] w-full" />
+          <Photo
+            src="/images/supply-partnership-generated.webp"
+            alt="Illustrative scene of two professionals reviewing industrial equipment for supply"
+            className="aspect-[3/2] w-full"
+          />
           <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/10 to-transparent" />
           <div className="absolute top-1/3 left-0 flex items-stretch gap-4 pl-6 sm:pl-8">
             <span className="w-px shrink-0 bg-white/35" />
@@ -46,11 +50,10 @@ export default function AboutIntro() {
           </h2>
           <p className="mt-5 max-w-md text-sm leading-relaxed text-text-2">
             Nextech General Trading is at the heart of the United Arab Emirates,
-            connecting
-            global industries with reliable solutions. We are driven by a
-            commitment to quality, sustainability and long-term partnerships
-            that support progress across energy, infrastructure and industrial
-            development.
+            connecting global industries with reliable solutions. We are driven
+            by a commitment to quality, sustainability and long-term
+            partnerships that support progress across energy, infrastructure and
+            industrial development.
           </p>
           <Link
             href="/who-we-are"

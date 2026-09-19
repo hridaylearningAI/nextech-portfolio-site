@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { CLIENTS } from "../nav";
-import { CtaBand, PageHero, SectionHead } from "../ui";
+import { CLIENTS, slugify } from "../nav";
+import { CtaBand, PageHero, Photo, SectionHead } from "../ui";
 
 export const metadata: Metadata = {
   title: "Clients - Nextech General Trading",
@@ -30,19 +30,27 @@ export default function IndustriesClients() {
           {/*
             Monochrome until hovered. Gated behind (hover: hover) on purpose:
             a phone has no hover, so there the logos stay in full colour rather
-            than being stuck grey forever. Swap each name for the client's logo
-            file; the treatment already applies to images.
+            than being stuck grey forever.
+
+            The tiles stay white in both themes: several of these marks are
+            dark type with no light variant, and they would disappear against
+            the dark surface.
           */}
           <ul className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6">
             {CLIENTS.map((name) => (
               <li
                 key={name}
                 data-reveal
-                className="group grid aspect-[4/3] place-items-center rounded-[18px] border border-line bg-surface-2 p-3 shadow-sm transition-[filter,opacity,border-color,box-shadow] duration-300 ease-out [@media(hover:hover)]:opacity-60 [@media(hover:hover)]:grayscale [@media(hover:hover)]:hover:border-brand [@media(hover:hover)]:hover:opacity-100 [@media(hover:hover)]:hover:shadow-md [@media(hover:hover)]:hover:grayscale-0"
+                className="group grid aspect-[4/3] place-items-center overflow-hidden rounded-[18px] border border-line bg-white shadow-sm transition-[filter,opacity,border-color,box-shadow] duration-300 ease-out [@media(hover:hover)]:opacity-60 [@media(hover:hover)]:grayscale [@media(hover:hover)]:hover:border-brand [@media(hover:hover)]:hover:opacity-100 [@media(hover:hover)]:hover:shadow-md [@media(hover:hover)]:hover:grayscale-0"
               >
-                <span className="text-center text-xs font-semibold text-text-1">
-                  {name}
-                </span>
+                <Photo
+                  src={`/logos/clients/${slugify(name)}.webp`}
+                  alt={name}
+                  fit="contain"
+                  // Fills the tile and letterboxes inside it, so a tall mark
+                  // cannot stretch its card past the others.
+                  className="size-full"
+                />
               </li>
             ))}
           </ul>

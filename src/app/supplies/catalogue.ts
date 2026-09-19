@@ -24,8 +24,8 @@ export type Category = { name: string; items: readonly string[] };
 const CATEGORIES: readonly (readonly Category[])[] = [
   [
     {
-      "name": "Valves & Valve Automation",
-      "items": [
+      name: "Valves & Valve Automation",
+      items: [
         "Actuators - Gas Over Oil",
         "Actuators - Hydraulic",
         "Actuators - Hydro-Electric",
@@ -49,8 +49,8 @@ const CATEGORIES: readonly (readonly Category[])[] = [
         "Valve Automation / Actuator Control Systems",
         "Ball Valves - API 6D",
         "Ball Valves - API 6A",
-        "Ball Valves - API 6D - Above 12\"",
-        "Ball Valves - API 6D - Up to 12\"",
+        'Ball Valves - API 6D - Above 12"',
+        'Ball Valves - API 6D - Up to 12"',
         "Ball Valves - BS EN 17292",
         "Special / Non-Standard Ball Valves",
         "Butterfly Valves - API 609 / BS EN 593",
@@ -62,24 +62,24 @@ const CATEGORIES: readonly (readonly Category[])[] = [
         "Choke Valves - Adjustable & Positive",
         "Double Block & Bleed Valves - API",
         "Gate Valves - API Thru-Conduit",
-        "Gate Valves - BS/ANSI/API - 2\" & Above",
-        "Globe Valves - BS/ANSI/API - 2\" & Above",
+        'Gate Valves - BS/ANSI/API - 2" & Above',
+        'Globe Valves - BS/ANSI/API - 2" & Above',
         "Plug Valves - API",
         "Safety Relief Valves",
         "Inside BOP Valves",
         "API 6A Gate Valves",
         "API 6A Globe Valves",
-        "Gate / Globe / Check Valves - Up to 2\"",
+        'Gate / Globe / Check Valves - Up to 2"',
         "Process Plant Ball Valves",
         "Wafer Type Ball Valves",
         "Socket Weld Ball Valves",
         "Socket Weld Check Valves - ANSI",
-        "Socket Weld Globe Valves - ANSI/MSS/API/BS"
-      ]
+        "Socket Weld Globe Valves - ANSI/MSS/API/BS",
+      ],
     },
     {
-      "name": "Flow Control & Piping",
-      "items": [
+      name: "Flow Control & Piping",
+      items: [
         "Pipe ANSI",
         "Pipes - Special Alloys - All Sizes",
         "Pipes - Stainless Steel",
@@ -93,12 +93,12 @@ const CATEGORIES: readonly (readonly Category[])[] = [
         "Tube - All Metals for General Use",
         "Union, Wing & Accessories",
         "Industrial Strainers",
-        "Sight Flow Indicators"
-      ]
+        "Sight Flow Indicators",
+      ],
     },
     {
-      "name": "Pumps & Rotating Equipment",
-      "items": [
+      name: "Pumps & Rotating Equipment",
+      items: [
         "Accessories for Pumps",
         "Bearing Isolators",
         "Piston Pumps",
@@ -112,12 +112,12 @@ const CATEGORIES: readonly (readonly Category[])[] = [
         "Pump Units for Pressure Testing / Equalising - Skid Mounted",
         "Air Operated Motors",
         "Gear Boxes",
-        "Hydraulic Power Units"
-      ]
+        "Hydraulic Power Units",
+      ],
     },
     {
-      "name": "Mechanical Utilities & Workshop",
-      "items": [
+      name: "Mechanical Utilities & Workshop",
+      items: [
         "General Use Materials & Requisites for Mechanical Workshops",
         "Ropes, Steel Wires & Hoist Drums",
         "Manhole Covers",
@@ -127,14 +127,14 @@ const CATEGORIES: readonly (readonly Category[])[] = [
         "Wire Mesh & Fencing Materials",
         "Welding Electrodes & Related Requisites",
         "Belt Conveyor Systems & Accessories",
-        "Vibrating Screens & Accessories"
-      ]
-    }
+        "Vibrating Screens & Accessories",
+      ],
+    },
   ],
   [
     {
-      "name": "Electrical Equipment",
-      "items": [
+      name: "Electrical Equipment",
+      items: [
         "Lightning Arrestors",
         "LV Busbars & Busbar Ducts",
         "Earthing Materials",
@@ -150,14 +150,14 @@ const CATEGORIES: readonly (readonly Category[])[] = [
         "Towers - For Floodlights",
         "Warning / Aviation Lights - Safe Areas",
         "Cable Trays, Ladders & Trunking - GRP",
-        "Cable Trays, Ladders & Trunking - Metallic"
-      ]
-    }
+        "Cable Trays, Ladders & Trunking - Metallic",
+      ],
+    },
   ],
   [
     {
-      "name": "Instrumentation",
-      "items": [
+      name: "Instrumentation",
+      items: [
         "Density Transmitters",
         "Flowmeters - Pitot Tube Type",
         "Flowmeters - Magnetic Type",
@@ -175,49 +175,49 @@ const CATEGORIES: readonly (readonly Category[])[] = [
         "Instrument Shelters & Analyzer Shelters",
         "Online Analyzers - All Types",
         "Analyzers - Chromatographs",
-        "Environmental / Emission Analyzers"
-      ]
-    }
+        "Environmental / Emission Analyzers",
+      ],
+    },
   ],
   [
     {
-      "name": "Heat Transfer Equipment",
-      "items": [
+      name: "Heat Transfer Equipment",
+      items: [
         "Air Coolers - Finned Tube",
         "Heat Exchangers - Shell & Tube",
         "Tube Bundles - For Heat Exchangers & Coolers",
         "Tube Bundles for Heat Exchangers - All Metals",
         "Tubes - For Heat Exchangers, Coolers & Boilers",
         "Tubes - SS / Alloy Steel Seamless & Welded",
-        "Waste Heat Recovery Systems"
-      ]
+        "Waste Heat Recovery Systems",
+      ],
     },
     {
-      "name": "Boilers & Process Equipment",
-      "items": [
+      name: "Boilers & Process Equipment",
+      items: [
         "Boilers - Cogeneration Packages",
         "Boilers - Steam Packages",
         "Pressure Vessels Above 100mm - CS/SS/AS/Clad",
         "Pressure Vessels Up to 35mm - CS/SS/AS/Clad - U Stamp",
         "Reactors",
         "Demisters",
-        "Trays, Internals, Supports & Packings for Vessels / Towers / Columns"
-      ]
+        "Trays, Internals, Supports & Packings for Vessels / Towers / Columns",
+      ],
     },
     {
-      "name": "Process Packages & Systems",
-      "items": [
+      name: "Process Packages & Systems",
+      items: [
         "Fuel Gas Packages",
         "Metering Skids - Liquids & Gases",
         "Water Injection Packages",
         "Self-Contained Surface Safety Valve Systems",
         "Emergency Shelters",
-        "Sunshades & Enclosures"
-      ]
+        "Sunshades & Enclosures",
+      ],
     },
     {
-      "name": "Pumps & Process Packages",
-      "items": [
+      name: "Pumps & Process Packages",
+      items: [
         "Fuel Gas Packages",
         "Metering Skids - Liquids & Gases",
         "Water Injection Packages",
@@ -225,14 +225,14 @@ const CATEGORIES: readonly (readonly Category[])[] = [
         "Piston Pumps",
         "Plunger Pumps",
         "API Centrifugal Pumps",
-        "Reciprocating Pumps"
-      ]
-    }
+        "Reciprocating Pumps",
+      ],
+    },
   ],
   [
     {
-      "name": "Chemicals & Process Materials",
-      "items": [
+      name: "Chemicals & Process Materials",
+      items: [
         "Catalysts - Activated Carbon",
         "Alumina Balls",
         "Ceramic Balls",
@@ -248,12 +248,12 @@ const CATEGORIES: readonly (readonly Category[])[] = [
         "Materials for Coating Protection",
         "Wrapping Tape",
         "Welding & Coating Materials - Cold Type",
-        "Welding Electrodes & Related Requisites"
-      ]
+        "Welding Electrodes & Related Requisites",
+      ],
     },
     {
-      "name": "Safety, Infrastructure & General Industrial",
-      "items": [
+      name: "Safety, Infrastructure & General Industrial",
+      items: [
         "Eye Wash / Eyewash Stations",
         "Safety Showers",
         "Fire Blankets",
@@ -265,10 +265,10 @@ const CATEGORIES: readonly (readonly Category[])[] = [
         "Handrail - GRP",
         "Manhole Covers",
         "Wire Mesh & Fencing Materials",
-        "General Use Materials & Requisites - Mechanical Workshop"
-      ]
-    }
-  ]
+        "General Use Materials & Requisites - Mechanical Workshop",
+      ],
+    },
+  ],
 ];
 
 export const CATALOGUE = DIVISIONS.map(([title, intro, icon], i) => ({

@@ -4,7 +4,7 @@ import GlobalReach from "../global-reach";
 import type { Metadata } from "next";
 import Link from "next/link";
 import IndustriesSection from "../industries-section";
-import { Arrow, CtaBand, Eyebrow, Ph, SectionHead } from "../ui";
+import { Arrow, CtaBand, Eyebrow, Photo, SectionHead } from "../ui";
 import VideoBanner from "./video-banner";
 
 export const metadata: Metadata = {
@@ -96,7 +96,12 @@ export default function WhoWeAre() {
       {/* ── Who we are ─────────────────────────────────────── */}
       <section className="bg-surface section-space">
         <div className="site-container grid items-center gap-[clamp(1.5rem,3vw,4rem)] lg:grid-cols-2">
-          <Ph data-reveal className="aspect-[4/3] w-full rounded-xl" />
+          <Photo
+            src="/images/sourcing-story-generated.webp"
+            alt="Illustrative technical sourcing desk with valve samples, a pressure gauge and engineering drawings"
+            data-reveal
+            className="aspect-[4/3] w-full rounded-xl"
+          />
           <div data-reveal>
             <SectionHead eyebrow="Our Story" title="Who" accent="we are?" />
             <div className="mt-6 space-y-4 text-sm leading-relaxed text-text-2">

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Arrow, Ph } from "./ui";
+import { Arrow, Photo } from "./ui";
 
 /**
  * "Ready to Power What's Next?" call to action. A dark band in both themes on
@@ -26,7 +26,10 @@ export default function QuoteBanner({ href = "/contact" }: { href?: string }) {
         className="pointer-events-none absolute top-[-8%] left-[56%] -z-10 hidden aspect-square w-[38%] md:block"
       >
         <div className="absolute inset-0 rounded-full shadow-[0_0_80px_rgba(2,193,179,0.28)]" />
-        <Ph className="absolute inset-0 rounded-full" />
+        <Photo
+          src="/images/earth-night.webp"
+          className="absolute inset-0 size-full rounded-full"
+        />
         <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_32%_28%,rgba(8,16,26,0.25),rgba(8,16,26,0.9)_72%)] ring-1 ring-brand/30" />
       </div>
 

@@ -4,7 +4,8 @@ import Link from "next/link";
 import { useId, useState } from "react";
 import { Symbol } from "../icons";
 import { slugify } from "../nav";
-import { Ph } from "../ui";
+import { Photo } from "../ui";
+import { divisionImage } from "../division-images";
 import { CATALOGUE, type Category } from "./catalogue";
 
 /** Categories longer than this start collapsed. Valves alone runs to 49. */
@@ -124,7 +125,10 @@ export default function CatalogueBrowser() {
                 <p className="mt-3 text-sm leading-relaxed text-text-2">
                   {d.intro}
                 </p>
-                <Ph className="mt-6 hidden aspect-[4/3] w-full rounded-xl lg:block" />
+                <Photo
+                  src={divisionImage(slugify(d.title))}
+                  className="mt-6 hidden aspect-[4/3] w-full rounded-xl lg:block"
+                />
               </div>
             </header>
 
