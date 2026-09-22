@@ -1,8 +1,9 @@
 import { Symbol, SOCIAL_ICONS } from "../icons";
 import type { Metadata } from "next";
+import ContactForm from "../contact-form";
 import { COMPANY, SOCIALS } from "../nav";
 import QuoteBanner from "../quote-banner";
-import { Arrow, CtaBand, PageHero, Photo, SectionHead } from "../ui";
+import { CtaBand, PageHero, Photo, SectionHead } from "../ui";
 
 export const metadata: Metadata = {
   title: "Contact Us - Nextech General Trading",
@@ -39,53 +40,7 @@ export default function Contact() {
               Your email address will not be published. Required fields are
               marked *
             </p>
-            <form
-              id="enquiry"
-              data-reveal
-              className="mt-8 grid gap-5 sm:grid-cols-2"
-            >
-              <label className="block">
-                <span className="text-xs font-medium text-text-1">
-                  Your name *
-                </span>
-                <input
-                  required
-                  name="name"
-                  autoComplete="name"
-                  placeholder="Your name"
-                  className="mt-2 w-full rounded-xl border border-line px-4 py-3 text-sm text-text-1 placeholder:text-text-2 focus:border-brand focus:outline-none"
-                />
-              </label>
-              <label className="block">
-                <span className="text-xs font-medium text-text-1">Email *</span>
-                <input
-                  required
-                  type="email"
-                  name="email"
-                  autoComplete="email"
-                  placeholder="you@company.com"
-                  className="mt-2 w-full rounded-xl border border-line px-4 py-3 text-sm text-text-1 placeholder:text-text-2 focus:border-brand focus:outline-none"
-                />
-              </label>
-              <label className="block sm:col-span-2">
-                <span className="text-xs font-medium text-text-1">
-                  Your message *
-                </span>
-                <textarea
-                  required
-                  name="message"
-                  rows={6}
-                  placeholder="How can we help?"
-                  className="mt-2 w-full rounded-xl border border-line px-4 py-3 text-sm text-text-1 placeholder:text-text-2 focus:border-brand focus:outline-none"
-                />
-              </label>
-              <button
-                type="submit"
-                className="inline-flex items-center justify-center gap-3 btn bg-brand px-6 py-3.5 text-sm font-medium text-ink hover:bg-brand-dark sm:w-fit"
-              >
-                Send Questions <Arrow />
-              </button>
-            </form>
+            <ContactForm />
           </div>
 
           <aside className="lg:col-span-2">

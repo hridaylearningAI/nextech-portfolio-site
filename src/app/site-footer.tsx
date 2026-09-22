@@ -1,7 +1,8 @@
 import { Symbol, SOCIAL_ICONS } from "./icons";
 import Link from "next/link";
+import NewsletterForm from "./newsletter-form";
 import { COMPANY, DIVISIONS, INDUSTRIES, NAV_FLAT, SOCIALS } from "./nav";
-import { Arrow, Logo } from "./ui";
+import { Logo } from "./ui";
 
 export default function SiteFooter() {
   return (
@@ -97,22 +98,7 @@ export default function SiteFooter() {
             <p className="mt-5 text-xs leading-relaxed text-text-2">
               Subscribe to our Newsletter &amp; Event right now to be updated.
             </p>
-            <form className="mt-5 flex gap-2">
-              <input
-                type="email"
-                required
-                placeholder="Enter your email"
-                aria-label="Email address"
-                className="min-w-0 w-full rounded-full border border-line px-4 py-2.5 text-xs text-text-1 placeholder:text-text-2"
-              />
-              <button
-                type="submit"
-                aria-label="Subscribe"
-                className="grid size-10 shrink-0 place-items-center btn bg-brand text-ink hover:bg-brand-dark"
-              >
-                <Arrow className="-rotate-45" />
-              </button>
-            </form>
+            <NewsletterForm />
             <h3 className="mt-8 text-sm font-semibold text-text-1">
               Product Divisions
             </h3>

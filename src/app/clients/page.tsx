@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CLIENTS, slugify } from "../nav";
+import ReviewForm from "../review-form";
 import { CtaBand, Photo, SectionHead } from "../ui";
 
 export const metadata: Metadata = {
@@ -65,47 +66,7 @@ export default function IndustriesClients() {
             data-reveal
             className="rounded-[18px] border border-line bg-surface-2 p-6 shadow-sm sm:p-8 lg:col-span-7"
           >
-            <form className="space-y-4">
-              {[
-                ["Your Name*", "name", true],
-                ["Email*", "email", true],
-                ["Company Name", "company", false],
-                ["Heading", "heading", false],
-              ].map(([label, name, required]) => (
-                <input
-                  key={name as string}
-                  name={name as string}
-                  required={required as boolean}
-                  type={name === "email" ? "email" : "text"}
-                  placeholder={label as string}
-                  aria-label={label as string}
-                  className="w-full rounded-xl border border-line px-4 py-3 text-sm text-text-1 placeholder:text-text-2 focus:border-brand focus:outline-none"
-                />
-              ))}
-              <textarea
-                required
-                name="review"
-                rows={5}
-                placeholder="Write here*"
-                aria-label="Write here"
-                className="w-full rounded-xl border border-line px-4 py-3 text-sm text-text-1 placeholder:text-text-2 focus:border-brand focus:outline-none"
-              />
-              <label className="flex items-start gap-3 text-xs leading-relaxed text-text-2">
-                <input
-                  type="checkbox"
-                  name="consent"
-                  required
-                  className="mt-0.5 size-4 shrink-0 accent-[#02c1b3]"
-                />
-                I agree that Nextech will collect my name and email information
-              </label>
-              <button
-                type="submit"
-                className="w-full btn bg-brand px-5 py-3 text-sm font-medium text-ink hover:bg-brand-dark"
-              >
-                Send Review
-              </button>
-            </form>
+            <ReviewForm />
           </div>
         </div>
       </section>

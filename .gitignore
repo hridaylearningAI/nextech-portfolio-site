@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local agent skill libraries (kept on disk, not in the repo)
+.agents/skills/
+.claude/skills/

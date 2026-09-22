@@ -2,8 +2,9 @@
 
 import { XIcon } from "@phosphor-icons/react";
 import Link from "next/link";
-import { useEffect, useId, useRef, useState, type FormEvent } from "react";
+import { useEffect, useId, useRef, type FormEvent } from "react";
 import { Symbol, type IconName } from "./icons";
+import { useFormSubmit } from "./use-form-submit";
 import { Arrow } from "./ui";
 
 const FIELDS = [
@@ -71,33 +72,40 @@ const REASONS: [IconName, string][] = [
 export default function PartnerWithUs() {
   const dialog = useRef<HTMLDialogElement>(null);
   const titleId = useId();
-  const [sent, setSent] = useState(false);
+  const { status, error, onSubmit, reset } = useFormSubmit("partner");
+  const sent = status === "success";
 
   useEffect(() => {
     const el = dialog.current;
     if (!el) return;
     const onToggle = () => {
       document.documentElement.style.overflow = el.open ? "hidden" : "";
-      if (!el.open) setSent(false);
+      if (!el.open) reset();
     };
     el.addEventListener("close", onToggle);
     return () => {
       el.removeEventListener("close", onToggle);
       document.documentElement.style.overflow = "";
     };
-  }, []);
+  }, [reset]);
 
   const open = () => {
-    setSent(false);
+    reset();
     dialog.current?.showModal();
     document.documentElement.style.overflow = "hidden";
   };
 
   const close = () => dialog.current?.close();
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setSent(true);
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    onSubmit(e, (fd) => ({
+      name: String(fd.get("name") ?? ""),
+      email: String(fd.get("email") ?? ""),
+      website: String(fd.get("website") ?? ""),
+      contact: String(fd.get("contact") ?? ""),
+      location: String(fd.get("location") ?? ""),
+      description: String(fd.get("description") ?? ""),
+    }));
   };
 
   // Same field treatment as the contact form, so the two read as one system.
@@ -199,7 +207,7 @@ export default function PartnerWithUs() {
                 </button>
               </div>
             ) : (
-              <form onSubmit={onSubmit}>
+              <form onSubmit={handleSubmit}>
                 <p className="pr-10 text-sm leading-relaxed text-text-2">
                   Tell us about your company and how we can work together.
                   Fields marked <span className="text-brand">*</span> are
@@ -256,6 +264,12 @@ export default function PartnerWithUs() {
                   </label>
                 </div>
 
+                {error && (
+                  <p role="alert" className="mt-5 text-sm text-red-600">
+                    {error}
+                  </p>
+                )}
+
                 <div className="mt-7 flex flex-col-reverse gap-4 sm:flex-row sm:items-center sm:justify-between">
                   <p className="text-xs leading-relaxed text-text-2">
                     We use these details only to reply. See our{" "}
@@ -269,9 +283,11 @@ export default function PartnerWithUs() {
                   </p>
                   <button
                     type="submit"
-                    className="inline-flex shrink-0 items-center justify-center gap-3 btn bg-brand px-6 py-3.5 text-sm font-medium text-ink hover:bg-brand-dark"
+                    disabled={status === "submitting"}
+                    className="inline-flex shrink-0 items-center justify-center gap-3 btn bg-brand px-6 py-3.5 text-sm font-medium text-ink hover:bg-brand-dark disabled:opacity-60"
                   >
-                    Submit enquiry <Arrow />
+                    {status === "submitting" ? "Sending…" : "Submit enquiry"}{" "}
+                    <Arrow />
                   </button>
                 </div>
               </form>

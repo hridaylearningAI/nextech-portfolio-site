@@ -1,5 +1,6 @@
 import { Symbol } from "./icons";
 import Link from "next/link";
+import NewsletterForm from "./newsletter-form";
 
 /**
  * Lined stand-in for artwork that gets swapped for a real image later.
@@ -176,21 +177,7 @@ export function CtaBand() {
               tailored to your business needs.
             </p>
           </div>
-          <form className="flex w-full flex-wrap gap-3 md:w-auto md:flex-nowrap">
-            <input
-              type="email"
-              required
-              placeholder="Enter your email"
-              aria-label="Email address"
-              className="min-w-0 flex-1 rounded-full bg-surface-2 px-5 py-3 text-sm text-text-1 placeholder:text-text-2 md:w-64"
-            />
-            <button
-              type="submit"
-              className="inline-flex shrink-0 items-center gap-2 btn bg-ink px-5 py-3 text-sm font-medium text-white"
-            >
-              Get Updates <Arrow />
-            </button>
-          </form>
+          <NewsletterForm variant="cta" />
         </div>
       </div>
     </section>
