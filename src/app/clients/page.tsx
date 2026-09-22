@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { CLIENTS, slugify } from "../nav";
-import { CtaBand, PageHero, Photo, SectionHead } from "../ui";
+import { CtaBand, Photo, SectionHead } from "../ui";
 
 export const metadata: Metadata = {
   title: "Clients - Nextech General Trading",
@@ -11,13 +11,6 @@ export const metadata: Metadata = {
 export default function IndustriesClients() {
   return (
     <>
-      <PageHero
-        eyebrow="Clients"
-        title="Where our products"
-        accent="go to work."
-        copy="The operators, utilities and industrial groups across the Emirates who rely on our products and services."
-      />
-
       {/* ── Clients ────────────────────────────────────────── */}
       <section className="bg-gradient-to-b from-[var(--tint-c)] to-[var(--tint-d)] section-space">
         <div className="site-container">

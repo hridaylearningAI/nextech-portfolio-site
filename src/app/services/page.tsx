@@ -2,7 +2,7 @@ import { Symbol } from "../icons";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SERVICES, slugify } from "../nav";
-import { Arrow, CtaBand, PageHero, Photo, SectionHead } from "../ui";
+import { Arrow, CtaBand, Photo, SectionHead } from "../ui";
 
 export const metadata: Metadata = {
   title: "Services - Nextech General Trading",
@@ -43,13 +43,6 @@ const WHY = [
 export default function Services() {
   return (
     <>
-      <PageHero
-        eyebrow="Services"
-        title="Integrated supply."
-        accent="Expertise at every stage."
-        copy="Specification support, sourcing against the principals we represent, inspection before dispatch and consolidated delivery to site."
-      />
-
       {/* ── The six services, one photograph each ─────────── */}
       <section className="bg-surface section-space">
         <div className="site-container">
