@@ -13,6 +13,9 @@ Created with the built-in OpenAI image generation tool. These are illustrative s
 - `supply-partnership-generated.webp` — industrial equipment sourcing collaboration.
 - `sourcing-story-generated.webp` — technical sourcing desk and equipment samples.
 - `abu-dhabi-illustration-generated.webp` — Abu Dhabi-inspired waterfront illustration.
+- `divisions/instrumentation-generated.webp` — pressure transmitters on industrial yellow mounting (client reference, September 22, 2026).
+- `divisions/heavy-process-industrial-equipment-generated.webp` — oversized process vessels on barge transport (client reference, September 22, 2026).
+- `sustainability-generated.webp` — wind farm on greener hills (regenerated from Pexels original, September 22, 2026).
 
 ## Credential emblems — September 20, 2026
 
@@ -48,3 +51,7 @@ Created with the built-in OpenAI image generation tool. Decorative illustrations
 - `inspection.webp` — https://www.pexels.com/photo/37466061/
 - `abu-dhabi.webp` — https://www.pexels.com/photo/19612315/
 - `earth-night.webp` — https://www.pexels.com/photo/30596225/
+
+## Country flags — September 22, 2026
+
+Self-hosted SVG flags in `public/flags/` from [FlagCDN](https://flagcdn.com/) / [Flagpedia](https://flagpedia.net/download/api), based on Wikimedia Commons vectors. Replaced the previous 80px PNGs so globe and list markers stay sharp on retina displays.

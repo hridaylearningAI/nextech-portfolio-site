@@ -7,8 +7,8 @@ import { Symbol } from "../icons";
 /**
  * Who we are page banner: the office tour playing behind the page title.
  *
- * The video was re-encoded from the 31.9MB, 1080p/50fps original to 6MB at
- * 720p/30fps with faststart, so it starts before the whole file has arrived.
+ * Served as 1080p H.264 with faststart so it stays sharp on retina widths
+ * while still beginning playback before the whole file arrives.
  *
  * Behaviour:
  * - Starts muted. Browsers only allow autoplay without sound, and the track is
@@ -99,10 +99,9 @@ export default function VideoBanner({
         onPause={() => setPlaying(false)}
       />
 
-      {/* Scrim: heaviest at the bottom-left where the title sits, so the type
-          stays legible over every frame of the tour, bright office or sky. */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/85 via-black/40 to-black/20" />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black/50 to-transparent" />
+      {/* Scrim: enough contrast for the title without muddying the footage. */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/70 via-black/25 to-black/10" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black/35 to-transparent" />
 
       <div className="site-container w-full pb-24 sm:pb-20">
         <nav

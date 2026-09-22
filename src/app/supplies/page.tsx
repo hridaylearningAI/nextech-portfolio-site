@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { CtaBand, PageHero } from "../ui";
+import { CtaBand } from "../ui";
 import CatalogueBrowser from "./catalogue-browser";
 
 export const metadata: Metadata = {
@@ -11,13 +11,6 @@ export const metadata: Metadata = {
 export default function Supplies() {
   return (
     <>
-      <PageHero
-        eyebrow="Supplies"
-        title="Five Product Divisions,"
-        accent="One Standard."
-        copy="Everything we stock and source, grouped the way our engineers and principals work. Search the catalogue or jump straight to a division."
-      />
-
       <CatalogueBrowser />
 
       <CtaBand />

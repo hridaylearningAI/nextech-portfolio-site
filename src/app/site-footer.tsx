@@ -14,14 +14,16 @@ export default function SiteFooter() {
               {COMPANY.blurb}
             </p>
             <div className="mt-5 flex gap-1">
-              {SOCIALS.map((n) => (
+              {SOCIALS.map(({ name, href }) => (
                 <a
-                  key={n}
-                  href="#"
-                  aria-label={n}
+                  key={name}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={name}
                   className="grid size-11 place-items-center"
                 >
-                  <Symbol name={SOCIAL_ICONS[n]} className="size-5" />
+                  <Symbol name={SOCIAL_ICONS[name]} className="size-5" />
                 </a>
               ))}
             </div>

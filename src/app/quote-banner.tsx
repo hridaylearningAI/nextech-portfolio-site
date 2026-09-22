@@ -1,16 +1,16 @@
-import Link from "next/link";
-import { Arrow, Photo } from "./ui";
+import { Photo } from "./ui";
+import PartnerWithUs from "./partner-with-us";
 
 /**
  * "Ready to Power What's Next?" call to action. A dark band in both themes on
  * purpose: it is a moment of emphasis, like the pull-quote card, not a surface
  * that should follow the page.
  *
- * `href` is a prop because the right target depends on where it sits. On the
- * contact page a link to /contact would reload the page you are already on, so
- * there it points at the enquiry form instead.
+ * The CTA opens a partnership enquiry dialog rather than jumping to the
+ * contact form — manufacturers and principals use a different path from
+ * buyers requesting a quote.
  */
-export default function QuoteBanner({ href = "/contact" }: { href?: string }) {
+export default function QuoteBanner() {
   return (
     <div
       data-reveal
@@ -47,12 +47,7 @@ export default function QuoteBanner({ href = "/contact" }: { href?: string }) {
           </p>
         </div>
 
-        <Link
-          href={href}
-          className="inline-flex shrink-0 items-center gap-3 btn bg-white px-7 py-3.5 text-sm font-semibold text-ink shadow-lg hover:bg-white/90"
-        >
-          Get a Quote <Arrow />
-        </Link>
+        <PartnerWithUs />
       </div>
 
       {/* Stacked tagline against the right edge, over the planet. */}

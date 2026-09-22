@@ -34,11 +34,11 @@ const Globe3D = dynamic(
 );
 
 /**
- * Self-hosted in public/flags. These were pulled from flagcdn once and
- * committed: an 11-image dependency on a third-party CDN is a third party
- * deciding whether this section renders.
+ * Self-hosted SVG flags in public/flags (from flagcdn / Flagpedia, based on
+ * Wikimedia Commons vectors). SVGs stay sharp at any size; the previous 80px
+ * PNGs looked soft on retina and on the globe chips.
  */
-const flag = (code: string) => `/flags/${code}.png`;
+const flag = (code: string) => `/flags/${code}.svg`;
 
 export default function GlobalReach() {
   // The globe spins by default. Someone who asked for reduced motion should
@@ -102,9 +102,9 @@ export default function GlobalReach() {
             <img
               src={flag(HQ.code)}
               alt=""
-              width={20}
-              height={15}
-              className="h-[15px] w-5 shrink-0 rounded-[2px] object-cover ring-1 ring-black/10"
+              width={32}
+              height={20}
+              className="h-5 w-8 shrink-0 rounded-[3px] object-cover object-left ring-1 ring-black/10"
             />
             <p className="text-sm text-text-1">
               <span className="font-semibold">Head office</span>
@@ -122,10 +122,10 @@ export default function GlobalReach() {
                 <img
                   src={flag(code)}
                   alt=""
-                  width={20}
-                  height={15}
+                  width={32}
+                  height={20}
                   loading="lazy"
-                  className="h-[15px] w-5 shrink-0 rounded-[2px] object-cover ring-1 ring-black/10"
+                  className="h-5 w-8 shrink-0 rounded-[3px] object-cover object-left ring-1 ring-black/10"
                 />
                 {label}
               </li>
@@ -151,7 +151,9 @@ export default function GlobalReach() {
                 label: HQ.label,
                 src: flag(HQ.code),
                 // Larger than the partner flags so the hub reads first.
-                size: 22,
+                // Width is derived as ~1.7× height so the UAE hoist stripe stays
+                // visible inside the rectangular chip.
+                size: 26,
               }}
               config={{
                 autoRotateSpeed: spin,

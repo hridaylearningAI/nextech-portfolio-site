@@ -11,11 +11,6 @@ import { CATALOGUE, type Category } from "./catalogue";
 /** Categories longer than this start collapsed. Valves alone runs to 49. */
 const PREVIEW = 12;
 
-const TOTAL = CATALOGUE.reduce(
-  (n, d) => n + d.categories.reduce((m, c) => m + c.items.length, 0),
-  0,
-);
-
 /**
  * The supplies catalogue: search across every product, jump between
  * divisions, and long lists that open on demand.
@@ -62,7 +57,7 @@ export default function CatalogueBrowser() {
               type="search"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder={`Search ${TOTAL} products`}
+              placeholder="Search products"
               className="w-full rounded-full border border-line bg-surface-2 py-2.5 pr-4 pl-10 text-sm text-text-1 placeholder:text-text-2 focus:border-brand"
             />
           </label>
@@ -85,11 +80,11 @@ export default function CatalogueBrowser() {
       </div>
 
       <div className="site-container">
-        <p aria-live="polite" className="pt-8 text-xs text-text-2">
-          {q
-            ? `${matches} ${matches === 1 ? "product matches" : "products match"} "${query.trim()}"`
-            : `${TOTAL} products across ${CATALOGUE.length} divisions`}
-        </p>
+        {q ? (
+          <p aria-live="polite" className="pt-8 text-xs text-text-2">
+            {`${matches} ${matches === 1 ? "product matches" : "products match"} "${query.trim()}"`}
+          </p>
+        ) : null}
 
         {divisions.length === 0 && (
           <div className="mt-10 rounded-[18px] border border-line bg-surface-2 p-10 text-center">
@@ -164,13 +159,8 @@ function CategoryList({
 
   return (
     <div>
-      <h3 className="flex items-baseline justify-between gap-4 border-b border-line pb-3">
-        <span className="text-base font-semibold text-text-1">
-          {category.name}
-        </span>
-        <span className="text-xs text-text-2 tabular-nums">
-          {category.items.length}
-        </span>
+      <h3 className="border-b border-line pb-3 text-base font-semibold text-text-1">
+        {category.name}
       </h3>
 
       <ul id={listId} className="mt-4 grid gap-x-8 gap-y-2.5 sm:grid-cols-2">

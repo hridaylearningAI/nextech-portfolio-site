@@ -56,8 +56,8 @@ export default function Services() {
           <SectionHead
             center
             eyebrow="What We Do"
-            title="Services,"
-            accent="one accountable partner."
+            title="Services &"
+            accent="Solutions"
           />
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {SERVICES.map(([title, copy, icon]) => (

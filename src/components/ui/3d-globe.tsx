@@ -182,10 +182,12 @@ function Marker({
     return latLngToVector3(marker.lat, marker.lng, radius * 1.001);
   }, [marker.lat, marker.lng, radius]);
 
-  // Top of the line (where the image is) - positioned further out to prevent going inside globe
+  // Top of the line (where the image is) - hub sits a touch further out so
+  // the larger UAE flag chip clears the atmosphere rim without being clipped.
   const topPosition = useMemo(() => {
-    return latLngToVector3(marker.lat, marker.lng, radius * 1.18);
-  }, [marker.lat, marker.lng, radius]);
+    const lift = highlight ? 1.24 : 1.18;
+    return latLngToVector3(marker.lat, marker.lng, radius * lift);
+  }, [marker.lat, marker.lng, radius, highlight]);
 
   const lineHeight = topPosition.distanceTo(surfacePosition);
 
@@ -210,10 +212,11 @@ function Marker({
     // markers on the far side stayed visible and, because <Html> is not depth
     // tested, drew *in front of* the globe. The true horizon for a sphere seen
     // from distance d is dot === radius / d, so derive it instead of guessing.
-    // The small margin hides a marker just before it reaches the silhouette.
+    // Hub keeps a smaller margin so Abu Dhabi stays readable near the limb.
     const cameraDistance = camera.position.length();
     const horizon = cameraDistance > radius ? radius / cameraDistance : 0;
-    setIsVisible(dot > horizon + 0.04);
+    const margin = highlight ? 0.01 : 0.04;
+    setIsVisible(dot > horizon + margin);
   });
 
   const handlePointerEnter = useCallback(() => {
@@ -246,7 +249,11 @@ function Marker({
   // entirely, which makes a flag or logo unreadable. Honour the per-marker value
   // and keep 8 as the fallback. Deliberately NOT falling back to `defaultSize`:
   // config.markerSize defaults to 0.06, a 3D unit, and 0.06px would vanish.
-  const chipSize = marker.size ?? 8;
+  //
+  // Flag chips are rectangles (≈2:1), not circles: UAE, Qatar and others have
+  // a vertical hoist stripe that a round crop shears off.
+  const chipHeight = marker.size ?? 8;
+  const chipWidth = Math.round(chipHeight * 1.7);
 
   return (
     <group ref={groupRef} visible={isVisible}>
@@ -279,24 +286,24 @@ function Marker({
             transition: "opacity 0.15s ease-out",
           }}
         >
-          <div className="relative">
+          <div className="relative p-1">
             {/* The hub gets a pulsing halo in its accent colour. The global
                 reduced-motion rule stops the pulse after one cycle. */}
             {highlight && (
               <span
                 aria-hidden
-                className="pointer-events-none absolute inset-0 animate-ping rounded-full"
+                className="pointer-events-none absolute inset-0 animate-ping rounded-sm"
                 style={{ boxShadow: `0 0 0 2px ${highlight}` }}
               />
             )}
             <div
               className={cn(
-                "cursor-pointer overflow-hidden rounded-full bg-neutral-900 shadow-lg transition-transform duration-200",
-                hovered && "scale-125 shadow-xl ring-1 ring-white/50",
+                "cursor-pointer overflow-hidden rounded-sm bg-neutral-900 shadow-lg ring-1 ring-black/20 transition-transform duration-200",
+                hovered && "scale-125 shadow-xl ring-white/50",
               )}
               style={{
-                width: `${chipSize}px`,
-                height: `${chipSize}px`,
+                width: `${chipWidth}px`,
+                height: `${chipHeight}px`,
                 boxShadow: highlight ? `0 0 0 2px ${highlight}` : undefined,
               }}
               onMouseEnter={handlePointerEnter}
@@ -306,7 +313,7 @@ function Marker({
               <img
                 src={marker.src}
                 alt={marker.label || "Marker"}
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover object-left"
                 draggable={false}
               />
             </div>
@@ -571,9 +578,9 @@ function Scene({
 }: SceneProps) {
   const { camera } = useThree();
 
-  // Set initial camera position (pulled back to accommodate markers)
+  // Set initial camera position (pulled back so flag markers clear the frame)
   React.useEffect(() => {
-    camera.position.set(0, 0, config.radius * 3.5);
+    camera.position.set(0, 0, config.radius * 3.85);
     camera.lookAt(0, 0, 0);
   }, [camera, config.radius]);
 
@@ -688,7 +695,7 @@ export function Globe3D({
   );
 
   return (
-    <div className={cn("relative h-[500px] w-full", className)}>
+    <div className={cn("relative h-[500px] w-full overflow-visible", className)}>
       <Canvas
         gl={{
           antialias: true,
@@ -700,10 +707,11 @@ export function Globe3D({
           fov: 45,
           near: 0.1,
           far: 1000,
-          position: [0, 0, mergedConfig.radius * 3.5],
+          position: [0, 0, mergedConfig.radius * 3.85],
         }}
         style={{
           background: mergedConfig.backgroundColor || "transparent",
+          overflow: "visible",
         }}
       >
         <Suspense fallback={<LoadingFallback />}>

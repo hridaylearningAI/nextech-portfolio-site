@@ -43,6 +43,30 @@
       "name": "abu-dhabi-illustration-generated.webp",
       "prompt": "Use case: illustration-story. Create a sophisticated architectural illustration of Abu Dhabi's Corniche waterfront and recognizable Etihad Towers cluster, not Dubai. Very wide 3:1 horizontal banner composition for a company's contact page. Elegant painterly architectural rendering with fine grain, calm pale turquoise water in foreground, warm limestone promenade, subtle palms, Abu Dhabi towers against a pale warm sky, restrained steel-blue, sand and teal palette. Clearly an illustration rather than documentary photography, refined and realistic architectural proportions, no fantastical buildings, no Burj Khalifa, no Burj Al Arab, no text, no logos, no map pins, no collage. Skyline positioned across middle third so it survives a shallow banner crop.",
       "source": "/Users/hridaygoswami/.codex/generated_images/01a0b404-9f21-7543-992a-af55733f5607/exec-5631e92f-51e8-4c18-aa08-351f95da4387.png"
+    },
+    {
+      "key": "instrumentation-division",
+      "name": "divisions/instrumentation-generated.webp",
+      "date": "2026-09-22",
+      "prompt": "Ultra high-resolution professional industrial photography of a row of pressure transmitters on an oil and gas or offshore platform. Shot at a slight three-quarter angle looking down a line of approximately six identical rugged cylindrical medium-blue transmitter housings mounted in a receding perspective from sharp left foreground to soft right background. Each transmitter has a circular glass face with a ridged metal bezel; embossed warning text around the rim. Nearest unit has a small analog pressure gauge on top, thick black weatherproof cable, and teal-green grounding wire. Stainless manifolds, T-handle needle valves, bright safety-yellow mounting beam with PT-17E2 ID tag. Dense industrial background, bright diffused daylight, commercial photo realism. Generated from client reference PHOTO-2026-09-21-12-57-46.",
+      "source": "/Users/hridaygoswami/.cursor/projects/Users-hridaygoswami-Library-Mobile-Documents-com-apple-CloudDocs-Everything-nextech/assets/instrumentation-generated.png",
+      "reference": "/Users/hridaygoswami/.cursor/projects/Users-hridaygoswami-Library-Mobile-Documents-com-apple-CloudDocs-Everything-nextech/assets/PHOTO-2026-09-21-12-57-46-4ca2f8b0-222f-42fe-9e26-df753e193ace.jpg"
+    },
+    {
+      "key": "heavy-process-division",
+      "name": "divisions/heavy-process-industrial-equipment-generated.webp",
+      "date": "2026-09-22",
+      "prompt": "Ultra high-resolution professional industrial logistics photography. Wide elevated three-quarter view of two enormous silver metallic horizontal cylindrical process vessels or reactors on a flat industrial barge. Segmented cylinders with flanges, nozzles and reinforcement rings on bright yellow steel cradles. Workers in hard hats for scale, rusty deck with cables and generator, concrete dock, blue sea and sky, sandy shoreline. Bright daylight commercial photo realism from client reference PHOTO-2026-09-21-12-58-57.",
+      "source": "/Users/hridaygoswami/.cursor/projects/Users-hridaygoswami-Library-Mobile-Documents-com-apple-CloudDocs-Everything-nextech/assets/heavy-process-industrial-equipment-generated.png",
+      "reference": "/Users/hridaygoswami/.cursor/projects/Users-hridaygoswami-Library-Mobile-Documents-com-apple-CloudDocs-Everything-nextech/assets/PHOTO-2026-09-21-12-58-57-7d168770-5ec1-4386-aa8d-961799fddb34.jpg"
+    },
+    {
+      "key": "sustainability",
+      "name": "sustainability-generated.webp",
+      "date": "2026-09-22",
+      "prompt": "Same wind-farm hill composition as the Pexels sustainability.webp reference, but vegetation shifted to lush vivid emerald and spring green grass instead of golden yellow dry grass. White turbines, winding road, clear sky, photorealistic commercial environmental photography.",
+      "source": "/Users/hridaygoswami/.cursor/projects/Users-hridaygoswami-Library-Mobile-Documents-com-apple-CloudDocs-Everything-nextech/assets/sustainability-generated.png",
+      "reference": "design/refs/sustainability-ref.jpg"
     }
   ]
 }

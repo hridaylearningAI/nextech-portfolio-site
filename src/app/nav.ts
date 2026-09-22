@@ -118,7 +118,12 @@ export const DIVISIONS = [
   ],
 ] as const;
 
-export const SOCIALS = ["LinkedIn"] as const;
+export const SOCIALS = [
+  {
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/company/nextech-general-trading/",
+  },
+] as const;
 
 /** Client roster as listed on the live Clients page. */
 export const CLIENTS = [

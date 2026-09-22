@@ -163,14 +163,16 @@ export default function Contact() {
               <div className="mt-7 border-t border-line pt-6">
                 <div className="text-xs font-medium text-text-2">Follow us</div>
                 <div className="mt-3 flex gap-3">
-                  {SOCIALS.map((n) => (
+                  {SOCIALS.map(({ name, href }) => (
                     <a
-                      key={n}
-                      href="#"
-                      aria-label={n}
+                      key={name}
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={name}
                       className="grid size-11 place-items-center rounded-md text-brand"
                     >
-                      <Symbol name={SOCIAL_ICONS[n]} className="size-5" />
+                      <Symbol name={SOCIAL_ICONS[name]} className="size-5" />
                     </a>
                   ))}
                 </div>
@@ -184,7 +186,7 @@ export default function Contact() {
           so it never sits back to back with the teal closing band ── */}
       <section className="bg-surface pb-16">
         <div className="site-container">
-          <QuoteBanner href="#enquiry" />
+          <QuoteBanner />
         </div>
       </section>
 

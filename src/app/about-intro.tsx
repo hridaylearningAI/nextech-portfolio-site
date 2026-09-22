@@ -11,7 +11,7 @@ const FEATURES: [React.ReactNode, string, string][] = [
 
 export default function AboutIntro() {
   return (
-    <section className="bg-surface-2 pt-40 pb-[var(--section-space)] sm:pt-28">
+    <section className="bg-surface-2 pt-16 pb-[var(--section-space)] sm:pt-20">
       <div className="site-container grid gap-12 lg:grid-cols-12 lg:gap-0">
         <div data-reveal className="relative lg:col-span-5">
           <Photo
