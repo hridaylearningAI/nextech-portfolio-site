@@ -14,9 +14,8 @@ export const metadata: Metadata = {
 };
 
 const WHO_WE_ARE = [
-  "Nextech General Trading is a reputable organization that delivers top-quality products and services to the Oil and Gas, Refinery, and Power generation sectors in the United Arab Emirates. Over the past decade, we have maintained consistent growth and successfully expanded our client base within the region.",
-  "Our dedicated team of experienced engineers in sales and marketing, combined with the technical expertise provided by our principals, empowers our customers to overcome industry challenges. We offer innovative ideas and solutions that ensure the successful achievement of end objectives.",
-  "We proudly represent manufacturers from both upstream and downstream sectors, serving as a trusted partner in the dynamic world of energy and industry. At Nextech General Trading, our commitment is to excellence, innovation, and sustainable solutions for a brighter energy future.",
+  "NEXTECH is a UAE-based company specializing in the supply of engineered products and integrated solutions to the Oil & Gas, Power, Petrochemical, Nuclear, Water, and Utilities sectors across the region. Backed by a leadership team with over 30 years of combined industry experience, Nextech has established itself as a trusted partner and a leading supplier to prominent regional end users in UAE Energy market.",
+  "Through our extensive market network and established relationships with leading regional EPC contractors, we provide our partners with direct access to strategic and high-value business opportunities across the UAE and wider region.",
 ];
 
 const VALUES: [string, IconName][] = [
