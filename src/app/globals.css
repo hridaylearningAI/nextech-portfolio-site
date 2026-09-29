@@ -336,7 +336,7 @@ html {
 .sector-neu-content {
   position: relative;
   z-index: 1;
-  padding: 24px 20px 24px;
+  padding: 24px 20px 16px;
 }
 .sector-neu-icon {
   display: grid;
@@ -358,47 +358,19 @@ html {
   letter-spacing: -0.025em;
   text-wrap: initial;
 }
-.sector-neu-copy {
-  margin-top: 12px;
-  color: var(--neu-copy);
-  font-size: 13px;
-  line-height: 1.6;
-}
-.sector-neu-arrow {
-  position: absolute;
-  top: 6px;
-  left: 6px;
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  color: var(--neu-ink);
-  background: var(--neu-surface);
-  border-radius: 50%;
-  box-shadow:
-    -3px -3px 7px var(--neu-highlight),
-    4px 4px 9px var(--neu-shadow),
-    inset 1px 1px 1px color-mix(in srgb, var(--neu-highlight) 80%, transparent);
-  transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
-}
 .sector-neu-media {
   position: relative;
-  height: 156px;
-  flex-shrink: 0;
-  margin: auto 12px 12px;
+  /* Takes every pixel the icon and name leave behind, rather than sitting at
+     a fixed height with dead space above it. */
+  flex: 1 1 auto;
+  min-height: 210px;
+  margin: 4px 12px 12px;
 }
 .sector-neu-image-wrap {
   position: absolute;
   inset: 0;
   overflow: hidden;
   border-radius: 18px;
-  /* The transparent circular cutout exposes the actual card surface, so the
-     photograph hugs the control in either theme without a painted-on patch. */
-  mask-image: radial-gradient(
-    circle 40px at 28px 28px,
-    transparent 39.5px,
-    #000 40.5px
-  );
 }
 .sector-neu-image-wrap::after {
   content: "";
@@ -428,21 +400,9 @@ html {
   }
 }
 @media (hover: hover) and (pointer: fine) {
-  .sector-neu-card:hover .sector-neu-arrow {
-    transform: translate(2px, -2px);
-  }
   .sector-neu-card:hover .sector-neu-art {
     transform: scale(1.035);
   }
-}
-.sector-neu-card:active .sector-neu-arrow {
-  transform: scale(0.96);
-  box-shadow:
-    inset 3px 3px 7px var(--neu-shadow),
-    inset -3px -3px 7px var(--neu-highlight);
-}
-.sector-neu-card:focus-visible .sector-neu-arrow {
-  transform: none;
 }
 .sector-neu-card:focus-visible {
   outline: 2px solid var(--brand);
@@ -465,20 +425,17 @@ html {
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .sector-neu-arrow,
-  .sector-neu-art {
-    transition: none;
-  }
   .sector-neu-grid:has(.sector-neu-card:hover) .sector-neu-card:hover,
   .sector-neu-grid:has(.sector-neu-card:focus-visible)
     .sector-neu-card:focus-visible {
     flex-grow: 1;
   }
+  .sector-neu-art {
+    transition: none;
+  }
   .sector-neu-card:hover,
   .sector-neu-card:active,
-  .sector-neu-card:hover .sector-neu-art,
-  .sector-neu-card:hover .sector-neu-arrow,
-  .sector-neu-card:active .sector-neu-arrow {
+  .sector-neu-card:hover .sector-neu-art {
     transform: none;
   }
 }
@@ -504,7 +461,9 @@ html {
   padding-right: 24px;
 }
 @keyframes client-marquee-scroll {
-  to { transform: translateX(-50%); }
+  to {
+    transform: translateX(-50%);
+  }
 }
 .client-marquee-viewport:focus-within .client-marquee-track {
   animation-play-state: paused;
@@ -515,9 +474,15 @@ html {
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .client-marquee-viewport { overflow-x: auto; }
-  .client-marquee-track { animation: none; }
-  .client-marquee-group[aria-hidden="true"] { display: none; }
+  .client-marquee-viewport {
+    overflow-x: auto;
+  }
+  .client-marquee-track {
+    animation: none;
+  }
+  .client-marquee-group[aria-hidden="true"] {
+    display: none;
+  }
 }
 
 /* Shared fluid shell: generous large-screen width, readable copy unchanged. */

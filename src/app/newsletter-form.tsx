@@ -17,7 +17,7 @@ export default function NewsletterForm({ variant = "footer" }: Props) {
         role="status"
         className={
           variant === "cta"
-            ? "text-sm font-medium text-ink"
+            ? "text-sm font-medium text-white"
             : "mt-5 text-xs leading-relaxed text-text-2"
         }
       >
@@ -42,18 +42,18 @@ export default function NewsletterForm({ variant = "footer" }: Props) {
           required
           placeholder="Enter your email"
           aria-label="Email address"
-          className="min-w-0 flex-1 rounded-full bg-surface-2 px-5 py-3 text-sm text-text-1 placeholder:text-text-2 md:w-64"
+          className="min-w-0 flex-1 rounded-full bg-white/10 px-5 py-3 text-sm text-white ring-1 ring-white/20 placeholder:text-white/55 focus:ring-2 focus:ring-brand/60 focus:outline-none md:w-64"
         />
         <button
           type="submit"
           disabled={status === "submitting"}
-          className="inline-flex shrink-0 items-center gap-2 btn bg-ink px-5 py-3 text-sm font-medium text-white disabled:opacity-60"
+          className="inline-flex shrink-0 items-center gap-2 btn bg-brand px-5 py-3 text-sm font-medium text-ink hover:bg-brand-dark disabled:opacity-60"
         >
           {status === "submitting" ? "Sending…" : "Get Updates"}{" "}
           <Symbol name="arrow" className="size-4" />
         </button>
         {error && (
-          <p role="alert" className="w-full text-sm text-ink/80">
+          <p role="alert" className="w-full text-sm text-white/80">
             {error}
           </p>
         )}

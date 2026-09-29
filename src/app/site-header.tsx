@@ -76,10 +76,6 @@ export default function SiteHeader() {
                     }`}
                   >
                     {node.label}
-                    <Symbol
-                      name="arrow"
-                      className="size-3 rotate-90 transition-transform group-open:-rotate-90 [@media(hover:hover)]:group-hover:-rotate-90"
-                    />
                     {active && (
                       <span className="absolute inset-x-0 bottom-4 h-0.5 rounded bg-brand" />
                     )}

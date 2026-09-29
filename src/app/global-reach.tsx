@@ -40,6 +40,9 @@ const Globe3D = dynamic(
  */
 const flag = (code: string) => `/flags/${code}.svg`;
 
+/** Countries packed close together on the globe, by ISO code. */
+const EUROPE = new Set(["es", "it", "gb", "pl", "tr"]);
+
 export default function GlobalReach() {
   // The globe spins by default. Someone who asked for reduced motion should
   // get a still Earth they can still drag, not a permanent animation.
@@ -75,8 +78,9 @@ export default function GlobalReach() {
         label,
         src: flag(code),
         // Upstream's 8px default renders a flag as an indistinct dot; much
-        // past 16 and neighbouring markers collide around Europe and the Gulf.
-        size: 16,
+        // past 16 and neighbouring markers collide. Europe holds five of the
+        // eleven countries in a small patch of globe, so those ride smaller.
+        size: EUROPE.has(code) ? 11 : 16,
       })),
     [],
   );
@@ -89,7 +93,7 @@ export default function GlobalReach() {
             renders if WebGL is unavailable. */}
         <div data-reveal className="lg:col-span-5">
           <h2 className="text-3xl font-bold leading-tight tracking-tight text-text-1 sm:text-4xl">
-            Partners <span className="text-brand">Across the Globe</span>
+            Partners Across the Globe
           </h2>
           <p className="mt-4 max-w-md text-sm leading-relaxed text-text-2">
             Every route leads back to our head office in Abu Dhabi, where we

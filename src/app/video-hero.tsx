@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { NAV } from "./nav";
-import { Arrow, Logo } from "./ui";
+import { Logo } from "./ui";
 
 /**
  * Full-viewport opener. Carries its own logo and nav because the sticky
@@ -78,7 +78,6 @@ export default function VideoHero() {
               >
                 <span className="h-px w-0 bg-brand transition-[width] duration-300 ease-out group-hover:w-6" />
                 {node.label}
-                <Arrow className="size-3 rotate-90 transition-transform group-hover:-rotate-90 group-focus-within:-rotate-90" />
               </button>
               <div
                 role="menu"

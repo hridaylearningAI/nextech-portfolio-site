@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import ContactForm from "../contact-form";
 import { COMPANY, SOCIALS } from "../nav";
 import QuoteBanner from "../quote-banner";
-import { CtaBand, PageHero, Photo, SectionHead } from "../ui";
+import { CtaBand, SectionHead } from "../ui";
 
 export const metadata: Metadata = {
   title: "Contact Us - Nextech General Trading",
@@ -20,15 +20,8 @@ const DETAILS = [
 export default function Contact() {
   return (
     <>
-      <PageHero
-        eyebrow="Contact Us"
-        title="Let's Build the"
-        accent="Future Together."
-        copy="Give us a call or drop by anytime, we endeavour to answer all enquiries within 24 hours on business days."
-      />
-
-      {/* ── Form + details ─────────────────────────────────── */}
-      <section className="bg-surface section-space">
+      {/* ── Form + details: opens the page now the banner is gone ── */}
+      <section className="bg-surface pt-12 pb-[var(--section-space)] sm:pt-16">
         <div className="site-container grid gap-[clamp(1.5rem,3vw,4rem)] lg:grid-cols-5">
           <div className="lg:col-span-3">
             <SectionHead
@@ -142,18 +135,6 @@ export default function Contact() {
       <section className="bg-surface pb-16">
         <div className="site-container">
           <QuoteBanner />
-        </div>
-      </section>
-
-      {/* ── Map ────────────────────────────────────────────── */}
-      <section className="bg-surface pb-20">
-        <div className="site-container">
-          <Photo
-            src="/images/abu-dhabi-illustration-generated.webp"
-            alt="Architectural illustration inspired by Abu Dhabi's waterfront and Etihad Towers"
-            data-reveal
-            className="h-[200px] w-full rounded-xl sm:h-[280px] lg:h-[360px]"
-          />
         </div>
       </section>
 

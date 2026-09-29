@@ -155,7 +155,7 @@ export default function PartnerWithUs() {
               id={titleId}
               className="mt-3 text-2xl leading-tight font-bold tracking-tight sm:text-3xl"
             >
-              Partner with <span className="text-[var(--brand)]">Nextech.</span>
+              Partner with Nextech.
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-white/70">
               Manufacturers and principals: bring your products to operators

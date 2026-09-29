@@ -36,7 +36,13 @@ export function Photo({
       decoding="async"
       {...rest}
       alt={alt}
-      className={`${fit === "contain" ? "object-contain" : "object-cover"} ${className}`}
+      className={`${
+        fit === "contain"
+          ? "object-contain"
+          : // Photographs are dimmed a touch so white type and the teal brand
+            // sit on them comfortably; logos keep their own values.
+            "object-cover brightness-[0.92]"
+      } ${className}`}
     />
   );
 }
@@ -94,7 +100,7 @@ export function SectionHead({
     <div data-reveal className={`${center ? "text-center" : ""} ${className}`}>
       <Eyebrow>{eyebrow}</Eyebrow>
       <h2 className="mt-3 text-3xl font-bold leading-tight tracking-tight text-text-1 sm:text-4xl">
-        {title} {accent && <span className="text-brand">{accent}</span>}
+        {title} {accent}
       </h2>
       {copy && (
         <p
@@ -146,7 +152,7 @@ export function PageHero({
           data-intro
           className="mt-4 max-w-2xl text-4xl font-bold leading-[1.1] tracking-tight text-text-1 sm:text-5xl"
         >
-          {title} <span className="text-brand">{accent}</span>
+          {title} {accent}
         </h1>
         <p
           data-intro
@@ -166,13 +172,15 @@ export function CtaBand() {
       <div className="site-container">
         <div
           data-reveal
-          className="flex flex-col gap-6 rounded-[18px] bg-brand px-8 py-8 md:flex-row md:items-center md:justify-between"
+          // Deep teal-to-ink in both themes, like the quote banner: a moment of
+          // emphasis that closes the page rather than a bright block.
+          className="flex flex-col gap-6 rounded-[18px] bg-gradient-to-r from-[#0d2a36] via-[#0a1f2b] to-ink px-8 py-8 ring-1 ring-white/10 md:flex-row md:items-center md:justify-between"
         >
           <div>
-            <h2 className="text-xl font-semibold text-ink">
+            <h2 className="text-xl font-semibold text-white">
               Let&apos;s build the future together
             </h2>
-            <p className="mt-2 text-sm text-ink/75">
+            <p className="mt-2 text-sm text-white/70">
               Partner with Nextech General Trading for reliable solutions
               tailored to your business needs.
             </p>
@@ -218,7 +226,7 @@ export function LegalBody({
           {sections.map(({ heading, body, bullets }, i) => (
             <section key={heading} data-reveal>
               <h2 className="text-lg font-semibold text-text-1">
-                <span className="text-brand">{i + 1}.</span> {heading}
+                {i + 1}. {heading}
               </h2>
               <div className="mt-4 space-y-4 text-sm leading-relaxed text-text-2">
                 {body.map((p) => (

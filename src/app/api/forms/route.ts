@@ -3,6 +3,7 @@ import {
   isValidEmail,
   sendFormEmails,
   type ContactPayload,
+  type CareersPayload,
   type NewsletterPayload,
   type PartnerPayload,
   type ReviewPayload,
@@ -22,6 +23,9 @@ type Body = {
   company?: unknown;
   heading?: unknown;
   review?: unknown;
+  role?: unknown;
+  experience?: unknown;
+  cv?: unknown;
 };
 
 function str(value: unknown) {
@@ -88,6 +92,24 @@ export async function POST(request: Request) {
         }
         if (!isValidEmail(payload.email)) return bad("Invalid email address");
         await sendFormEmails("review", payload);
+        break;
+      }
+      case "careers": {
+        const payload: CareersPayload = {
+          name: str(body.name),
+          email: str(body.email),
+          contact: str(body.contact) || undefined,
+          role: str(body.role),
+          experience: str(body.experience) || undefined,
+          location: str(body.location) || undefined,
+          cv: str(body.cv) || undefined,
+          message: str(body.message) || undefined,
+        };
+        if (!payload.name || !payload.email || !payload.role) {
+          return bad("Name, email and role are required");
+        }
+        if (!isValidEmail(payload.email)) return bad("Invalid email address");
+        await sendFormEmails("careers", payload);
         break;
       }
       case "newsletter": {

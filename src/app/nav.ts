@@ -16,6 +16,7 @@ export const NAV: NavNode[] = [
     ],
   },
   { label: "Clients", href: "/clients" },
+  { label: "Careers", href: "/careers" },
   { label: "Contact Us", href: "/contact" },
 ];
 
@@ -54,8 +55,8 @@ export const INDUSTRIES = [
     "flask",
   ],
   [
-    "Utility",
-    "Equipment and spares for utility networks and the operators who run them.",
+    "Power & Utility",
+    "Equipment and spares for power networks, utilities and the operators who run them.",
     "plug",
   ],
   [
@@ -64,8 +65,8 @@ export const INDUSTRIES = [
     "ship",
   ],
   [
-    "Energy",
-    "Solutions for a more reliable and sustainable energy future.",
+    "Nuclear Energy",
+    "Qualified supply for the safety, control and process systems nuclear demands.",
     "bolt",
   ],
 ] as const;
@@ -125,37 +126,59 @@ export const SOCIALS = [
   },
 ] as const;
 
-/** Client roster as listed on the live Clients page. */
+/**
+ * The clients shown in the home page strip, in order. Each pairs the name the
+ * client is known by with the logo file under public/logos/clients.
+ */
+export const HOME_CLIENTS = [
+  ["ADNOC", "adnoc"],
+  ["ENEC", "emirates-nuclear-energy-corporation"],
+  ["TAQA", "taqa"],
+  ["Borouge", "borouge"],
+  ["Fertil", "fertil"],
+  ["NMDC", "nmdc"],
+  ["CPECC", "cpecc"],
+  ["EGA", "ega"],
+] as const;
+
+/**
+ * The client roster, in the order the client supplied it. The second field is
+ * the logo file under public/logos/clients; null means the artwork has not
+ * arrived yet, and that tile shows the name instead of a blank card.
+ */
 export const CLIENTS = [
-  "ADNOC",
-  "Fertil",
-  "NPCC",
-  "TTE O&M",
-  "Borouge",
-  "Al Dhafra Petroleum",
-  "Abu Dhabi Oil Co. Ltd",
-  "Gulf Total Tractebel Power Company",
-  "BUNDUQ",
-  "Total",
-  "ENOC",
-  "Veolia Water",
-  "Dubai Petroleum",
-  "Shell",
-  "Dragon Oil",
-  "VeBes",
-  "Emirates Nuclear Energy Corporation",
-  "ADNPM",
-  "Dolphin Energy",
-  "Abu Dhabi Sewerage Services Company",
-  "Emirates Steel",
-  "EGA",
-  "Dubai Aluminium",
-  "TRANSCO",
-  "The Petroleum Institute",
-  "Khalifa University",
-  "SEHA",
-  "Abu Dhabi Distribution Company",
-  "Al Ain Distribution Company",
+  ["ADNOC", "adnoc"],
+  ["ENEC", "emirates-nuclear-energy-corporation"],
+  ["ENOQ", "enoc"],
+  ["TAQA", "taqa"],
+  ["Borouge", "borouge"],
+  ["Fertil", "fertil"],
+  ["TA'ZIZ", "taziz"],
+  ["Emirates Steel", "emirates-steel"],
+  ["Dana Steel", "dana-steel"],
+  ["Emirates Global Aluminium", "ega"],
+  ["ADDC", "abu-dhabi-distribution-company"],
+  ["SNOC", "snoc"],
+  ["Dragon Oil", "dragon-oil"],
+  ["Emirates Cement", "emirates-cement"],
+  ["Dubai Petroleum", "dubai-petroleum"],
+  ["DEWA", "dewa"],
+  ["Fujairah Electricity & Water", "fujairah-electricity-water"],
+  ["Shell", "shell"],
+  ["Veolia", "veolia-water"],
+  ["SEWA", "sewa"],
+  ["TotalEnergies", "total"],
+  ["BP", "bp"],
+  ["NMDC", "nmdc"],
+  ["McDermott", "mcdermott"],
+  ["Petrofac", "petrofac"],
+  ["Saipem", "saipem"],
+  ["Wood", "wood"],
+  ["KENT", "kent"],
+  ["CPECC", "cpecc"],
+  ["Wison", "wison"],
+  ["Technip Energies", "technip-energies"],
+  ["Tecnimont", "tecnimont"],
 ] as const;
 
 /**
@@ -207,7 +230,7 @@ export const SERVICES = [
   ],
   [
     "Project Management",
-    "Planning, coordination and delivery management that keeps packages on schedule.",
+    "End-to-end coordination of engineering, procurement, manufacturing, delivery, installation, and execution to ensure projects are delivered on time, within scope, and to client requirements.",
     "kanban",
   ],
 ] as const;

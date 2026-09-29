@@ -10,7 +10,10 @@ export default function ReviewForm() {
 
   if (status === "success") {
     return (
-      <div role="status" className="rounded-[18px] border border-line bg-surface p-6">
+      <div
+        role="status"
+        className="rounded-[18px] border border-line bg-surface p-6"
+      >
         <p className="text-base font-semibold text-text-1">
           Thank you for your review.
         </p>

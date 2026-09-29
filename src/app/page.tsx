@@ -39,8 +39,7 @@ export default function Home() {
         <div className="site-container text-center">
           <div data-reveal>
             <h2 className="text-4xl font-bold tracking-tight text-text-1">
-              Five Product Divisions,{" "}
-              <span className="text-brand">One Standard</span>
+              Five Product Divisions, One Standard
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-text-2">
               Mechanical and flow control, electrical, instrumentation, heavy

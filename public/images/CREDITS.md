@@ -38,15 +38,15 @@ Created with the built-in OpenAI image generation tool. Decorative illustrations
 - `industries/oil-and-gas.webp` — https://www.pexels.com/photo/37703372/
 - `industries/water.webp` — https://www.pexels.com/photo/27490881/
 - `industries/petrochemical.webp` — https://www.pexels.com/photo/6537735/
-- `industries/utility.webp` — https://www.pexels.com/photo/16705829/
+- `industries/power-utility.webp` — https://www.pexels.com/photo/236089/
 - `industries/marine.webp` — https://www.pexels.com/photo/21234960/
-- `industries/energy.webp` — https://www.pexels.com/photo/8853509/
+- `industries/nuclear-energy.webp` — https://www.pexels.com/photo/3044473/
 - `services/civil-works-mechanical-services.webp` — https://www.pexels.com/photo/12314551/
 - `services/electrical-power-systems.webp` — https://www.pexels.com/photo/33694016/
 - `services/instrumentation-control.webp` — https://www.pexels.com/photo/4889280/
 - `services/engineering-services.webp` — https://www.pexels.com/photo/3862377/
 - `services/consultancy-advisory.webp` — https://www.pexels.com/photo/5816300/
-- `services/project-management.webp` — https://www.pexels.com/photo/8961073/
+- `services/project-management.webp` — https://www.pexels.com/photo/7876708/
 - `who-we-are-story.webp` — previous generated meeting image; retained but replaced on the site by the technical sourcing scene.
 - `inspection.webp` — https://www.pexels.com/photo/37466061/
 - `abu-dhabi.webp` — https://www.pexels.com/photo/19612315/

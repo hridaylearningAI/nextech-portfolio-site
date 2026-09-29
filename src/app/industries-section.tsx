@@ -27,8 +27,7 @@ export default function IndustriesSection({
         >
           <div>
             <h2 className="max-w-xl text-4xl font-bold tracking-tight text-text-1">
-              Solutions for{" "}
-              <span className="text-brand">Every Industrial Sector</span>
+              Solutions for Every Industrial Sector
             </h2>
             <p className="mt-4 max-w-lg text-sm leading-relaxed text-text-2">
               We proudly represent manufacturers from both upstream and

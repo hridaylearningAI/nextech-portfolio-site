@@ -314,6 +314,24 @@ export type NewsletterPayload = {
   email: string;
 };
 
+export type CareersPayload = {
+  name: string;
+  email: string;
+  contact?: string;
+  role: string;
+  experience?: string;
+  location?: string;
+  cv?: string;
+  message?: string;
+};
+
+export type FormPayload =
+  | ContactPayload
+  | PartnerPayload
+  | ReviewPayload
+  | NewsletterPayload
+  | CareersPayload;
+
 type Pair = {
   internalSubject: string;
   internalHtml: string;
@@ -559,24 +577,83 @@ function newsletterPair(data: NewsletterPayload): Pair {
   };
 }
 
+function careersPair(data: CareersPayload): Pair {
+  const first = firstName(data.name);
+  const rows: [string, string][] = [
+    ["Role applied for", data.role],
+    ["Experience", data.experience ?? ""],
+    ["Location", data.location ?? ""],
+    ["CV / portfolio", data.cv ?? ""],
+    ["Message", data.message ?? ""],
+  ];
+  return {
+    replyTo: data.email,
+    internalSubject: `Job application: ${data.role} — ${data.name}`,
+    internalHtml: teamEmail({
+      kind: "New job application",
+      title: `${data.name} applied for ${data.role}`,
+      name: data.name,
+      email: data.email,
+      rows: [
+        ["Name", data.name],
+        ["Email", data.email],
+        ["Contact", data.contact ?? ""],
+        ...rows,
+      ],
+      replySubject: `Your application to Nextech General Trading — ${data.role}`,
+    }),
+    confirmSubject: `${first}, we've received your application`,
+    confirmHtml: layout({
+      preheader: `Your application for ${data.role} is with our team.`,
+      banner: banner("careers", "The Nextech team at work in Abu Dhabi"),
+      eyebrow: "Application received",
+      title: `Thank you for applying, ${first}.`,
+      body: `${para(
+        `Your application for <strong style="color:${C.text}">${esc(data.role)}</strong> is with our team in Abu Dhabi. We read every application ourselves — no automated screening.`,
+        { top: 16 },
+      )}
+        ${sectionLabel("What happens next")}
+        ${steps([
+          [
+            "We review your application",
+            "Usually within five working days of receiving it.",
+          ],
+          [
+            "A conversation",
+            "If your experience fits an opening, we'll arrange a call.",
+          ],
+          [
+            "Meeting the team",
+            "An interview at our Abu Dhabi office, in person or online.",
+          ],
+        ])}
+        ${para(
+          "Haven't attached your CV yet? Simply reply to this email with it attached and it will reach the same team.",
+          { top: 28, size: 15 },
+        )}
+        ${sectionLabel("Your application")}
+        ${summary(rows)}
+        ${button("Learn about Nextech", `${SITE_URL}/who-we-are`)}
+        ${contactBlock()}`,
+      reason: clientReason,
+    }),
+  };
+}
+
 /** Both emails for a form, without sending: used by the preview script. */
-export function buildFormEmails(
-  type: FormType,
-  payload: ContactPayload | PartnerPayload | ReviewPayload | NewsletterPayload,
-): Pair {
+export function buildFormEmails(type: FormType, payload: FormPayload): Pair {
   return type === "contact"
     ? contactPair(payload as ContactPayload)
     : type === "partner"
       ? partnerPair(payload as PartnerPayload)
       : type === "review"
         ? reviewPair(payload as ReviewPayload)
-        : newsletterPair(payload as NewsletterPayload);
+        : type === "careers"
+          ? careersPair(payload as CareersPayload)
+          : newsletterPair(payload as NewsletterPayload);
 }
 
-export async function sendFormEmails(
-  type: FormType,
-  payload: ContactPayload | PartnerPayload | ReviewPayload | NewsletterPayload,
-) {
+export async function sendFormEmails(type: FormType, payload: FormPayload) {
   const { apiKey, from, to } = getMailConfig();
   const resend = new Resend(apiKey);
 

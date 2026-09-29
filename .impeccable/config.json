@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "src/lib/mail.ts"
+        ],
+        "createdAt": "2026-09-29T12:39:42.955Z",
+        "reason": "Claude: HTML email, not web UI. The left accent marks a quoted/echoed-back block (blockquote convention) and survives Outlook, which drops most other accent treatments; verified in rendered screenshots of all five client emails."
+      }
+    ]
+  }
+}

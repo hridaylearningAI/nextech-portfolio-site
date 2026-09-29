@@ -3,6 +3,7 @@ export const FORM_TYPES = [
   "partner",
   "review",
   "newsletter",
+  "careers",
 ] as const;
 
 export type FormType = (typeof FORM_TYPES)[number];

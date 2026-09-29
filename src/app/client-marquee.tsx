@@ -1,4 +1,4 @@
-import { CLIENTS, slugify } from "./nav";
+import { HOME_CLIENTS } from "./nav";
 import { Photo } from "./ui";
 
 export default function ClientMarquee() {
@@ -17,13 +17,13 @@ export default function ClientMarquee() {
               className="client-marquee-group"
               aria-hidden={copy === 1 ? true : undefined}
             >
-              {CLIENTS.map((name) => (
+              {HOME_CLIENTS.map(([name, logo]) => (
                 <li
                   key={name}
                   className="flex h-24 w-40 shrink-0 items-center justify-center rounded-lg bg-white p-2 shadow-sm ring-1 ring-line"
                 >
                   <Photo
-                    src={`/logos/clients/${slugify(name)}.webp`}
+                    src={`/logos/clients/${logo}.webp`}
                     alt={copy === 0 ? name : ""}
                     fit="contain"
                     loading="eager"

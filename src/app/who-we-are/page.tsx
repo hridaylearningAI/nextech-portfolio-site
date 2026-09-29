@@ -1,10 +1,9 @@
 import { Symbol, type IconName } from "../icons";
-import { STATS } from "../nav";
 import GlobalReach from "../global-reach";
 import type { Metadata } from "next";
 import Link from "next/link";
 import IndustriesSection from "../industries-section";
-import { Arrow, CtaBand, Eyebrow, Photo, SectionHead } from "../ui";
+import { Arrow, CtaBand, Eyebrow, SectionHead } from "../ui";
 import VideoBanner from "./video-banner";
 
 export const metadata: Metadata = {
@@ -91,21 +90,18 @@ export default function WhoWeAre() {
       />
 
       {/* ── Who we are ─────────────────────────────────────── */}
+      {/* Heading and call to action hold the left column, the story runs down
+          the right: the row fills edge to edge without an image to carry it,
+          and the prose keeps a readable measure instead of stretching. */}
       <section className="bg-surface section-space">
-        <div className="site-container grid items-center gap-[clamp(1.5rem,3vw,4rem)] lg:grid-cols-2">
-          <Photo
-            src="/images/sourcing-story-generated.webp"
-            alt="Illustrative technical sourcing desk with valve samples, a pressure gauge and engineering drawings"
-            data-reveal
-            className="aspect-[4/3] w-full rounded-xl"
-          />
-          <div data-reveal>
+        <div className="site-container grid gap-x-[clamp(2rem,5vw,5rem)] gap-y-8 lg:grid-cols-12">
+          <div data-reveal className="lg:col-span-5">
             <SectionHead eyebrow="Our Story" title="Who" accent="we are?" />
-            <div className="mt-6 space-y-4 text-sm leading-relaxed text-text-2">
-              {WHO_WE_ARE.map((p) => (
-                <p key={p.slice(0, 40)}>{p}</p>
-              ))}
-            </div>
+            {/* Drawn from the story itself, so the two never contradict. */}
+            <p className="mt-5 text-base leading-relaxed font-medium text-text-1">
+              Engineered products and integrated solutions for the Oil &amp;
+              Gas, Power, Petrochemical, Nuclear, Water and Utilities sectors.
+            </p>
             <Link
               href="/contact"
               className="mt-8 inline-flex items-center gap-3 btn bg-brand px-5 py-3 text-sm font-medium text-ink hover:bg-brand-dark"
@@ -113,28 +109,16 @@ export default function WhoWeAre() {
               Get in Touch <Arrow />
             </Link>
           </div>
-        </div>
-      </section>
 
-      {/* ── Stats ──────────────────────────────────────────── */}
-      <section className="bg-gradient-to-b from-[var(--tint-d)] to-[var(--surface)] py-16">
-        <dl className="site-container grid grid-cols-2 gap-y-8 sm:grid-cols-3 lg:grid-cols-5 lg:divide-x lg:divide-line">
-          {STATS.map(([value, label, icon]) => (
-            <div
-              key={label}
-              data-reveal
-              className="flex items-center gap-4 lg:px-6"
-            >
-              <Symbol name={icon} className="size-10 text-brand" />
-              <div>
-                <dt data-count className="text-2xl font-bold text-text-1">
-                  {value}
-                </dt>
-                <dd className="text-xs leading-snug text-text-2">{label}</dd>
-              </div>
-            </div>
-          ))}
-        </dl>
+          <div
+            data-reveal
+            className="space-y-5 text-sm leading-relaxed text-text-2 lg:col-span-7 lg:border-l lg:border-line lg:pl-[clamp(2rem,4vw,4rem)]"
+          >
+            {WHO_WE_ARE.map((p) => (
+              <p key={p.slice(0, 40)}>{p}</p>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* ── Mission, Vision, Values ─────────────────────────────
@@ -217,7 +201,11 @@ export default function WhoWeAre() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={image}
-                  alt={lead === "ICV Certified" ? "In-Country Value (ICV) certified" : ""}
+                  alt={
+                    lead === "ICV Certified"
+                      ? "In-Country Value (ICV) certified"
+                      : ""
+                  }
                   width={96}
                   height={96}
                   loading="lazy"
