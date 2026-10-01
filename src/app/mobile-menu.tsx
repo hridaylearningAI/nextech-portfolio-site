@@ -144,7 +144,7 @@ export default function MobileMenu() {
               href={COMPANY.phoneHref}
               className="flex items-center gap-2 text-sm font-medium text-text-1"
             >
-              <Symbol name="phone" className="size-4 text-brand" />
+              <Symbol name="phone" className="size-4 text-text-2" />
               {COMPANY.phone}
             </a>
             <Link

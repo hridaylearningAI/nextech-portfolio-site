@@ -74,7 +74,7 @@ export function Logo({
 
 export function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand">
+    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-text-2">
       {children}
     </p>
   );

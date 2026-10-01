@@ -148,7 +148,7 @@ export default function WhoWeAre() {
                 className="flex gap-6 py-8 first:pt-0 last:pb-0"
               >
                 <span className="grid size-14 shrink-0 place-items-center rounded-full ring-1 ring-brand/40">
-                  <Symbol name={icon} className="size-7 text-brand" />
+                  <Symbol name={icon} className="size-7 text-text-1" />
                 </span>
                 <div>
                   <Eyebrow>{label}</Eyebrow>
@@ -165,7 +165,7 @@ export default function WhoWeAre() {
             className="rounded-[18px] bg-gradient-to-br from-[var(--tint-a)] to-[var(--tint-c)] p-8 lg:col-span-5"
           >
             <div className="flex items-center gap-3">
-              <Symbol name="diamond" className="size-7 text-brand" />
+              <Symbol name="diamond" className="size-7 text-text-1" />
               <Eyebrow>Our Values</Eyebrow>
             </div>
             <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
@@ -174,7 +174,7 @@ export default function WhoWeAre() {
                   key={value}
                   className="flex items-center gap-4 rounded-xl bg-surface-2 px-5 py-4 shadow-sm"
                 >
-                  <Symbol name={icon} className="size-6 shrink-0 text-brand" />
+                  <Symbol name={icon} className="size-6 shrink-0 text-text-1" />
                   <span className="text-base font-semibold text-text-1">
                     {value}
                   </span>
@@ -214,7 +214,7 @@ export default function WhoWeAre() {
                 <p className="mt-6 text-xs font-bold tracking-[0.12em] text-text-1 uppercase">
                   {lead}
                 </p>
-                <p className="mt-1 text-xl font-bold tracking-wide text-brand uppercase">
+                <p className="mt-1 text-xl font-bold tracking-wide text-text-1 uppercase">
                   {headline}
                 </p>
                 <p className="mt-4 max-w-[16rem] text-sm leading-relaxed text-text-2">
@@ -239,7 +239,7 @@ export default function WhoWeAre() {
                   className="flex gap-5 border-b border-line py-7"
                 >
                   <span className="grid size-14 shrink-0 place-items-center rounded-full ring-1 ring-brand/40">
-                    <Symbol name={icon} className="size-7 text-brand" />
+                    <Symbol name={icon} className="size-7 text-text-1" />
                   </span>
                   <div>
                     <h3 className="text-sm font-bold tracking-[0.06em] text-text-1 uppercase">

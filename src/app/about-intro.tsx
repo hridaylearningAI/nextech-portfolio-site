@@ -15,8 +15,8 @@ export default function AboutIntro() {
       <div className="site-container grid gap-12 lg:grid-cols-12 lg:gap-0">
         <div data-reveal className="relative lg:col-span-5">
           <Photo
-            src="/images/supply-partnership-generated.webp"
-            alt="Illustrative scene of two professionals reviewing industrial equipment for supply"
+            src="/images/nextech-engineer-refinery.webp"
+            alt="A Nextech engineer in branded coveralls looking across a refinery"
             className="aspect-[3/2] w-full"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/10 to-transparent" />
@@ -69,7 +69,7 @@ export default function AboutIntro() {
               data-reveal
               className={`flex items-center gap-4 py-5 ${i > 0 ? "border-t border-line" : "lg:pt-0"}`}
             >
-              <Icon className="size-7 text-brand">{icon}</Icon>
+              <Icon className="size-7 text-text-1">{icon}</Icon>
               <p className="text-sm leading-snug text-text-1">
                 {line1}
                 <br />

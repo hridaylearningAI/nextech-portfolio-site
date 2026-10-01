@@ -46,7 +46,10 @@ export default function Contact() {
               </h2>
               <ul className="mt-6 space-y-5">
                 <li className="flex items-start gap-4">
-                  <Symbol name="address" className="mt-0.5 size-9 text-brand" />
+                  <Symbol
+                    name="address"
+                    className="mt-0.5 size-9 text-text-1"
+                  />
                   <div>
                     <div className="text-xs font-medium text-text-2">
                       Address
@@ -70,7 +73,7 @@ export default function Contact() {
                             ? "email"
                             : "website"
                       }
-                      className="mt-0.5 size-9 text-brand"
+                      className="mt-0.5 size-9 text-text-1"
                     />
                     <div>
                       <div className="text-xs font-medium text-text-2">
@@ -92,7 +95,7 @@ export default function Contact() {
                   </li>
                 ))}
                 <li className="flex items-start gap-4">
-                  <Symbol name="clock" className="mt-0.5 size-9 text-brand" />
+                  <Symbol name="clock" className="mt-0.5 size-9 text-text-1" />
                   <div>
                     <div className="text-xs font-medium text-text-2">
                       Working time
@@ -118,7 +121,7 @@ export default function Contact() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={name}
-                      className="grid size-11 place-items-center rounded-md text-brand"
+                      className="grid size-11 place-items-center rounded-md text-text-1 hover:text-brand"
                     >
                       <Symbol name={SOCIAL_ICONS[name]} className="size-5" />
                     </a>

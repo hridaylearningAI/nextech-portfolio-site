@@ -67,7 +67,7 @@ export default function Services() {
                     className="aspect-[4/3] w-full transition-transform duration-500 ease-out group-hover:scale-[1.03]"
                   />
                   <span className="absolute top-4 left-4 grid size-11 place-items-center rounded-lg bg-surface-2 shadow-sm">
-                    <Symbol name={icon} className="size-5 text-brand" />
+                    <Symbol name={icon} className="size-5 text-text-1" />
                   </span>
                 </div>
                 <div className="p-6">
@@ -100,7 +100,7 @@ export default function Services() {
                 className="flex gap-5 bg-surface-2 p-7"
               >
                 <div className="flex flex-col items-center gap-3">
-                  <Symbol name={icon} className="size-7 shrink-0 text-brand" />
+                  <Symbol name={icon} className="size-7 shrink-0 text-text-1" />
                   <span className="text-xs font-semibold tracking-wider text-text-2">
                     {String(i + 1).padStart(2, "0")}
                   </span>

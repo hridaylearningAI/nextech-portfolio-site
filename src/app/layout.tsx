@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import "./globals.css";
+import { COMING_SOON_PATH, UNLOCK_PATH } from "@/lib/gate";
 import Motion from "./motion";
 import PageTransition from "./page-transition";
 import SiteFooter from "./site-footer";
@@ -29,7 +31,12 @@ try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')d.dataset.the
 try{d.classList.add('js-motion');setTimeout(function(){if(d.dataset.motion!=='on')d.classList.remove('js-motion')},2500)}catch(e){}
 `;
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  // The pre-launch pages stand alone: no nav to pages a visitor cannot open,
+  // and no footer sitemap. src/proxy.ts passes the path along for this.
+  const pathname = (await headers()).get("x-pathname") ?? "";
+  const bare = pathname === COMING_SOON_PATH || pathname === UNLOCK_PATH;
+
   return (
     <html lang="en" className="h-full antialiased" suppressHydrationWarning>
       <head>
@@ -37,10 +44,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       </head>
       <body className="min-h-full flex flex-col">
         <Motion />
-        <PageTransition />
-        <SiteHeader />
+        {!bare && <PageTransition />}
+        {!bare && <SiteHeader />}
         <main className="flex-1">{children}</main>
-        <SiteFooter />
+        {!bare && <SiteFooter />}
       </body>
     </html>
   );

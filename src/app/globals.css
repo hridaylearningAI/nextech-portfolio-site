@@ -441,47 +441,25 @@ html {
 }
 
 /* Equal-width copies make the final frame identical to the first. */
-.client-marquee-viewport {
-  overflow: hidden;
-  padding-block: 4px;
-}
-.client-marquee-viewport:focus-visible {
-  outline: 2px solid var(--brand);
-  outline-offset: 4px;
-}
-.client-marquee-track {
+/* Client logos on the home page: a still, centred row. */
+.client-strip-row {
   display: flex;
-  width: max-content;
-  animation: client-marquee-scroll 150s linear infinite;
-}
-.client-marquee-group {
-  display: flex;
-  flex-shrink: 0;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
   gap: 24px;
-  padding-right: 24px;
+  overflow-x: auto;
+  padding: 4px;
+  scrollbar-width: none;
 }
-@keyframes client-marquee-scroll {
-  to {
-    transform: translateX(-50%);
-  }
+.client-strip-row::-webkit-scrollbar {
+  display: none;
 }
-.client-marquee-viewport:focus-within .client-marquee-track {
-  animation-play-state: paused;
-}
-@media (hover: hover) and (pointer: fine) {
-  .client-marquee-viewport:hover .client-marquee-track {
-    animation-play-state: paused;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .client-marquee-viewport {
-    overflow-x: auto;
-  }
-  .client-marquee-track {
-    animation: none;
-  }
-  .client-marquee-group[aria-hidden="true"] {
-    display: none;
+@media (min-width: 1024px) {
+  .client-strip-row {
+    /* Eight logos fit the container, so centre them and stop scrolling. */
+    justify-content: center;
+    overflow-x: visible;
+    gap: clamp(16px, 2vw, 28px);
   }
 }
 

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import CareersForm from "../careers-form";
 import { Symbol, type IconName } from "../icons";
-import { CtaBand, PageHero, SectionHead } from "../ui";
+import { CtaBand, SectionHead } from "../ui";
 
 export const metadata: Metadata = {
   title: "Careers - Nextech General Trading",
@@ -36,21 +36,13 @@ const WHY: [string, string, IconName][] = [
 export default function Careers() {
   return (
     <>
-      <PageHero
-        eyebrow="Careers"
-        title="Build your career"
-        accent="where it counts."
-        copy="We are always interested in people who know the energy supply chain, or who want to learn it properly. Tell us where you fit."
-      />
-
-      {/* ── Why join ───────────────────────────────────────── */}
-      <section className="bg-surface section-space">
+      {/* ── Why join: opens the page now the banner is gone ── */}
+      <section className="bg-surface pt-12 pb-[var(--section-space)] sm:pt-16">
         <div className="site-container">
           <SectionHead
             eyebrow="Life at Nextech"
-            title="A decade of supply,"
-            accent="built by a small team."
-            copy="Nextech General Trading supplies the Oil and Gas, Refinery and Power generation sectors across the United Arab Emirates. The team behind it stays deliberately lean, which means real responsibility early."
+            title="Join the team behind the supply."
+            copy="Nextech General Trading supplies the Oil and Gas, Refinery and Power generation sectors across the United Arab Emirates. We are always interested in people who know that supply chain, or who want to learn it properly."
           />
           <ul className="mt-12 grid gap-x-12 md:grid-cols-2">
             {WHY.map(([title, copy, icon]) => (
@@ -60,7 +52,7 @@ export default function Careers() {
                 className="flex gap-5 border-b border-line py-7"
               >
                 <span className="grid size-14 shrink-0 place-items-center rounded-full ring-1 ring-brand/40">
-                  <Symbol name={icon} className="size-7 text-brand" />
+                  <Symbol name={icon} className="size-7 text-text-1" />
                 </span>
                 <div>
                   <h3 className="text-sm font-bold tracking-[0.06em] text-text-1 uppercase">

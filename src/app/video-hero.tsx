@@ -28,11 +28,11 @@ export default function VideoHero() {
         loop
         playsInline
         preload="metadata"
-        poster="/videos/nextech-compilation-poster.webp"
+        poster="/videos/rig-poster.webp"
         aria-hidden
         className="absolute inset-0 -z-20 size-full object-cover"
       >
-        <source src="/videos/Nextech Hero video.mp4" type="video/mp4" />
+        <source src="/videos/rig.mp4" type="video/mp4" />
       </video>
 
       {/*

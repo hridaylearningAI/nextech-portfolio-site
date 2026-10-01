@@ -20,7 +20,7 @@ export default function Home() {
           >
             {STATS.map(([value, label, icon]) => (
               <div key={label} className="flex items-center gap-4 lg:px-6">
-                <Symbol name={icon} className="size-10 text-brand" />
+                <Symbol name={icon} className="size-10 text-text-1" />
                 <div>
                   <dt data-count className="text-2xl font-bold text-text-1">
                     {value}
@@ -88,7 +88,7 @@ export default function Home() {
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-6">
               <div className="flex items-center gap-3 rounded-lg border border-line bg-surface-2 px-4 py-3 shadow-sm">
-                <Symbol name="leaf" className="size-8 text-brand" />
+                <Symbol name="leaf" className="size-8 text-text-1" />
                 <p className="text-xs leading-snug text-text-2">
                   Building today for
                   <br />a better tomorrow.

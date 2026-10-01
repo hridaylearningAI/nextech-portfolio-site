@@ -113,7 +113,7 @@ export default function CatalogueBrowser() {
             {/* Division header. Sticks alongside its own long lists. */}
             <header className="lg:col-span-4">
               <div className="lg:sticky lg:top-48">
-                <Symbol name={d.icon} className="size-8 text-brand" />
+                <Symbol name={d.icon} className="size-8 text-text-1" />
                 <h2 className="mt-4 text-2xl leading-tight font-bold tracking-tight text-text-1">
                   {d.title}
                 </h2>

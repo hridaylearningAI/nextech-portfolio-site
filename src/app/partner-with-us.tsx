@@ -158,9 +158,10 @@ export default function PartnerWithUs() {
               Partner with Nextech.
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-white/70">
-              Manufacturers and principals: bring your products to operators
-              across the United Arab Emirates, with a team that knows the
-              approval path.
+              Manufacturers, bring your products to top end users across the
+              United Arab Emirates, with a team that knows the approval path,
+              possesses regional expertise and a relevant network, and
+              facilitates access to high-value opportunities.
             </p>
 
             {/* The reasons make the case on a wide screen; on a phone they

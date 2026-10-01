@@ -46,7 +46,7 @@ Created with the built-in OpenAI image generation tool. Decorative illustrations
 - `services/instrumentation-control.webp` — https://www.pexels.com/photo/4889280/
 - `services/engineering-services.webp` — https://www.pexels.com/photo/3862377/
 - `services/consultancy-advisory.webp` — https://www.pexels.com/photo/5816300/
-- `services/project-management.webp` — https://www.pexels.com/photo/7876708/
+- `services/project-management.webp` — supplied by the client
 - `who-we-are-story.webp` — previous generated meeting image; retained but replaced on the site by the technical sourcing scene.
 - `inspection.webp` — https://www.pexels.com/photo/37466061/
 - `abu-dhabi.webp` — https://www.pexels.com/photo/19612315/
