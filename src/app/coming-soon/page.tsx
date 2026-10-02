@@ -3,7 +3,6 @@ import Link from "next/link";
 import { Symbol } from "../icons";
 import { COMPANY, SOCIALS } from "../nav";
 import NewsletterForm from "../newsletter-form";
-import { Logo } from "../ui";
 
 export const metadata: Metadata = {
   title: "Nextech Energy Development - Something's coming up",
@@ -36,7 +35,16 @@ export default function ComingSoon() {
 
       {/* ── Masthead ───────────────────────────────────────── */}
       <header className="site-container flex items-center justify-between py-7">
-        <Logo hero />
+        {/* The holding page carries the name as type, not the mark: the
+            logo belongs to the site that is still being built. */}
+        <div>
+          <p className="text-2xl font-bold tracking-tight text-white">
+            Nex<span className="text-[#57a29d]">tech</span>
+          </p>
+          <p className="text-[11px] font-medium tracking-wide text-[#57a29d]">
+            Energy Development
+          </p>
+        </div>
         <a
           href={COMPANY.phoneHref}
           className="hidden items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white ring-1 ring-white/15 transition-colors hover:bg-white/15 sm:inline-flex"
