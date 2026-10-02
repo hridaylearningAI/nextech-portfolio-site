@@ -153,7 +153,7 @@ export default function PartnerWithUs() {
             </p>
             <h2
               id={titleId}
-              className="mt-3 text-2xl leading-tight font-bold tracking-tight sm:text-3xl"
+              className="mt-3 text-2xl leading-tight font-bold sm:text-3xl"
             >
               Partner with Nextech.
             </h2>

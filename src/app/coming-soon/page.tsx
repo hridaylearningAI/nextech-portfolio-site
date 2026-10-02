@@ -36,7 +36,7 @@ export default function ComingSoon() {
 
       {/* ── Masthead ───────────────────────────────────────── */}
       <header className="site-container flex items-center justify-between py-7">
-        <Logo onDark />
+        <Logo hero />
         <a
           href={COMPANY.phoneHref}
           className="hidden items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white ring-1 ring-white/15 transition-colors hover:bg-white/15 sm:inline-flex"
@@ -59,7 +59,7 @@ export default function ComingSoon() {
 
           <h1
             data-intro
-            className="mt-6 text-[clamp(2.5rem,7.5vw,5.5rem)] leading-[1.02] font-bold tracking-tight"
+            className="mt-6 text-[clamp(2rem,7.5vw,5.5rem)] leading-[1.02] font-bold"
           >
             Something&apos;s coming up
           </h1>
@@ -78,7 +78,7 @@ export default function ComingSoon() {
           className="mt-10 grid gap-6 rounded-[22px] bg-gradient-to-r from-[#0d2235] via-[#194756] to-ink p-7 ring-1 ring-white/10 sm:p-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center"
         >
           <div>
-            <h2 className="text-xl font-bold tracking-tight sm:text-2xl">
+            <h2 className="text-xl font-bold sm:text-2xl">
               Be the first to know when we launch.
             </h2>
             <p className="mt-2 text-sm leading-relaxed text-white/65">

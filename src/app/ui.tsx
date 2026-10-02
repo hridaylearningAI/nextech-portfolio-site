@@ -61,14 +61,23 @@ export function Arrow({ className = "" }: { className?: string }) {
 export function Logo({
   className = "",
   onDark = false,
+  hero = false,
 }: {
   className?: string;
   onDark?: boolean;
+  /** The film's own colourway: teal mark, white wordmark. */
+  hero?: boolean;
 }) {
   const mark = (dark: boolean) => (
     // eslint-disable-next-line @next/next/no-img-element
     <img
-      src={dark ? "/logos/nextech-logo-white.svg" : "/logos/nextech-logo.svg"}
+      src={
+        hero
+          ? "/logos/nextech-logo-hero.svg"
+          : dark
+            ? "/logos/nextech-logo-white.svg"
+            : "/logos/nextech-logo.svg"
+      }
       alt="Nextech Energy Development"
       className="h-9 w-auto"
     />
@@ -76,7 +85,7 @@ export function Logo({
 
   return (
     <div className={`flex items-center ${className}`} data-brand-mark>
-      {onDark ? (
+      {onDark || hero ? (
         mark(true)
       ) : (
         <>
@@ -119,7 +128,7 @@ export function SectionHead({
   return (
     <div data-reveal className={`${center ? "text-center" : ""} ${className}`}>
       <Eyebrow>{eyebrow}</Eyebrow>
-      <h2 className="mt-3 text-3xl font-bold leading-tight tracking-tight text-text-1 sm:text-4xl">
+      <h2 className="mt-3 text-3xl font-bold leading-tight text-text-1 sm:text-4xl">
         {title} {accent}
       </h2>
       {copy && (
@@ -170,7 +179,7 @@ export function PageHero({
         </div>
         <h1
           data-intro
-          className="mt-4 max-w-2xl text-4xl font-bold leading-[1.1] tracking-tight text-text-1 sm:text-5xl"
+          className="mt-4 max-w-2xl text-4xl font-bold leading-[1.1] text-text-1 sm:text-5xl"
         >
           {title} {accent}
         </h1>

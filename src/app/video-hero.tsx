@@ -52,7 +52,7 @@ export default function VideoHero() {
         data-intro
         className="absolute top-7 left-6 sm:top-8 sm:left-10"
       >
-        <Logo onDark />
+        <Logo hero />
       </Link>
 
       {/*
@@ -74,7 +74,7 @@ export default function VideoHero() {
               <button
                 type="button"
                 aria-haspopup="menu"
-                className="flex items-center justify-end gap-3 py-3 text-sm font-medium tracking-wide text-white/75 transition-colors hover:text-white"
+                className="font-accent flex items-center justify-end gap-3 py-3 text-xs uppercase tracking-[0.08em] text-white/75 transition-colors hover:text-white"
               >
                 <span className="h-px w-0 bg-brand transition-[width] duration-300 ease-out group-hover:w-6" />
                 {node.label}
@@ -106,7 +106,7 @@ function RailLink({ label, href }: { label: string; href: string }) {
     >
       {/* Rule grows out of the label on hover. */}
       <span className="h-px w-0 bg-brand transition-[width] duration-300 ease-out group-hover:w-6" />
-      <span className="text-sm font-medium tracking-wide text-white/75 transition-colors group-hover:text-white">
+      <span className="font-accent text-xs uppercase tracking-[0.08em] text-white/75 transition-colors group-hover:text-white">
         {label}
       </span>
     </Link>

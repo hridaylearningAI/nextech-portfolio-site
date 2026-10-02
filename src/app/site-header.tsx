@@ -71,7 +71,7 @@ export default function SiteHeader() {
                   }}
                 >
                   <summary
-                    className={`relative flex cursor-pointer list-none items-center gap-1.5 py-6 text-xs font-medium [&::-webkit-details-marker]:hidden ${
+                    className={`font-accent relative flex cursor-pointer list-none items-center gap-1.5 py-6 text-xs uppercase tracking-[0.08em] [&::-webkit-details-marker]:hidden ${
                       active ? "text-brand" : "text-text-1 hover:text-brand"
                     }`}
                   >
@@ -88,7 +88,7 @@ export default function SiteHeader() {
                         aria-current={
                           pathname === child.href ? "page" : undefined
                         }
-                        className={`block rounded-lg px-4 py-3 text-xs font-medium ${
+                        className={`font-accent block rounded-lg px-4 py-3 text-xs uppercase tracking-[0.08em] ${
                           pathname === child.href
                             ? "bg-[var(--tint-b)] text-brand"
                             : "text-text-1 hover:bg-[var(--tint-b)] hover:text-brand"
@@ -108,7 +108,7 @@ export default function SiteHeader() {
                 key={node.href}
                 href={node.href}
                 aria-current={active ? "page" : undefined}
-                className={`relative py-6 text-xs font-medium ${
+                className={`font-accent relative py-6 text-xs uppercase tracking-[0.08em] ${
                   active ? "text-brand" : "text-text-1 hover:text-brand"
                 }`}
               >

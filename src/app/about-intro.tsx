@@ -43,7 +43,7 @@ export default function AboutIntro() {
         </div>
         <div data-reveal className="lg:col-span-4 lg:px-8">
           <Eyebrow>About Nextech</Eyebrow>
-          <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-text-1 sm:text-3xl">
+          <h2 className="mt-4 text-3xl font-bold leading-tight text-text-1 sm:text-3xl">
             A Trusted Partner
             <br />
             for a Stronger Tomorrow

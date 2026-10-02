@@ -26,7 +26,7 @@ export default function IndustriesSection({
           className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between"
         >
           <div>
-            <h2 className="max-w-xl text-4xl font-bold tracking-tight text-text-1">
+            <h2 className="max-w-xl text-4xl font-bold text-text-1">
               Solutions for Every Industrial Sector
             </h2>
             <p className="mt-4 max-w-lg text-sm leading-relaxed text-text-2">

@@ -125,7 +125,7 @@ export default function VideoBanner({
         </p>
         <h1
           data-intro
-          className="mt-4 max-w-2xl text-4xl leading-[1.1] font-bold tracking-tight text-white sm:text-5xl"
+          className="mt-4 max-w-2xl text-4xl leading-[1.1] font-bold text-white sm:text-5xl"
         >
           {title} {accent}
         </h1>

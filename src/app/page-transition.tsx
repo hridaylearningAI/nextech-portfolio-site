@@ -434,7 +434,7 @@ export default function PageTransition() {
               holds the desktop size where it was. */}
           <span
             ref={title}
-            className="font-display mt-4 block text-[clamp(1.75rem,8vw,4.5rem)] leading-[1.05] tracking-tight text-white [font-kerning:none]"
+            className="font-display mt-4 block text-[clamp(1.75rem,8vw,4.5rem)] leading-[1.05] text-white [font-kerning:none]"
           />
           <span
             ref={rule}

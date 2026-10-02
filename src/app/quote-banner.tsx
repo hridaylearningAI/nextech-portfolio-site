@@ -38,7 +38,7 @@ export default function QuoteBanner() {
           <p className="text-[11px] font-semibold tracking-[0.18em] text-white/70 uppercase">
             Let&apos;s build a stronger tomorrow
           </p>
-          <h2 className="mt-3 text-3xl leading-tight font-bold tracking-tight text-white sm:text-4xl">
+          <h2 className="mt-3 text-3xl leading-tight font-bold text-white sm:text-4xl">
             Ready to Power What&apos;s Next?
           </h2>
           <p className="mt-4 text-sm leading-relaxed text-white/75">

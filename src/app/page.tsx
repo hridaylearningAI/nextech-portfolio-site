@@ -38,7 +38,7 @@ export default function Home() {
       <section className="bg-gradient-to-b from-[var(--tint-c)] to-[var(--tint-d)] section-space">
         <div className="site-container text-center">
           <div data-reveal>
-            <h2 className="text-4xl font-bold tracking-tight text-text-1">
+            <h2 className="text-4xl font-bold text-text-1">
               Five Product Divisions, One Standard
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-text-2">
@@ -76,7 +76,7 @@ export default function Home() {
         <div className="flex items-center bg-gradient-to-br from-[var(--surface)] to-[var(--tint-b)] px-6 py-16 lg:px-16">
           <div data-reveal className="max-w-lg">
             <Eyebrow>Sustainable future</Eyebrow>
-            <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-text-1">
+            <h2 className="mt-4 text-3xl font-bold leading-tight text-text-1">
               Driving a Sustainable
               <br />
               and Responsible Tomorrow

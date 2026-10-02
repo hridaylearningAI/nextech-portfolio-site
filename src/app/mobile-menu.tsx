@@ -60,7 +60,7 @@ export default function MobileMenu() {
   };
 
   const linkClass = (href: string) =>
-    `flex items-center justify-between border-b border-line py-4 text-lg font-semibold ${
+    `font-accent flex items-center justify-between border-b border-line py-4 text-base uppercase tracking-[0.08em] ${
       pathname === href ? "text-brand" : "text-text-1"
     }`;
 
@@ -105,7 +105,7 @@ export default function MobileMenu() {
                   key={node.label}
                   className="group border-b border-line"
                 >
-                  <summary className="flex cursor-pointer list-none items-center justify-between py-4 text-lg font-semibold text-text-1 [&::-webkit-details-marker]:hidden">
+                  <summary className="font-accent flex cursor-pointer list-none items-center justify-between py-4 text-base uppercase tracking-[0.08em] text-text-1 [&::-webkit-details-marker]:hidden">
                     {node.label}
                     <Arrow className="rotate-90 transition-transform group-open:-rotate-90" />
                   </summary>

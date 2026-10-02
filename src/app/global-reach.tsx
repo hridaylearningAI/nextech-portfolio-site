@@ -92,7 +92,7 @@ export default function GlobalReach() {
             substance is what a screen reader and a crawler meet, and what
             renders if WebGL is unavailable. */}
         <div data-reveal className="lg:col-span-5">
-          <h2 className="text-3xl font-bold leading-tight tracking-tight text-text-1 sm:text-4xl">
+          <h2 className="text-3xl font-bold leading-tight text-text-1 sm:text-4xl">
             Partners Across the Globe
           </h2>
           <p className="mt-4 max-w-md text-sm leading-relaxed text-text-2">

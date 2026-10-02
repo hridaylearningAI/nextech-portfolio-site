@@ -18,9 +18,7 @@ export default function Unlock() {
       />
       <div className="w-full max-w-sm">
         <Logo onDark />
-        <h1 className="mt-10 text-3xl font-bold tracking-tight text-white">
-          Site preview
-        </h1>
+        <h1 className="mt-10 text-3xl font-bold text-white">Site preview</h1>
         <p className="mt-3 text-sm leading-relaxed text-white/65">
           The new Nextech Energy Development website is still being built. Enter
           the password to look around.
