@@ -51,6 +51,13 @@ export function Arrow({ className = "" }: { className?: string }) {
   return <Symbol name="arrow" className={`size-4 ${className}`} />;
 }
 
+/**
+ * The brand kit's Secondary Logo: the mark and wordmark as one horizontal
+ * lockup, in the two supplied colourways. `onDark` pins the reverse version
+ * for surfaces that are always dark (the video hero, the holding page);
+ * everywhere else both are rendered and globals.css shows the one that
+ * matches the theme.
+ */
 export function Logo({
   className = "",
   onDark = false,
@@ -58,23 +65,36 @@ export function Logo({
   className?: string;
   onDark?: boolean;
 }) {
+  const mark = (dark: boolean) => (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={dark ? "/logos/nextech-logo-white.svg" : "/logos/nextech-logo.svg"}
+      alt="Nextech Energy Development"
+      className="h-9 w-auto"
+    />
+  );
+
   return (
-    <div className={className} data-brand-mark>
-      <div
-        className={`text-2xl font-bold tracking-tight ${onDark ? "text-white" : "text-text-1"}`}
-      >
-        Nex<span className="text-brand">tech</span>
-      </div>
-      <div className="text-[11px] font-medium tracking-wide text-brand">
-        General Trading
-      </div>
+    <div className={`flex items-center ${className}`} data-brand-mark>
+      {onDark ? (
+        mark(true)
+      ) : (
+        <>
+          <span className="contents" data-mark-light>
+            {mark(false)}
+          </span>
+          <span className="contents" data-mark-dark>
+            {mark(true)}
+          </span>
+        </>
+      )}
     </div>
   );
 }
 
 export function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-text-2">
+    <p className="font-accent text-xs uppercase tracking-[0.14em] text-text-2">
       {children}
     </p>
   );
@@ -174,14 +194,14 @@ export function CtaBand() {
           data-reveal
           // Deep teal-to-ink in both themes, like the quote banner: a moment of
           // emphasis that closes the page rather than a bright block.
-          className="flex flex-col gap-6 rounded-[18px] bg-gradient-to-r from-[#0d2a36] via-[#0a1f2b] to-ink px-8 py-8 ring-1 ring-white/10 md:flex-row md:items-center md:justify-between"
+          className="flex flex-col gap-6 rounded-[18px] bg-gradient-to-r from-[#0d2235] via-[#194756] to-ink px-8 py-8 ring-1 ring-white/10 md:flex-row md:items-center md:justify-between"
         >
           <div>
             <h2 className="text-xl font-semibold text-white">
               Let&apos;s build the future together
             </h2>
             <p className="mt-2 text-sm text-white/70">
-              Partner with Nextech General Trading for reliable solutions
+              Partner with Nextech Energy Development for reliable solutions
               tailored to your business needs.
             </p>
           </div>

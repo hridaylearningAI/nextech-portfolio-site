@@ -411,7 +411,7 @@ export default function PageTransition() {
 
       <div
         ref={glow}
-        className="absolute inset-0 bg-[radial-gradient(circle_at_50%_48%,rgba(2,193,179,0.2),transparent_60%)]"
+        className="absolute inset-0 bg-[radial-gradient(circle_at_50%_48%,rgba(87,162,157,0.22),transparent_60%)]"
         style={{ visibility: "hidden", opacity: 0 }}
       />
 
@@ -420,16 +420,21 @@ export default function PageTransition() {
         <div className="flex flex-col items-center text-center">
           <p
             ref={eyebrow}
-            className="text-[11px] font-semibold tracking-[0.28em] text-white/55 uppercase"
+            className="font-accent text-[11px] tracking-[0.28em] text-white/55 uppercase"
             style={{ visibility: "hidden", opacity: 0 }}
           >
-            Nextech General Trading
+            Nextech Energy Development
           </p>
           {/* No React children: SplitText rewrites this node, and React must
-              not own content that GSAP replaces. Text is set imperatively. */}
+              not own content that GSAP replaces. Text is set imperatively.
+
+              Fluid rather than stepped: SplitText masks each character, so a
+              title that does not fit wraps mid-word. 8vw keeps the longest
+              label ("Terms of Service") inside a 390px phone, and the cap
+              holds the desktop size where it was. */}
           <span
             ref={title}
-            className="mt-4 block text-5xl leading-[1.05] font-bold tracking-tight text-white [font-kerning:none] sm:text-7xl"
+            className="font-display mt-4 block text-[clamp(1.75rem,8vw,4.5rem)] leading-[1.05] tracking-tight text-white [font-kerning:none]"
           />
           <span
             ref={rule}

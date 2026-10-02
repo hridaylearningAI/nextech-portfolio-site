@@ -161,7 +161,7 @@ export default function GlobalReach() {
               }}
               config={{
                 autoRotateSpeed: spin,
-                arcColor: "#02c1b3",
+                arcColor: "#438b8d",
                 // Same switch as the rotation: reduced motion gets still arcs.
                 animateArcs: spin > 0,
                 // Self-hosted and downscaled. Upstream's defaults are a
@@ -172,7 +172,7 @@ export default function GlobalReach() {
                 textureUrl: "/textures/earth.webp",
                 bumpMapUrl: "/textures/earth-bump.webp",
                 showAtmosphere: true,
-                atmosphereColor: "#02c1b3",
+                atmosphereColor: "#438b8d",
                 // Low intensity with a soft falloff. Higher values read as a
                 // solid teal rim rather than atmosphere.
                 atmosphereIntensity: 0.45,

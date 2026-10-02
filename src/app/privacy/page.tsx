@@ -3,9 +3,9 @@ import { COMPANY } from "../nav";
 import { CtaBand, LegalBody, PageHero, type LegalSection } from "../ui";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy - Nextech General Trading",
+  title: "Privacy Policy - Nextech Energy Development",
   description:
-    "How Nextech General Trading collects, uses and protects personal information submitted through this website.",
+    "How Nextech Energy Development collects, uses and protects personal information submitted through this website.",
 };
 
 const UPDATED = "3 September 2026";
@@ -14,7 +14,7 @@ const SECTIONS: LegalSection[] = [
   {
     heading: "About this policy",
     body: [
-      `This policy explains how ${COMPANY.addressLines[0]} ("Nextech General Trading", "we", "us" or "our") collects, uses, shares and protects personal information when you visit this website or get in touch with us through it.`,
+      `This policy explains how ${COMPANY.addressLines[0]} ("Nextech Energy Development", "we", "us" or "our") collects, uses, shares and protects personal information when you visit this website or get in touch with us through it.`,
       "It applies to this website only. It does not apply to any third-party site you may reach through a link from here, each of which has its own privacy practices.",
     ],
   },

@@ -6,7 +6,7 @@ import QuoteBanner from "../quote-banner";
 import { CtaBand, SectionHead } from "../ui";
 
 export const metadata: Metadata = {
-  title: "Contact Us - Nextech General Trading",
+  title: "Contact Us - Nextech Energy Development",
   description:
     "Global Tower, Electra Street, Abu Dhabi. We answer all enquiries within 24 hours on business days.",
 };

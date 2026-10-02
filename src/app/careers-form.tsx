@@ -1,5 +1,6 @@
 "use client";
 
+import { COMPANY } from "./nav";
 import { Arrow } from "./ui";
 import { useFormSubmit } from "./use-form-submit";
 
@@ -197,10 +198,10 @@ export default function CareersForm() {
         <p className="text-xs leading-relaxed text-text-2">
           Prefer email? Send your CV to{" "}
           <a
-            href="mailto:info@nextechgt.ae"
+            href={`mailto:${COMPANY.careersEmail}`}
             className="font-medium text-text-1 underline decoration-line underline-offset-2 hover:text-brand"
           >
-            info@nextechgt.ae
+            {COMPANY.careersEmail}
           </a>
           .
         </p>

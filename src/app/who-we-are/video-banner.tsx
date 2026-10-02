@@ -94,7 +94,7 @@ export default function VideoBanner({
         loop
         playsInline
         preload="metadata"
-        aria-label="A tour of the Nextech General Trading office in Global Tower, Abu Dhabi"
+        aria-label="A tour of the Nextech Energy Development office in Global Tower, Abu Dhabi"
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
       />

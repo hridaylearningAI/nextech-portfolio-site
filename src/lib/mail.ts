@@ -22,8 +22,10 @@ export function getMailConfig() {
     apiKey: requiredEnv("RESEND_API_KEY"),
     from:
       process.env.RESEND_FROM_EMAIL?.trim() ||
-      "Nextech General Trading <hello@updates.nextechgt.ae>",
+      "Nextech Energy Development <hello@updates.nextechgt.ae>",
     to: process.env.RESEND_TO_EMAIL?.trim() || COMPANY.email,
+    /** Applications go to reception, not the general inbox. */
+    careersTo: process.env.RESEND_CAREERS_EMAIL?.trim() || COMPANY.careersEmail,
   };
 }
 
@@ -40,18 +42,18 @@ const SITE_URL = (
 // Hard-coded rather than read from CSS: an email has no stylesheet, and
 // clients that support dark mode are told to leave these colours alone.
 const C = {
-  ink: "#08101a",
-  inkSoft: "#0d2a36",
-  brand: "#02c1b3",
+  ink: "#0d2f40",
+  inkSoft: "#194756",
+  brand: "#438b8d",
   /** Teal dark enough to pass contrast as text on white. */
-  brandText: "#017d74",
-  page: "#e9f2f2",
-  tint: "#eefaf9",
-  tintLine: "#cfe9e6",
-  text: "#1d1d1f",
-  muted: "#5f6469",
-  faint: "#8a8f94",
-  line: "#e6eaeb",
+  brandText: "#3a7a7c",
+  page: "#e8efee",
+  tint: "#f3f6f5",
+  tintLine: "#dce5e5",
+  text: "#0d2f40",
+  muted: "#5c6d72",
+  faint: "#8b989c",
+  line: "#dce5e5",
   white: "#ffffff",
 };
 
@@ -176,7 +178,7 @@ function bullets(items: [string, string][]) {
   return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">${rows}</table>`;
 }
 
-function contactBlock() {
+function contactBlock(email: string = COMPANY.email) {
   const item = (label: string, value: string, href: string) =>
     `<td valign="top" class="stack" style="padding:0 40px 12px 0">
       <p style="margin:0;font-family:${FONT};font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:${C.faint}">${label}</p>
@@ -186,7 +188,7 @@ function contactBlock() {
     <tr><td style="padding-top:24px">
       <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
         ${item("Call us", COMPANY.phone, COMPANY.phoneHref)}
-        ${item("Email", COMPANY.email, `mailto:${COMPANY.email}`)}
+        ${item("Email", email, `mailto:${email}`)}
       </tr></table>
       <p style="margin:14px 0 0;font-family:${FONT};font-size:13px;line-height:1.55;color:${C.faint}">${esc(COMPANY.hours[0])} &middot; ${esc(COMPANY.hours[1])}</p>
     </td></tr></table>`;
@@ -243,8 +245,7 @@ function layout({
         <tr><td bgcolor="${C.ink}" class="px" style="padding:26px 40px">
           <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
             <td valign="middle">
-              <p style="margin:0;font-family:${FONT};font-size:24px;font-weight:800;letter-spacing:-0.02em;line-height:1;color:${C.white}">Nex<span style="color:${C.brand}">tech</span></p>
-              <p style="margin:5px 0 0;font-family:${FONT};font-size:11px;font-weight:600;letter-spacing:0.08em;color:${C.brand}">General Trading</p>
+              <img src="${SITE_URL}/email/logo.png" width="170" height="40" alt="Nextech Energy Development" style="display:block;width:170px;height:40px;border:0;outline:none;text-decoration:none">
             </td>
             <td align="right" valign="middle" style="font-family:${FONT};font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#7f9398">Oil &middot; Gas &middot; Power</td>
           </tr></table>
@@ -388,7 +389,7 @@ function contactPair(data: ContactPayload): Pair {
         ["Email", data.email],
         ["Message", data.message],
       ],
-      replySubject: "Re: Your enquiry to Nextech General Trading",
+      replySubject: "Re: Your enquiry to Nextech Energy Development",
     }),
     confirmSubject: `Thanks ${first} — we've received your enquiry`,
     confirmHtml: layout({
@@ -444,7 +445,7 @@ function partnerPair(data: PartnerPayload): Pair {
         ["Location", data.location ?? ""],
         ["Business, products & services", data.description ?? ""],
       ],
-      replySubject: "Re: Partnering with Nextech General Trading",
+      replySubject: "Re: Partnering with Nextech Energy Development",
     }),
     confirmSubject: `${first}, thank you for your interest in partnering with Nextech`,
     confirmHtml: layout({
@@ -521,7 +522,7 @@ function reviewPair(data: ReviewPayload): Pair {
       )}
         <div style="margin-top:28px">${quote(data.review, data.heading)}</div>
         ${para(
-          "Thank you for trusting Nextech General Trading. We look forward to continuing to support your operations.",
+          "Thank you for trusting Nextech Energy Development. We look forward to continuing to support your operations.",
           { top: 28 },
         )}
         ${button("See who we work with", `${SITE_URL}/clients`)}
@@ -541,7 +542,7 @@ function newsletterPair(data: NewsletterPayload): Pair {
       name: data.email,
       email: data.email,
       rows: [["Email", data.email]],
-      replySubject: "Welcome to Nextech General Trading updates",
+      replySubject: "Welcome to Nextech Energy Development updates",
     }),
     confirmSubject: "Welcome aboard — you're subscribed to Nextech updates",
     confirmHtml: layout({
@@ -600,7 +601,7 @@ function careersPair(data: CareersPayload): Pair {
         ["Contact", data.contact ?? ""],
         ...rows,
       ],
-      replySubject: `Your application to Nextech General Trading — ${data.role}`,
+      replySubject: `Your application to Nextech Energy Development — ${data.role}`,
     }),
     confirmSubject: `${first}, we've received your application`,
     confirmHtml: layout({
@@ -634,7 +635,7 @@ function careersPair(data: CareersPayload): Pair {
         ${sectionLabel("Your application")}
         ${summary(rows)}
         ${button("Learn about Nextech", `${SITE_URL}/who-we-are`)}
-        ${contactBlock()}`,
+        ${contactBlock(COMPANY.careersEmail)}`,
       reason: clientReason,
     }),
   };
@@ -654,8 +655,11 @@ export function buildFormEmails(type: FormType, payload: FormPayload): Pair {
 }
 
 export async function sendFormEmails(type: FormType, payload: FormPayload) {
-  const { apiKey, from, to } = getMailConfig();
+  const { apiKey, from, to, careersTo } = getMailConfig();
   const resend = new Resend(apiKey);
+
+  // Applications are handled by reception; everything else by the general inbox.
+  const team = type === "careers" ? careersTo : to;
 
   const pair = buildFormEmails(type, payload);
 
@@ -667,7 +671,7 @@ export async function sendFormEmails(type: FormType, payload: FormPayload) {
   const { data, error } = await resend.batch.send([
     {
       from,
-      to: [to],
+      to: [team],
       replyTo: pair.replyTo,
       subject: pair.internalSubject,
       html: pair.internalHtml,
@@ -675,7 +679,7 @@ export async function sendFormEmails(type: FormType, payload: FormPayload) {
     {
       from,
       to: [confirmTo],
-      replyTo: to,
+      replyTo: team,
       subject: pair.confirmSubject,
       html: pair.confirmHtml,
     },

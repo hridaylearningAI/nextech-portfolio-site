@@ -14,7 +14,7 @@ export default function QuoteBanner() {
   return (
     <div
       data-reveal
-      className="relative isolate overflow-hidden rounded-[28px] bg-gradient-to-r from-[#0d2a36] via-[#0a1d2a] to-ink px-8 py-10 shadow-xl ring-1 ring-white/10 sm:px-12 md:py-12"
+      className="relative isolate overflow-hidden rounded-[28px] bg-gradient-to-r from-[#0d2235] via-[#194756] to-ink px-8 py-10 shadow-xl ring-1 ring-white/10 sm:px-12 md:py-12"
     >
       {/*
         Planet. A lined placeholder like every other image slot on the site,
@@ -25,7 +25,7 @@ export default function QuoteBanner() {
         aria-hidden
         className="pointer-events-none absolute top-[-8%] left-[56%] -z-10 hidden aspect-square w-[38%] md:block"
       >
-        <div className="absolute inset-0 rounded-full shadow-[0_0_80px_rgba(2,193,179,0.28)]" />
+        <div className="absolute inset-0 rounded-full shadow-[0_0_80px_rgba(87,162,157,0.28)]" />
         <Photo
           src="/images/earth-night.webp"
           className="absolute inset-0 size-full rounded-full"

@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import { headers } from "next/headers";
 import "./globals.css";
 import { COMING_SOON_PATH, UNLOCK_PATH } from "@/lib/gate";
+import { accent, body, display } from "./fonts";
 import Motion from "./motion";
 import PageTransition from "./page-transition";
 import SiteFooter from "./site-footer";
 import SiteHeader from "./site-header";
 
 export const metadata: Metadata = {
-  title: "Nextech General Trading - Fueling Industries. Powering Tomorrow.",
+  title: "Nextech Energy Development - Fueling Industries. Powering Tomorrow.",
   description:
     "Delivering top-quality products and services to the Oil and Gas, Refinery, and Power generation sectors in the United Arab Emirates.",
 };
@@ -38,7 +39,11 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
   const bare = pathname === COMING_SOON_PATH || pathname === UNLOCK_PATH;
 
   return (
-    <html lang="en" className="h-full antialiased" suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`h-full antialiased ${body.variable} ${display.variable} ${accent.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         <script dangerouslySetInnerHTML={{ __html: BOOT_SCRIPT }} />
       </head>

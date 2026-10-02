@@ -118,7 +118,7 @@ export default function SiteFooter() {
         </div>
 
         <div className="flex flex-col gap-3 border-t border-line py-6 text-xs text-text-2 sm:flex-row sm:items-center sm:justify-between">
-          <p>© 2025 Nextech General Trading LLC. All Rights Reserved.</p>
+          <p>© 2026 Nextech Energy Development. All Rights Reserved.</p>
           <p className="flex items-center gap-3">
             <Link href="/terms" className="hover:text-brand">
               Terms of Service

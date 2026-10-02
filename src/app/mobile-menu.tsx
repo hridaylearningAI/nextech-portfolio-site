@@ -85,7 +85,7 @@ export default function MobileMenu() {
       >
         <div className="flex h-full flex-col px-6 pb-8">
           <div className="flex h-20 shrink-0 items-center justify-between">
-            <Link href="/" aria-label="Nextech General Trading, home">
+            <Link href="/" aria-label="Nextech Energy Development, home">
               <Logo />
             </Link>
             <button

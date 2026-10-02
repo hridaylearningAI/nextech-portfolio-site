@@ -143,10 +143,10 @@ export default function PartnerWithUs() {
 
         <div className="grid md:max-h-[inherit] md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
           {/* ── Brand panel ─────────────────────────────────── */}
-          <aside className="relative isolate overflow-hidden bg-gradient-to-br from-[#0d2a36] via-[#0a1d2a] to-ink px-6 py-7 text-white sm:px-8 md:py-10">
+          <aside className="relative isolate overflow-hidden bg-gradient-to-br from-[#0d2235] via-[#194756] to-ink px-6 py-7 text-white sm:px-8 md:py-10">
             <div
               aria-hidden
-              className="absolute -top-24 -right-24 -z-10 size-72 rounded-full bg-[radial-gradient(circle,rgba(2,193,179,0.32),transparent_68%)]"
+              className="absolute -top-24 -right-24 -z-10 size-72 rounded-full bg-[radial-gradient(circle,rgba(87,162,157,0.32),transparent_68%)]"
             />
             <p className="text-[11px] font-semibold tracking-[0.18em] text-[var(--brand)] uppercase">
               Partnerships

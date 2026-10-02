@@ -4,9 +4,9 @@ import { Symbol, type IconName } from "../icons";
 import { CtaBand, SectionHead } from "../ui";
 
 export const metadata: Metadata = {
-  title: "Careers - Nextech General Trading",
+  title: "Careers - Nextech Energy Development",
   description:
-    "Join Nextech General Trading in Abu Dhabi. Sales, technical, procurement and project roles supplying the United Arab Emirates energy sector.",
+    "Join Nextech Energy Development in Abu Dhabi. Sales, technical, procurement and project roles supplying the United Arab Emirates energy sector.",
 };
 
 /** What the work is actually like here, in plain terms. */
@@ -42,7 +42,7 @@ export default function Careers() {
           <SectionHead
             eyebrow="Life at Nextech"
             title="Join the team behind the supply."
-            copy="Nextech General Trading supplies the Oil and Gas, Refinery and Power generation sectors across the United Arab Emirates. We are always interested in people who know that supply chain, or who want to learn it properly."
+            copy="Nextech Energy Development supplies the Oil and Gas, Refinery and Power generation sectors across the United Arab Emirates. We are always interested in people who know that supply chain, or who want to learn it properly."
           />
           <ul className="mt-12 grid gap-x-12 md:grid-cols-2">
             {WHY.map(([title, copy, icon]) => (

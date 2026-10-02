@@ -30,14 +30,14 @@ export default function AboutIntro() {
               Local Impact
             </p>
           </div>
-          <figure className="absolute right-0 bottom-0 w-[min(19rem,86%)] translate-y-6 bg-ink p-6 shadow-xl ring-1 ring-white/10 sm:right-6">
+          <figure className="absolute right-0 bottom-0 w-[min(19rem,86%)] origin-bottom-right translate-y-6 scale-[0.7] bg-ink p-6 shadow-xl ring-1 ring-white/10 sm:right-6">
             <blockquote className="text-base leading-relaxed text-white italic">
               <span className="text-brand not-italic">&ldquo;</span> We
               don&apos;t just supply products. We build possibilities.{" "}
               <span className="text-brand not-italic">&rdquo;</span>
             </blockquote>
             <figcaption className="mt-5 text-[10px] font-semibold tracking-[0.18em] text-white/70 uppercase">
-              Nextech General Trading
+              Nextech Energy Development
             </figcaption>
           </figure>
         </div>
@@ -49,9 +49,9 @@ export default function AboutIntro() {
             for a Stronger Tomorrow
           </h2>
           <p className="mt-5 max-w-md text-sm leading-relaxed text-text-2">
-            Nextech General Trading is at the heart of the United Arab Emirates,
-            connecting global industries with reliable solutions. We are driven
-            by a commitment to quality, sustainability and long-term
+            Nextech Energy Development is at the heart of the United Arab
+            Emirates, connecting global industries with reliable solutions. We
+            are driven by a commitment to quality, sustainability and long-term
             partnerships that support progress across energy, infrastructure and
             industrial development.
           </p>

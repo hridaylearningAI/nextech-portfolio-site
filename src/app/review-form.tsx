@@ -69,7 +69,7 @@ export default function ReviewForm() {
           type="checkbox"
           name="consent"
           required
-          className="mt-0.5 size-4 shrink-0 accent-[#02c1b3]"
+          className="mt-0.5 size-4 shrink-0 accent-[#438b8d]"
         />
         I agree that Nextech will collect my name and email information
       </label>

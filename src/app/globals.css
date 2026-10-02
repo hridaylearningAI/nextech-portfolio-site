@@ -1,31 +1,41 @@
 @import "tailwindcss";
 
 /*
- * Brand stays fixed across themes (teal + ink are the identity); everything
+ * Brand palette, from the Nextech Energy Development brand kit:
+ *   Aqua Forge #438B8D · Deep Maritime #0D2F40 · Steel Depth #263D46
+ *   Industrial Slate #66777C · Cool Mist #DCE5E5 · Soft Ivory #F5F6F3
+ *   Deep Teal Transition #0D2235 → #194756 → #57A29D
+ *
+ * Brand and ink stay fixed across themes (they are the identity); everything
  * else is a semantic token so dark mode is defined once, here, rather than as
  * a `dark:` class on every element.
  */
 :root {
-  --brand: #02c1b3;
-  --brand-dark: #019e93;
-  --ink: #08101a;
+  --brand: #438b8d; /* Aqua Forge */
+  --brand-dark: #35706f;
+  --ink: #0d2f40; /* Deep Maritime */
+
+  /* Deep Teal Transition, kept dark enough at the far end to carry white type. */
+  --grad-from: #0d2235;
+  --grad-via: #194756;
+  --grad-to: #0d2f40;
 
   color-scheme: light;
   --surface: #ffffff;
-  --surface-2: #ffffff;
-  --text-1: #1d1d1f;
-  --text-2: #62666c;
-  --line: rgba(0, 0, 0, 0.09);
+  --surface-2: #f5f6f3; /* Soft Ivory */
+  --text-1: #0d2f40;
+  --text-2: #5c6d72; /* Industrial Slate, darkened to clear 4.5:1 */
+  --line: rgba(13, 47, 64, 0.12);
 
   /* Section washes, light → dark within each band. */
-  --tint-a: #e6f4f3;
-  --tint-b: #eefaf9;
-  --tint-c: #d5eeec;
-  --tint-d: #eef8f7;
+  --tint-a: #e8efee;
+  --tint-b: #f3f6f5;
+  --tint-c: #dce5e5; /* Cool Mist */
+  --tint-d: #f5f6f3; /* Soft Ivory */
 
-  --ph-bg: #e2efee;
-  --ph-line: rgba(2, 193, 179, 0.2);
-  --ph-edge: rgba(2, 193, 179, 0.22);
+  --ph-bg: #e4ebea;
+  --ph-line: rgba(67, 139, 141, 0.2);
+  --ph-edge: rgba(67, 139, 141, 0.22);
 }
 
 /*
@@ -36,39 +46,39 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     color-scheme: dark;
-    --surface: #000000;
-    --surface-2: #1d1d1f;
-    --text-1: #f5f5f7;
-    --text-2: #98989d;
-    --line: rgba(255, 255, 255, 0.14);
+    --surface: #0d2f40; /* Deep Maritime */
+    --surface-2: #263d46; /* Steel Depth */
+    --text-1: #f5f6f3; /* Soft Ivory */
+    --text-2: #9fb0b3;
+    --line: rgba(220, 229, 229, 0.16);
 
-    --tint-a: #06211f;
-    --tint-b: #041a19;
-    --tint-c: #072e2b;
-    --tint-d: #05211f;
+    --tint-a: #0f3345;
+    --tint-b: #0c2b3a;
+    --tint-c: #16404f;
+    --tint-d: #0e3042;
 
-    --ph-bg: #16211f;
-    --ph-line: rgba(2, 193, 179, 0.26);
-    --ph-edge: rgba(2, 193, 179, 0.3);
+    --ph-bg: #1a3b47;
+    --ph-line: rgba(87, 162, 157, 0.26);
+    --ph-edge: rgba(87, 162, 157, 0.3);
   }
 }
 
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --surface: #000000;
-  --surface-2: #1d1d1f;
-  --text-1: #f5f5f7;
-  --text-2: #98989d;
-  --line: rgba(255, 255, 255, 0.14);
+  --surface: #0d2f40; /* Deep Maritime */
+  --surface-2: #263d46; /* Steel Depth */
+  --text-1: #f5f6f3; /* Soft Ivory */
+  --text-2: #9fb0b3;
+  --line: rgba(220, 229, 229, 0.16);
 
-  --tint-a: #06211f;
-  --tint-b: #041a19;
-  --tint-c: #072e2b;
-  --tint-d: #05211f;
+  --tint-a: #0f3345;
+  --tint-b: #0c2b3a;
+  --tint-c: #16404f;
+  --tint-d: #0e3042;
 
-  --ph-bg: #16211f;
-  --ph-line: rgba(2, 193, 179, 0.26);
-  --ph-edge: rgba(2, 193, 179, 0.3);
+  --ph-bg: #1a3b47;
+  --ph-line: rgba(87, 162, 157, 0.26);
+  --ph-edge: rgba(87, 162, 157, 0.3);
 }
 
 @theme inline {
@@ -83,9 +93,12 @@
   --color-text-2: var(--text-2);
   --color-line: var(--line);
 
+  /* Gotham for text, Conthrax for display, Asen Pro for the small caps. */
   --font-sans:
-    -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto,
+    var(--font-body), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Helvetica, Arial, sans-serif;
+  --font-display: var(--font-display-face), var(--font-sans);
+  --font-accent: var(--font-accent-face), var(--font-sans);
 
   /* Apple type scale: caption 13, body 17, title 32, hero 48. */
   --text-xs: 13px;
@@ -105,6 +118,24 @@ body {
   color: var(--text-1);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+}
+
+/*
+ * Brand typography. Conthrax carries the headings; it is a wide face, so it
+ * runs with slightly tighter tracking and no extra weight (SemiBold is the
+ * only cut supplied). Asen Pro takes the letterspaced eyebrows and labels.
+ */
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+.font-accent {
+  font-family: var(--font-accent);
+  font-weight: 500;
 }
 
 /*
@@ -232,14 +263,14 @@ html {
 }
 /* Accessible teal text; backgrounds retain the original brand color. */
 :root {
-  --brand-text: #007e75;
+  --brand-text: #3a7a7c;
 }
 :root[data-theme="dark"] {
-  --brand-text: #02c1b3;
+  --brand-text: #57a29d;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --brand-text: #02c1b3;
+    --brand-text: #57a29d;
   }
 }
 .text-brand {
@@ -255,8 +286,25 @@ html {
   }
 }
 
-[data-brand-mark] .text-brand {
-  color: var(--brand);
+/* Brand mark: the wordmark is near-black artwork, so it needs the white
+   colourway once the surface behind it goes dark. Same three states as the
+   theme tokens above. */
+[data-mark-dark] {
+  display: none;
+}
+:root[data-theme="dark"] [data-mark-light] {
+  display: none;
+}
+:root[data-theme="dark"] [data-mark-dark] {
+  display: contents;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) [data-mark-light] {
+    display: none;
+  }
+  :root:not([data-theme="light"]) [data-mark-dark] {
+    display: contents;
+  }
 }
 
 /* Sector cards: the reference's soft raised surface, scoped to this section. */
@@ -440,26 +488,43 @@ html {
   }
 }
 
-/* Equal-width copies make the final frame identical to the first. */
-/* Client logos on the home page: a still, centred row. */
+/* Client logos on the home page: a marquee that only runs while the band is
+   on screen, so nobody arrives to a row already halfway through its loop.
+   Two copies of the roster slide one copy's width, which lands the last frame
+   on the first: -50% is half of (2 copies + the gap between them), so it
+   overshoots by half a gap and the keyframe takes that back. */
+.client-strip {
+  --mq-gap: clamp(16px, 2vw, 28px);
+  overflow: hidden;
+  padding: 4px 0;
+  /* Fade the logos out at the gutters instead of cutting them off. */
+  mask: linear-gradient(
+    to right,
+    transparent,
+    #000 48px,
+    #000 calc(100% - 48px),
+    transparent
+  );
+}
 .client-strip-row {
   display: flex;
   flex-wrap: nowrap;
-  justify-content: flex-start;
-  gap: 24px;
-  overflow-x: auto;
-  padding: 4px;
-  scrollbar-width: none;
+  gap: var(--mq-gap);
+  width: max-content;
+  animation: client-marquee 48s linear infinite;
+  animation-play-state: paused;
 }
-.client-strip-row::-webkit-scrollbar {
-  display: none;
+.client-strip.is-running .client-strip-row {
+  animation-play-state: running;
 }
-@media (min-width: 1024px) {
+@keyframes client-marquee {
+  to {
+    transform: translateX(calc(-50% - var(--mq-gap) / 2));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
   .client-strip-row {
-    /* Eight logos fit the container, so centre them and stop scrolling. */
-    justify-content: center;
-    overflow-x: visible;
-    gap: clamp(16px, 2vw, 28px);
+    animation: none;
   }
 }
 

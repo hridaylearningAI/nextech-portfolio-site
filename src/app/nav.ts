@@ -75,10 +75,12 @@ export const COMPANY = {
   phone: "+971 2 446 1080",
   phoneHref: "tel:+97124461080",
   email: "info@nextechgt.ae",
+  /** Applications go to reception rather than the general inbox. */
+  careersEmail: "reception@nextechgt.ae",
   site: "www.nextechgt.ae",
   addressShort: "Global Tower, Electra Street, Abu Dhabi, United Arab Emirates",
   addressLines: [
-    "Nextech General Trading L.L.C – O.P.C",
+    "Nextech Energy Development",
     "8th Floor, Office #802",
     "Global Tower, Electra Street",
     "PO Box 30080 Abu Dhabi",
@@ -86,7 +88,7 @@ export const COMPANY = {
   ],
   hours: ["8:00am – 5:00pm ( Mon – Fri )", "Sat & Sun Closed"],
   blurb:
-    "Nextech General Trading based in the dynamic heart of the United Arab Emirates, is a trusted name in the world of Oil and Gas trading. With a decade of dedicated service, we deliver excellence, safety, and sustainability, contributing to the growth and prosperity of the United Arab Emirates.",
+    "Nextech Energy Development based in the dynamic heart of the United Arab Emirates, is a trusted name in the world of Oil and Gas trading. With a decade of dedicated service, we deliver excellence, safety, and sustainability, contributing to the growth and prosperity of the United Arab Emirates.",
 } as const;
 
 /** The three divisions — these are the site's Quick Links too. */

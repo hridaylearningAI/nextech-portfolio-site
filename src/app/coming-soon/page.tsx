@@ -6,9 +6,9 @@ import NewsletterForm from "../newsletter-form";
 import { Logo } from "../ui";
 
 export const metadata: Metadata = {
-  title: "Nextech General Trading - Something's coming up",
+  title: "Nextech Energy Development - Something's coming up",
   description:
-    "Nextech General Trading supplies the Oil and Gas, Refinery and Power generation sectors across the United Arab Emirates. A new identity, a bigger vision — launching soon.",
+    "Nextech Energy Development supplies the Oil and Gas, Refinery and Power generation sectors across the United Arab Emirates. A new identity, a bigger vision — launching soon.",
 };
 
 export default function ComingSoon() {
@@ -31,7 +31,7 @@ export default function ComingSoon() {
       <div className="fixed inset-0 -z-20 bg-gradient-to-b from-ink/80 via-ink/88 to-ink" />
       <div
         aria-hidden
-        className="fixed top-[-25%] right-[-10%] -z-10 size-[48rem] rounded-full bg-[radial-gradient(circle,rgba(2,193,179,0.22),transparent_62%)]"
+        className="fixed top-[-25%] right-[-10%] -z-10 size-[48rem] rounded-full bg-[radial-gradient(circle,rgba(87,162,157,0.22),transparent_62%)]"
       />
 
       {/* ── Masthead ───────────────────────────────────────── */}
@@ -75,7 +75,7 @@ export default function ComingSoon() {
         {/* ── Keep in touch ────────────────────────────────── */}
         <section
           data-reveal
-          className="mt-10 grid gap-6 rounded-[22px] bg-gradient-to-r from-[#0d2a36] via-[#0a1f2b] to-ink p-7 ring-1 ring-white/10 sm:p-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center"
+          className="mt-10 grid gap-6 rounded-[22px] bg-gradient-to-r from-[#0d2235] via-[#194756] to-ink p-7 ring-1 ring-white/10 sm:p-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center"
         >
           <div>
             <h2 className="text-xl font-bold tracking-tight sm:text-2xl">
@@ -125,8 +125,8 @@ export default function ComingSoon() {
 
       <footer className="site-container flex flex-col gap-3 border-t border-white/10 py-7 text-xs text-white/45 sm:flex-row sm:items-center sm:justify-between">
         <p>
-          &copy; {new Date().getFullYear()} Nextech General Trading. All rights
-          reserved.
+          &copy; {new Date().getFullYear()} Nextech Energy Development. All
+          rights reserved.
         </p>
         <p className="flex items-center gap-5">
           {SOCIALS.map(({ name, href }) => (
