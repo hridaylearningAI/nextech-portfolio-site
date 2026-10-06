@@ -4,9 +4,9 @@ import ReviewForm from "../review-form";
 import { CtaBand, Photo, SectionHead } from "../ui";
 
 export const metadata: Metadata = {
-  title: "Clients - Nextech Energy Development",
+  title: "Clients - Nextech Energy",
   description:
-    "The operators, utilities and industrial groups who buy from Nextech Energy Development.",
+    "The operators, utilities and industrial groups who buy from Nextech Energy.",
 };
 
 export default function IndustriesClients() {
@@ -67,7 +67,7 @@ export default function IndustriesClients() {
               eyebrow="Testimonials"
               title="Worked with us?"
               accent="Tell us how it went."
-              copy="Please rate us below. Nextech Energy Development thanks you for accompanying us over the past years; let's grow together."
+              copy="Please rate us below. Nextech Energy thanks you for accompanying us over the past years; let's grow together."
             />
           </div>
           <div

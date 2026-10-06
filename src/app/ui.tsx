@@ -78,7 +78,7 @@ export function Logo({
             ? "/logos/nextech-logo-white.svg"
             : "/logos/nextech-logo.svg"
       }
-      alt="Nextech Energy Development"
+      alt="Nextech Energy"
       className="h-9 w-auto"
     />
   );
@@ -207,11 +207,11 @@ export function CtaBand() {
         >
           <div>
             <h2 className="text-xl font-semibold text-white">
-              Let&apos;s build the future together
+              Stay Connected with Nextech
             </h2>
             <p className="mt-2 text-sm text-white/70">
-              Partner with Nextech Energy Development for reliable solutions
-              tailored to your business needs.
+              Get the latest news, industry insights, and updates delivered
+              straight to your inbox.
             </p>
           </div>
           <NewsletterForm variant="cta" />

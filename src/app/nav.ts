@@ -80,7 +80,7 @@ export const COMPANY = {
   site: "www.nextechgt.ae",
   addressShort: "Global Tower, Electra Street, Abu Dhabi, United Arab Emirates",
   addressLines: [
-    "Nextech Energy Development",
+    "Nextech Energy Development L.L.C - O.P.C",
     "8th Floor, Office #802",
     "Global Tower, Electra Street",
     "PO Box 30080 Abu Dhabi",
@@ -88,7 +88,7 @@ export const COMPANY = {
   ],
   hours: ["8:00am – 5:00pm ( Mon – Fri )", "Sat & Sun Closed"],
   blurb:
-    "Nextech Energy Development based in the dynamic heart of the United Arab Emirates, is a trusted name in the world of Oil and Gas trading. With a decade of dedicated service, we deliver excellence, safety, and sustainability, contributing to the growth and prosperity of the United Arab Emirates.",
+    "Nextech Energy based in the dynamic heart of the United Arab Emirates, is a trusted name in the world of Oil and Gas trading. With a decade of dedicated service, we deliver excellence, safety, and sustainability, contributing to the growth and prosperity of the United Arab Emirates.",
 } as const;
 
 /** The three divisions — these are the site's Quick Links too. */
@@ -135,7 +135,7 @@ export const SOCIALS = [
 export const HOME_CLIENTS = [
   ["ADNOC", "adnoc"],
   ["ENEC", "emirates-nuclear-energy-corporation"],
-  ["TAQA", "taqa"],
+  ["TAQA", "taqa-primary"],
   ["Borouge", "borouge"],
   ["Fertil", "fertil"],
   ["NMDC", "nmdc"],
@@ -152,14 +152,12 @@ export const CLIENTS = [
   ["ADNOC", "adnoc"],
   ["ENEC", "emirates-nuclear-energy-corporation"],
   ["ENOQ", "enoc"],
-  ["TAQA", "taqa"],
+  ["TAQA", "taqa-primary"],
   ["Borouge", "borouge"],
   ["Fertil", "fertil"],
   ["TA'ZIZ", "taziz"],
   ["Emirates Steel", "emirates-steel"],
-  ["Dana Steel", "dana-steel"],
   ["Emirates Global Aluminium", "ega"],
-  ["ADDC", "abu-dhabi-distribution-company"],
   ["SNOC", "snoc"],
   ["Dragon Oil", "dragon-oil"],
   ["Emirates Cement", "emirates-cement"],
@@ -181,6 +179,9 @@ export const CLIENTS = [
   ["Wison", "wison"],
   ["Technip Energies", "technip-energies"],
   ["Tecnimont", "tecnimont"],
+  ["Técnicas Reunidas", "tecnicas-reunidas"],
+  ["Archirodon", "archirodon"],
+  ["CC7", "cc7"],
 ] as const;
 
 /**
@@ -199,6 +200,10 @@ export const COUNTRIES = [
   ["Australia", "au", -35.2809, 149.13],
   ["Poland", "pl", 52.2297, 21.0122],
   ["Turkey", "tr", 39.9334, 32.8597],
+  ["Indonesia", "id", -6.2088, 106.8456],
+  ["South Africa", "za", -25.7479, 28.2293],
+  ["South Korea", "kr", 37.5665, 126.978],
+  ["Brazil", "br", -15.7939, -47.8828],
 ] as const;
 
 /**

@@ -5,7 +5,7 @@ import { Logo } from "../ui";
 import UnlockForm from "./unlock-form";
 
 export const metadata: Metadata = {
-  title: "Preview access - Nextech Energy Development",
+  title: "Preview access - Nextech Energy",
   robots: { index: false, follow: false },
 };
 
@@ -20,8 +20,8 @@ export default function Unlock() {
         <Logo onDark />
         <h1 className="mt-10 text-3xl font-bold text-white">Site preview</h1>
         <p className="mt-3 text-sm leading-relaxed text-white/65">
-          The new Nextech Energy Development website is still being built. Enter
-          the password to look around.
+          The new Nextech Energy website is still being built. Enter the
+          password to look around.
         </p>
 
         <Suspense fallback={null}>

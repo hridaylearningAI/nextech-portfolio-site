@@ -22,7 +22,7 @@ export function getMailConfig() {
     apiKey: requiredEnv("RESEND_API_KEY"),
     from:
       process.env.RESEND_FROM_EMAIL?.trim() ||
-      "Nextech Energy Development <hello@updates.nextechgt.ae>",
+      "Nextech Energy <hello@updates.nextechgt.ae>",
     to: process.env.RESEND_TO_EMAIL?.trim() || COMPANY.email,
     /** Applications go to reception, not the general inbox. */
     careersTo: process.env.RESEND_CAREERS_EMAIL?.trim() || COMPANY.careersEmail,
@@ -245,7 +245,7 @@ function layout({
         <tr><td bgcolor="${C.ink}" class="px" style="padding:26px 40px">
           <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
             <td valign="middle">
-              <img src="${SITE_URL}/email/logo.png" width="170" height="40" alt="Nextech Energy Development" style="display:block;width:170px;height:40px;border:0;outline:none;text-decoration:none">
+              <img src="${SITE_URL}/email/logo.png" width="170" height="40" alt="Nextech Energy" style="display:block;width:170px;height:40px;border:0;outline:none;text-decoration:none">
             </td>
             <td align="right" valign="middle" style="font-family:${FONT};font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#7f9398">Oil &middot; Gas &middot; Power</td>
           </tr></table>
@@ -389,7 +389,7 @@ function contactPair(data: ContactPayload): Pair {
         ["Email", data.email],
         ["Message", data.message],
       ],
-      replySubject: "Re: Your enquiry to Nextech Energy Development",
+      replySubject: "Re: Your enquiry to Nextech Energy",
     }),
     confirmSubject: `Thanks ${first} — we've received your enquiry`,
     confirmHtml: layout({
@@ -445,7 +445,7 @@ function partnerPair(data: PartnerPayload): Pair {
         ["Location", data.location ?? ""],
         ["Business, products & services", data.description ?? ""],
       ],
-      replySubject: "Re: Partnering with Nextech Energy Development",
+      replySubject: "Re: Partnering with Nextech Energy",
     }),
     confirmSubject: `${first}, thank you for your interest in partnering with Nextech`,
     confirmHtml: layout({
@@ -522,7 +522,7 @@ function reviewPair(data: ReviewPayload): Pair {
       )}
         <div style="margin-top:28px">${quote(data.review, data.heading)}</div>
         ${para(
-          "Thank you for trusting Nextech Energy Development. We look forward to continuing to support your operations.",
+          "Thank you for trusting Nextech Energy. We look forward to continuing to support your operations.",
           { top: 28 },
         )}
         ${button("See who we work with", `${SITE_URL}/clients`)}
@@ -542,7 +542,7 @@ function newsletterPair(data: NewsletterPayload): Pair {
       name: data.email,
       email: data.email,
       rows: [["Email", data.email]],
-      replySubject: "Welcome to Nextech Energy Development updates",
+      replySubject: "Welcome to Nextech Energy updates",
     }),
     confirmSubject: "Welcome aboard — you're subscribed to Nextech updates",
     confirmHtml: layout({
@@ -601,7 +601,7 @@ function careersPair(data: CareersPayload): Pair {
         ["Contact", data.contact ?? ""],
         ...rows,
       ],
-      replySubject: `Your application to Nextech Energy Development — ${data.role}`,
+      replySubject: `Your application to Nextech Energy — ${data.role}`,
     }),
     confirmSubject: `${first}, we've received your application`,
     confirmHtml: layout({

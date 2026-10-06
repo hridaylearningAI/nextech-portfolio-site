@@ -42,9 +42,10 @@ export default function Home() {
               Five Product Divisions, One Standard
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-text-2">
-              Mechanical and flow control, electrical, instrumentation, heavy
-              process equipment and chemicals, supplied with the technical
-              expertise of the principals we represent.
+              Our diverse portfolio is strategically organized across five
+              product divisions, each managed by dedicated teams with in-depth
+              technical expertise to deliver the right solutions and value to
+              our clients.
             </p>
           </div>
           <SectorSlider />
@@ -82,7 +83,7 @@ export default function Home() {
               and Responsible Tomorrow
             </h2>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-text-2">
-              With a decade of dedicated service, we deliver excellence, safety,
+              With years of dedicated experience, we deliver excellence, safety,
               and sustainability, contributing to the growth and prosperity of
               the United Arab Emirates.
             </p>

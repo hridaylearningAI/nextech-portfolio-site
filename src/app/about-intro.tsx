@@ -23,9 +23,7 @@ export default function AboutIntro() {
           <div className="absolute top-1/3 left-0 flex items-stretch gap-4 pl-6 sm:pl-8">
             <span className="w-px shrink-0 bg-white/35" />
             <p className="text-[10px] font-semibold uppercase leading-[2] tracking-[0.22em] text-white sm:text-[11px]">
-              Global
-              <br />
-              Partnerships
+              Global Partnerships
               <br />
               Local Impact
             </p>
@@ -37,7 +35,7 @@ export default function AboutIntro() {
               <span className="text-brand not-italic">&rdquo;</span>
             </blockquote>
             <figcaption className="mt-5 text-[10px] font-semibold tracking-[0.18em] text-white/70 uppercase">
-              Nextech Energy Development
+              Nextech Energy
             </figcaption>
           </figure>
         </div>
@@ -49,9 +47,9 @@ export default function AboutIntro() {
             for a Stronger Tomorrow
           </h2>
           <p className="mt-5 max-w-md text-sm leading-relaxed text-text-2">
-            Nextech Energy Development is at the heart of the United Arab
-            Emirates, connecting global industries with reliable solutions. We
-            are driven by a commitment to quality, sustainability and long-term
+            Nextech Energy is at the heart of the United Arab Emirates,
+            connecting global industries with reliable solutions. We are driven
+            by a commitment to quality, sustainability and long-term
             partnerships that support progress across energy, infrastructure and
             industrial development.
           </p>

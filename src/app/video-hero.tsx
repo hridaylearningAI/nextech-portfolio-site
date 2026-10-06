@@ -48,7 +48,7 @@ export default function VideoHero() {
       {/* ── Mark, top-left of the screen ───────────────────────── */}
       <Link
         href="/"
-        aria-label="Nextech Energy Development, home"
+        aria-label="Nextech Energy, home"
         data-intro
         className="absolute top-7 left-6 sm:top-8 sm:left-10"
       >

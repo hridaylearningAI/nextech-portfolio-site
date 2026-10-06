@@ -30,9 +30,9 @@ export default function IndustriesSection({
               Solutions for Every Industrial Sector
             </h2>
             <p className="mt-4 max-w-lg text-sm leading-relaxed text-text-2">
-              We proudly represent manufacturers from both upstream and
-              downstream sectors, serving as a trusted partner in the dynamic
-              world of energy and industry.
+              We serve a diverse range of industries with engineered products,
+              technical solutions, and industry expertise tailored to the
+              specific requirements of our clients.
             </p>
           </div>
           <Link

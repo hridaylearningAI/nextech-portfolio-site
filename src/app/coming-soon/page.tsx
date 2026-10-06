@@ -5,9 +5,9 @@ import { COMPANY, SOCIALS } from "../nav";
 import NewsletterForm from "../newsletter-form";
 
 export const metadata: Metadata = {
-  title: "Nextech Energy Development - Something's coming up",
+  title: "Nextech Energy - Something's coming up",
   description:
-    "Nextech Energy Development supplies the Oil and Gas, Refinery and Power generation sectors across the United Arab Emirates. A new identity, a bigger vision — launching soon.",
+    "Nextech Energy supplies the Oil and Gas, Refinery and Power generation sectors across the United Arab Emirates. A new identity, a bigger vision — launching soon.",
 };
 
 export default function ComingSoon() {
@@ -133,8 +133,7 @@ export default function ComingSoon() {
 
       <footer className="site-container flex flex-col gap-3 border-t border-white/10 py-7 text-xs text-white/45 sm:flex-row sm:items-center sm:justify-between">
         <p>
-          &copy; {new Date().getFullYear()} Nextech Energy Development. All
-          rights reserved.
+          &copy; {new Date().getFullYear()} Nextech Energy. All rights reserved.
         </p>
         <p className="flex items-center gap-5">
           {SOCIALS.map(({ name, href }) => (

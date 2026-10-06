@@ -5,7 +5,7 @@ import { SERVICES, slugify } from "../nav";
 import { Arrow, CtaBand, Photo, SectionHead } from "../ui";
 
 export const metadata: Metadata = {
-  title: "Services - Nextech Energy Development",
+  title: "Services - Nextech Energy",
   description:
     "Civil and mechanical works, electrical and power systems, instrumentation and control, engineering, consultancy and project management across the United Arab Emirates.",
 };

@@ -1,7 +1,7 @@
 import { Symbol, SOCIAL_ICONS } from "./icons";
 import Link from "next/link";
 import NewsletterForm from "./newsletter-form";
-import { COMPANY, DIVISIONS, INDUSTRIES, NAV_FLAT, SOCIALS } from "./nav";
+import { COMPANY, INDUSTRIES, NAV_FLAT, SOCIALS } from "./nav";
 import { Logo } from "./ui";
 
 export default function SiteFooter() {
@@ -99,26 +99,11 @@ export default function SiteFooter() {
               Subscribe to our Newsletter &amp; Event right now to be updated.
             </p>
             <NewsletterForm />
-            <h3 className="mt-8 text-sm font-semibold text-text-1">
-              Product Divisions
-            </h3>
-            <ul className="mt-5 space-y-3">
-              {DIVISIONS.map(([label]) => (
-                <li key={label}>
-                  <Link
-                    href="/supplies"
-                    className="text-xs text-text-2 hover:text-brand"
-                  >
-                    {label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
 
         <div className="flex flex-col gap-3 border-t border-line py-6 text-xs text-text-2 sm:flex-row sm:items-center sm:justify-between">
-          <p>© 2026 Nextech Energy Development. All Rights Reserved.</p>
+          <p>© 2026 Nextech Energy. All Rights Reserved.</p>
           <p className="flex items-center gap-3">
             <Link href="/terms" className="hover:text-brand">
               Terms of Service

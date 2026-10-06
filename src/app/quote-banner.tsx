@@ -39,11 +39,11 @@ export default function QuoteBanner() {
             Let&apos;s build a stronger tomorrow
           </p>
           <h2 className="mt-3 text-3xl leading-tight font-bold text-white sm:text-4xl">
-            Ready to Power What&apos;s Next?
+            Your Global Expansion Starts Here
           </h2>
           <p className="mt-4 text-sm leading-relaxed text-white/75">
-            Get in touch with our team for tailored solutions, competitive
-            pricing and expert support.
+            Partner with Nextech to access the UAE&rsquo;s growing energy market
+            through a trusted, scalable platform built for global manufacturers.
           </p>
         </div>
 

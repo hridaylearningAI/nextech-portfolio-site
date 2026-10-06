@@ -3,9 +3,8 @@ import { COMPANY } from "../nav";
 import { CtaBand, LegalBody, PageHero, type LegalSection } from "../ui";
 
 export const metadata: Metadata = {
-  title: "Terms of Service - Nextech Energy Development",
-  description:
-    "The terms governing your use of the Nextech Energy Development website.",
+  title: "Terms of Service - Nextech Energy",
+  description: "The terms governing your use of the Nextech Energy website.",
 };
 
 const UPDATED = "3 September 2026";
@@ -14,14 +13,14 @@ const SECTIONS: LegalSection[] = [
   {
     heading: "Agreement to these terms",
     body: [
-      `These Terms of Service govern your access to and use of the website operated by ${COMPANY.addressLines[0]} ("Nextech Energy Development", "we", "us" or "our"), together with any content, functionality and services offered on or through it.`,
+      `These Terms of Service govern your access to and use of the website operated by ${COMPANY.addressLines[0]} ("Nextech Energy", "we", "us" or "our"), together with any content, functionality and services offered on or through it.`,
       "By accessing or using this website you confirm that you accept these terms and agree to be bound by them. If you do not agree, please do not use this website.",
     ],
   },
   {
     heading: "Who we are and how to contact us",
     body: [
-      `Nextech Energy Development is registered in the United Arab Emirates and operates from ${COMPANY.addressShort}.`,
+      `Nextech Energy is registered in the United Arab Emirates and operates from ${COMPANY.addressShort}.`,
       `You can reach us by telephone on ${COMPANY.phone} or by email at ${COMPANY.email}. Our working hours are ${COMPANY.hours[0]}.`,
     ],
   },

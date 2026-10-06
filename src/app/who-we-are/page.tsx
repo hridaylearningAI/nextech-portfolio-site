@@ -7,9 +7,9 @@ import { Arrow, CtaBand, Eyebrow, SectionHead } from "../ui";
 import VideoBanner from "./video-banner";
 
 export const metadata: Metadata = {
-  title: "Who We Are - Nextech Energy Development",
+  title: "Who We Are - Nextech Energy",
   description:
-    "Nextech Energy Development delivers top-quality products and services to the Oil and Gas, Refinery, and Power generation sectors in the United Arab Emirates.",
+    "Nextech Energy delivers top-quality products and services to the Oil and Gas, Refinery, and Power generation sectors in the United Arab Emirates.",
 };
 
 const WHO_WE_ARE = [
@@ -34,7 +34,7 @@ const CREDENTIALS: [string, string, string, string][] = [
   [
     "ICV Certified",
     "Supplier",
-    "Committed to increasing local value and supporting United Arab Emirates objectives.",
+    "Aligned with the UAE’s vision to drive industrial growth, localization, and economic diversification.",
     "/logos/icv.webp",
   ],
   [

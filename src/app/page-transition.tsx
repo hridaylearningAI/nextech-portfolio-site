@@ -423,7 +423,7 @@ export default function PageTransition() {
             className="font-accent text-[11px] tracking-[0.28em] text-white/55 uppercase"
             style={{ visibility: "hidden", opacity: 0 }}
           >
-            Nextech Energy Development
+            Nextech Energy
           </p>
           {/* No React children: SplitText rewrites this node, and React must
               not own content that GSAP replaces. Text is set imperatively.

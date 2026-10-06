@@ -9,7 +9,7 @@ import SiteFooter from "./site-footer";
 import SiteHeader from "./site-header";
 
 export const metadata: Metadata = {
-  title: "Nextech Energy Development - Fueling Industries. Powering Tomorrow.",
+  title: "Nextech Energy - Fueling Industries. Powering Tomorrow.",
   description:
     "Delivering top-quality products and services to the Oil and Gas, Refinery, and Power generation sectors in the United Arab Emirates.",
 };
