@@ -97,7 +97,7 @@ export default function GlobalReach() {
           </h2>
           <p className="mt-4 max-w-md text-sm leading-relaxed text-text-2">
             Every route leads back to our head office in Abu Dhabi, where we
-            work with supplies across Europe, Asia, the Gulf, Australia and the
+            work with suppliers across Europe, Asia, the Gulf, Australia and the
             Americas.
           </p>
 

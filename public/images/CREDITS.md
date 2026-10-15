@@ -1,5 +1,9 @@
 # Photo credits
 
+## Engineer wordmark update — October 15, 2026
+
+- `nextech-engineer-refinery-wordmark.webp` — existing illustrative engineer scene edited with built-in OpenAI image generation to use the supplied NEXTECH ENERGY wordmark without the monogram. Prompt and reference assets: `design/engineer-wordmark-edit.json`. Original retained as `nextech-engineer-refinery.webp`.
+
 The original stock photographs below are from Pexels. Generated replacements are listed separately; original files are retained for reference.
 
 ## Generated replacements — September 18, 2026

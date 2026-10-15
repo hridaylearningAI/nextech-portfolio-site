@@ -15,7 +15,7 @@ export default function AboutIntro() {
       <div className="site-container grid gap-12 lg:grid-cols-12 lg:gap-0">
         <div data-reveal className="relative lg:col-span-5">
           <Photo
-            src="/images/nextech-engineer-refinery.webp"
+            src="/images/nextech-engineer-refinery-wordmark.webp"
             alt="A Nextech engineer in branded coveralls looking across a refinery"
             className="aspect-[3/2] w-full"
           />

@@ -33,7 +33,7 @@ export const STATS = [
   ["30+", "Global Partners", "handshake"],
   ["300+", "Approved Products", "certificate"],
   ["5", "Core Divisions", "cog"],
-  ["24hr", "Response", "clock"],
+  ["360°", "360° solutions. Zero compromise", "globe"],
   ["100%", "Commitment to Quality", "shield"],
 ] as const;
 
@@ -88,7 +88,7 @@ export const COMPANY = {
   ],
   hours: ["8:00am – 5:00pm ( Mon – Fri )", "Sat & Sun Closed"],
   blurb:
-    "Nextech Energy based in the dynamic heart of the United Arab Emirates, is a trusted name in the world of Oil and Gas trading. With a decade of dedicated service, we deliver excellence, safety, and sustainability, contributing to the growth and prosperity of the United Arab Emirates.",
+    "Nextech Energy, based in the heart of the United Arab Emirates, supplies engineered products and dependable services across multiple industries. With a decade of dedicated service, we deliver excellence, safety, and sustainability, contributing to the growth and prosperity of the United Arab Emirates.",
 } as const;
 
 /** The three divisions — these are the site's Quick Links too. */

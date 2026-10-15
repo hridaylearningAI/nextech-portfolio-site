@@ -23,9 +23,10 @@ export default function Careers() {
               accent="details."
             />
             <p className="mt-6 text-sm leading-relaxed text-text-2">
-              Share a link to your CV if you have one to hand. If not, submit
-              the form and reply to the confirmation email with your CV attached
-              — it reaches the same team.
+              Interested in joining Nextech? Submit your CV to be considered for
+              current and future career opportunities. Alternatively, you may
+              simply complete our application form to share your details and
+              qualifications with us.
             </p>
           </div>
           <div

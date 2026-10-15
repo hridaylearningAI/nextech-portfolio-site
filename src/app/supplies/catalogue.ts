@@ -15,9 +15,9 @@ import { DIVISIONS } from "../nav";
  *   Chemicals & Safety Equipment         <- Chemicals & Process Materials
  *                                           + Safety, Infrastructure & General Industrial
  *
- * Product names are transcribed as given, except that the en-dash separators
- * are normalised to hyphens and exact duplicates within a single category are
- * dropped. Items that appear in two different categories are kept in both.
+ * Repeated products are listed in one primary category. Overlapping variants
+ * are consolidated while retaining their connection types, materials and
+ * standards so the catalogue stays concise without losing product coverage.
  */
 export type Category = { name: string; items: readonly string[] };
 
@@ -31,39 +31,26 @@ const CATEGORIES: readonly (readonly Category[])[] = [
         "Actuators - Hydro-Electric",
         "Actuators - Pneumatic",
         "Angle Pattern Globe Valves",
-        "Ball Valves - Flanged, Socket Weld, Butt Weld & Threaded",
-        "Butt Weld Globe Valves - ANSI/MSS/API/BS",
-        "Check Valves - Flanged, Socket Weld, Butt Weld & Threaded",
-        "Check Valve - Butt Weld",
-        "ESD & HIPPS Valves",
-        "Flanged Ball Valves",
-        "Flanged Gate Valves",
-        "Gate Valves - Flanged, Socket Weld, Butt Weld & Threaded",
-        "Globe Valves - Flanged, Socket Weld, Butt Weld & Threaded",
+        "Ball Valves - Flanged, Socket Weld, Butt Weld & Threaded - API 6D / API 6A / BS EN 17292",
+        "Globe Valves - Flanged, Socket Weld, Butt Weld & Threaded - ANSI / MSS / API / BS / API 6A",
+        "Check Valves - Flanged, Socket Weld, Butt Weld & Threaded - API",
+        "Emergency Shutdown (ESD), Tight Shut-Off & HIPPS Valves",
+        "Gate Valves - Flanged, Socket Weld, Butt Weld & Threaded - API 6A",
         "Motor Operated Valves",
         "Needle Valves",
-        "Emergency Shutdown (ESD) / Tight Shut-Off Valves",
         "Low Noise Valve Control",
         "Valve Manifolds - For Instruments",
         "Valve Positioners",
         "Valve Automation / Actuator Control Systems",
-        "Ball Valves - API 6D",
-        "Ball Valves - API 6A",
-        "Ball Valves - BS EN 17292",
         "Special / Non-Standard Ball Valves",
         "Butterfly Valves - API 609 / BS EN 593",
         "Triple Offset Butterfly Valves",
-        "Check Valves - API",
         "Choke Valves - Adjustable & Positive",
         "Double Block & Bleed Valves - API",
         "Plug Valves - API",
         "Safety Relief Valves",
         "Inside BOP Valves",
-        "API 6A Gate Valves",
-        "API 6A Globe Valves",
-        "Process Plant Ball Valves",
         "Wafer Type Ball Valves",
-        "Socket Weld Ball Valves",
       ],
     },
     {
@@ -73,11 +60,9 @@ const CATEGORIES: readonly (readonly Category[])[] = [
         "Pipes - Special Alloys - All Sizes",
         "Pipes - Stainless Steel",
         "Fittings for Pipes - CS/AS/SS - BW, SW & Threaded",
-        "Fittings for Pipes - CS/AS/SS - SW & Screw",
-        "Fittings for Tubes - Compression Type",
+        "Compression Fittings & Adaptors for Instrument Tubing",
         "Flanges for Pipes - CS/AS/SS",
         "API Flanges / Adapter Type / Studded / Wellhead",
-        "Compression Fittings / Adaptors for Instrument Tubing",
         "Instrument Tubing",
         "Tube - All Metals for General Use",
         "Union, Wing & Accessories",
@@ -129,8 +114,7 @@ const CATEGORIES: readonly (readonly Category[])[] = [
         "Earthing Materials",
         "Emergency Lights - Self Contained",
         "Lamps - For Indication",
-        "Lamps - Fluorescent / CFL / Incandescent",
-        "Lamps / Floodlights - All Types",
+        "Lamps & Floodlights - Including Fluorescent, CFL & Incandescent",
         "Light Fittings - Safe Area",
         "Light Fittings - Explosion Proof",
         "Motors - Electric LV - Up to 415V",
@@ -174,10 +158,8 @@ const CATEGORIES: readonly (readonly Category[])[] = [
       items: [
         "Air Coolers - Finned Tube",
         "Heat Exchangers - Shell & Tube",
-        "Tube Bundles - For Heat Exchangers & Coolers",
-        "Tube Bundles for Heat Exchangers - All Metals",
-        "Tubes - For Heat Exchangers, Coolers & Boilers",
-        "Tubes - SS / Alloy Steel Seamless & Welded",
+        "Tube Bundles - For Heat Exchangers & Coolers - All Metals",
+        "Tubes - For Heat Exchangers, Coolers & Boilers - Stainless / Alloy Steel, Seamless & Welded",
         "Waste Heat Recovery Systems",
       ],
     },
@@ -204,19 +186,6 @@ const CATEGORIES: readonly (readonly Category[])[] = [
         "Sunshades & Enclosures",
       ],
     },
-    {
-      name: "Pumps & Process Packages",
-      items: [
-        "Fuel Gas Packages",
-        "Metering Skids - Liquids & Gases",
-        "Water Injection Packages",
-        "Pump Units for Pressure Testing / Equalising",
-        "Piston Pumps",
-        "Plunger Pumps",
-        "API Centrifugal Pumps",
-        "Reciprocating Pumps",
-      ],
-    },
   ],
   [
     {
@@ -237,7 +206,6 @@ const CATEGORIES: readonly (readonly Category[])[] = [
         "Materials for Coating Protection",
         "Wrapping Tape",
         "Welding & Coating Materials - Cold Type",
-        "Welding Electrodes & Related Requisites",
       ],
     },
     {
@@ -249,12 +217,6 @@ const CATEGORIES: readonly (readonly Category[])[] = [
         "Safety Consumables - First Aid, Flashlights, Masks, etc.",
         "Building Materials - Hardware",
         "Building Materials - Sanitary Ware & Fittings",
-        "Grating - Fiberglass",
-        "Grating - Steel",
-        "Handrail - GRP",
-        "Manhole Covers",
-        "Wire Mesh & Fencing Materials",
-        "General Use Materials & Requisites - Mechanical Workshop",
       ],
     },
   ],

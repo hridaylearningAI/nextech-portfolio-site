@@ -1,0 +1,10 @@
+{
+  "date": "2026-10-15",
+  "tool": "Built-in OpenAI image generation",
+  "prompt": "Use case: precise-object-edit. Image 1 is the edit target: engineer seen from behind at refinery. Image 2 is branding reference only. Replace ONLY the old mixed-case Nextech lettering on the back of the worker's navy coveralls with the exact stylized uppercase NEXTECH wordmark and smaller spaced ENERGY below, from the right-hand text portion of image 2. OMIT the ribbon-shaped monogram entirely. Preserve the angular custom letterforms, including the three-bar E styling; white/silver embroidery subtly conforming to the fabric folds and perspective. The wordmark should be legible, centred across upper back at approximately the old logo location and similar width or slightly wider. No patch rectangle. Preserve image 1's worker, pose, helmet, garment, reflective strips, refinery, lighting, colours, framing and 3:2 landscape aspect ratio. No other changes or added text.",
+  "inputs": [
+    "public/images/nextech-engineer-refinery.webp",
+    "brand/logos/png/secondary-2-horizontal-energy-right-reverse.png"
+  ],
+  "output": "public/images/nextech-engineer-refinery-wordmark.webp"
+}

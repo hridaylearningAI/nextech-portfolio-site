@@ -147,7 +147,7 @@ function quote(text: string, heading?: string) {
 /** Three headline figures from the site, in a band. */
 function statsBand() {
   const picks = STATS.filter(([, label]) =>
-    /partners|products|response/i.test(label),
+    /partners|products|solutions/i.test(label),
   ).slice(0, 3);
   const cells = picks
     .map(

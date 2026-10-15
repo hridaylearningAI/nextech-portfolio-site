@@ -48,7 +48,7 @@ const CREDENTIALS: [string, string, string, string][] = [
 const WHY: [string, string, IconName][] = [
   [
     "Industry Leadership",
-    "Over a decade of experience in the United Arab Emirates Oil, Gas, Petrochemical and Utilities sectors.",
+    "Over a decade of proven industry experience serving the UAE’s Oil & Gas, Petrochemical, and Utilities sectors.",
     "chart",
   ],
   [
@@ -58,7 +58,7 @@ const WHY: [string, string, IconName][] = [
   ],
   [
     "Experienced & Dedicated Team",
-    "Extensive experience in supplying products and services to various ADNOC fields, allowing our team to stay in constant contact with relevant site maintenance teams.",
+    "With extensive industry experience and a dedicated team, we maintain close engagement with end users across multiple sectors, enabling us to understand their evolving requirements and deliver reliable, fit-for-purpose solutions.",
     "user",
   ],
   [
@@ -68,12 +68,12 @@ const WHY: [string, string, IconName][] = [
   ],
   [
     "Market Insight & Growth Focus",
-    "West market and market intelligence keep us well informed about ADNOC market trends of potential projects and plans, helping our business partners plan and strategize effectively in the region.",
+    "Our market intelligence and forward-looking insights help anticipate industry needs, enabling our partners to plan strategically and stay aligned with future demands.",
     "trend",
   ],
   [
     "Regulatory & Documentation Support",
-    "Fast-track registration & prequalification support for manufacturers. We help and guide our principals in compiling documentation for ADNOC approvals in the quickest possible time frame.",
+    "We support manufacturers with registration, prequalification and documentation for end-user approvals across multiple industries.",
     "clipboard",
   ],
 ];
@@ -86,7 +86,7 @@ export default function WhoWeAre() {
         eyebrow="Who we are"
         title="Built on Trust."
         accent="Driven by Excellence."
-        copy="A trusted name in the world of Oil and Gas trading, based in the dynamic heart of the United Arab Emirates."
+        copy="A trusted provider of engineered products and integrated solutions across multiple industries, based in the United Arab Emirates."
       />
 
       {/* ── Who we are ─────────────────────────────────────── */}
@@ -138,7 +138,7 @@ export default function WhoWeAre() {
                 [
                   "Our Vision",
                   "eye",
-                  "To be a global leader in Oil and Gas trading, driving innovation and sustainable energy solutions.",
+                  "To be a leading multi-industry solutions provider, combining quality products, technical expertise, and dependable services to power progress and build lasting customer partnerships.",
                 ],
               ] as [string, IconName, string][]
             ).map(([label, icon, statement]) => (
@@ -225,12 +225,9 @@ export default function WhoWeAre() {
           </ul>
 
           <div className="mt-20">
-            <SectionHead
-              center
-              eyebrow="Why Nextech"
-              title="Why"
-              accent="Nextech"
-            />
+            <h2 data-reveal className="text-center text-3xl font-bold leading-tight text-text-1 sm:text-4xl">
+              Why Nextech
+            </h2>
             <ul className="mt-12 grid gap-x-12 md:grid-cols-2">
               {WHY.map(([title, copy, icon]) => (
                 <li

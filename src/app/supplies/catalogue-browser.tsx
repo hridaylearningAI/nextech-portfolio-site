@@ -8,7 +8,7 @@ import { Photo } from "../ui";
 import { divisionImage } from "../division-images";
 import { CATALOGUE, type Category } from "./catalogue";
 
-/** Categories longer than this start collapsed. Valves alone runs to 49. */
+/** Categories longer than this start collapsed. */
 const PREVIEW = 12;
 
 /**
@@ -18,7 +18,7 @@ const PREVIEW = 12;
  * Every product is in the server-rendered HTML whether a list is collapsed or
  * not, so search engines index the full catalogue. Collapsed items use the
  * hidden attribute rather than a visually-hidden class: a screen reader should
- * hear the same trimmed list a sighted visitor sees, not all 49 valves behind
+ * hear the same trimmed list a sighted visitor sees, not a long list of valves behind
  * a button that says "Show all". The search box covers finding anything.
  */
 export default function CatalogueBrowser() {
