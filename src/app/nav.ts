@@ -80,7 +80,7 @@ export const COMPANY = {
   site: "www.nextechgt.ae",
   addressShort: "Global Tower, Electra Street, Abu Dhabi, United Arab Emirates",
   addressLines: [
-    "Nextech Energy Development L.L.C - O.P.C",
+    "Nextech Energy Development L.L.C -S.P.C",
     "8th Floor, Office #802",
     "Global Tower, Electra Street",
     "PO Box 30080 Abu Dhabi",
