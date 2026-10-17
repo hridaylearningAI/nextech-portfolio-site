@@ -5,7 +5,7 @@ import { COMPANY, SOCIALS } from "../nav";
 import NewsletterForm from "../newsletter-form";
 
 export const metadata: Metadata = {
-  title: "Nextech Energy - Something's coming up",
+  title: "Nextech Energy - Somethings coming up",
   description:
     "Nextech Energy supplies the Oil and Gas, Refinery and Power generation sectors across the United Arab Emirates. A new identity, a bigger vision — launching soon.",
 };
@@ -69,7 +69,7 @@ export default function ComingSoon() {
             data-intro
             className="mt-6 text-[clamp(2rem,7.5vw,5.5rem)] leading-[1.02] font-bold"
           >
-            Something&apos;s coming up
+            Somethings coming up
           </h1>
 
           <div data-intro className="mt-7 flex items-center gap-5">
