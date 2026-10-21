@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { GlobeMarker } from "@/components/ui/3d-globe";
 import { COUNTRIES } from "./nav";
 
@@ -44,9 +44,12 @@ const flag = (code: string) => `/flags/${code}.svg`;
 const EUROPE = new Set(["es", "it", "gb", "pl", "tr"]);
 
 export default function GlobalReach() {
-  // The globe spins by default. Someone who asked for reduced motion should
-  // get a still Earth they can still drag, not a permanent animation.
-  const [spin, setSpin] = useState(0.3);
+  // Prefer spinning unless the user asked for reduced motion. Actual auto-
+  // rotate stays off until the section is on screen so the UAE hub is still
+  // centred when they arrive, rather than already mid-orbit.
+  const [preferSpin, setPreferSpin] = useState(true);
+  const [inView, setInView] = useState(false);
+  const globeRegionRef = useRef<HTMLDivElement>(null);
 
   // The globe is decoration: the list beside it carries every fact it plots.
   // Gating it at lg means phones never pay the ~600KB three.js download for a
@@ -58,7 +61,7 @@ export default function GlobalReach() {
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const wide = window.matchMedia("(min-width: 1024px)");
     const apply = () => {
-      setSpin(motion.matches ? 0 : 0.3);
+      setPreferSpin(!motion.matches);
       setShowGlobe(wide.matches);
     };
     apply();
@@ -69,6 +72,23 @@ export default function GlobalReach() {
       wide.removeEventListener("change", apply);
     };
   }, []);
+
+  useEffect(() => {
+    const node = globeRegionRef.current;
+    if (!showGlobe || !node) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) setInView(true);
+      },
+      // Start once a meaningful slice of the canvas is visible — not on the
+      // first pixel tip — so the hub reads as centred before orbit begins.
+      { threshold: 0.4 },
+    );
+    io.observe(node);
+    return () => io.disconnect();
+  }, [showGlobe]);
+
+  const spin = preferSpin && inView ? 0.3 : 0;
 
   const markers: GlobeMarker[] = useMemo(
     () =>
@@ -140,6 +160,7 @@ export default function GlobalReach() {
         {/* Decoration. Hidden from assistive tech: every country it plots is
             already in the list above, so announcing a canvas adds nothing. */}
         <div
+          ref={globeRegionRef}
           data-reveal
           className="hidden lg:col-span-7 lg:block"
           aria-hidden
@@ -163,7 +184,7 @@ export default function GlobalReach() {
                 autoRotateSpeed: spin,
                 arcColor: "#438b8d",
                 // Same switch as the rotation: reduced motion gets still arcs.
-                animateArcs: spin > 0,
+                animateArcs: preferSpin,
                 // Self-hosted and downscaled. Upstream's defaults are a
                 // 4096x2048 JPEG plus a 2048x1024 PNG on a third-party CDN,
                 // 1.8MB that took ~10s to arrive cold. These are 2048x1024 and
@@ -183,10 +204,10 @@ export default function GlobalReach() {
                 // revolution. Lift ambient enough that the facing side always reads.
                 ambientIntensity: 1.15,
                 pointLightIntensity: 1.1,
-                // Opens centred on Abu Dhabi (longitude -90 minus this angle in
-                // degrees), so the hub and the routes into it are the first
-                // thing on screen rather than an empty Pacific.
-                initialRotation: { x: 0, y: -2.53 },
+                // Keep the Earth mesh north-up. The camera opens on Abu Dhabi
+                // (see FrameHubCamera) so the UAE flag is centred without tilting
+                // the globe; auto-rotate then orbits from that view.
+                initialRotation: { x: 0, y: 0 },
               }}
             />
           )}

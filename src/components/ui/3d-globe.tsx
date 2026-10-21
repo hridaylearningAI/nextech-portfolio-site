@@ -569,6 +569,40 @@ interface SceneProps {
   onMarkerHover?: (marker: GlobeMarker | null) => void;
 }
 
+/**
+ * Place the camera on the ray through a lat/lng so that point sits in the
+ * middle of the frame, without tilting the Earth mesh (north stays up).
+ * OrbitControls then auto-rotates around world Y from that starting view.
+ */
+function FrameHubCamera({
+  hub,
+  distance,
+}: {
+  hub: GlobeMarker;
+  distance: number;
+}) {
+  const { camera, controls } = useThree();
+  const framed = useRef(false);
+
+  useFrame(() => {
+    // Wait until OrbitControls has registered (makeDefault) so update() sticks.
+    if (framed.current || !controls) return;
+    const dir = latLngToVector3(hub.lat, hub.lng, 1).normalize();
+    camera.position.copy(dir.multiplyScalar(distance));
+    camera.up.set(0, 1, 0);
+    camera.lookAt(0, 0, 0);
+    const orbit = controls as THREE.EventDispatcher & {
+      update: () => void;
+      target: THREE.Vector3;
+    };
+    orbit.target.set(0, 0, 0);
+    orbit.update();
+    framed.current = true;
+  });
+
+  return null;
+}
+
 function Scene({
   markers,
   hub,
@@ -577,12 +611,15 @@ function Scene({
   onMarkerHover,
 }: SceneProps) {
   const { camera } = useThree();
+  const cameraDistance = config.radius * 3.85;
 
-  // Set initial camera position (pulled back so flag markers clear the frame)
+  // Default equatorial view when there is no hub to frame.
   React.useEffect(() => {
-    camera.position.set(0, 0, config.radius * 3.85);
+    if (hub) return;
+    camera.position.set(0, 0, cameraDistance);
+    camera.up.set(0, 1, 0);
     camera.lookAt(0, 0, 0);
-  }, [camera, config.radius]);
+  }, [camera, cameraDistance, hub]);
 
   return (
     <>
@@ -599,7 +636,7 @@ function Scene({
         color="#88ccff"
       />
 
-      {/* Rotating Globe with Markers */}
+      {/* Rotating Globe with Markers — north-up; do not tilt the mesh to the hub */}
       <RotatingGlobe
         config={config}
         markers={markers}
@@ -631,6 +668,8 @@ function Scene({
         enableDamping
         dampingFactor={0.1}
       />
+
+      {hub && <FrameHubCamera hub={hub} distance={cameraDistance} />}
     </>
   );
 }
