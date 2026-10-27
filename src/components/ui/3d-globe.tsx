@@ -42,6 +42,8 @@ export interface Globe3DConfig {
   enableZoom?: boolean;
   /** Enable pan */
   enablePan?: boolean;
+  /** Enable drag-to-rotate. Off on touch, where a drag should scroll the page. */
+  enableRotate?: boolean;
   /** Min zoom distance */
   minDistance?: number;
   /** Max zoom distance */
@@ -82,6 +84,17 @@ interface Globe3DProps {
    * dashed arc drawn from every other marker to it.
    */
   hub?: GlobeMarker;
+  /**
+   * Device-pixel-ratio clamp for the canvas. A phone at dpr 3 draws nine times
+   * the pixels of dpr 1, which is where a small decorative globe starts to
+   * cost real frames; [1, 1.5] looks the same at this size.
+   */
+  dpr?: [number, number];
+  /**
+   * "never" parks the render loop without tearing the canvas down, so the
+   * globe stops burning frames while it is scrolled out of view.
+   */
+  frameloop?: "always" | "demand" | "never";
 }
 
 // ============================================================================
@@ -660,6 +673,7 @@ function Scene({
         makeDefault
         enablePan={config.enablePan}
         enableZoom={config.enableZoom}
+        enableRotate={config.enableRotate}
         minDistance={config.minDistance}
         maxDistance={config.maxDistance}
         rotateSpeed={0.4}
@@ -707,6 +721,7 @@ const defaultConfig: Required<Globe3DConfig> = {
   autoRotateSpeed: 0.3,
   enableZoom: false,
   enablePan: false,
+  enableRotate: true,
   minDistance: 5,
   maxDistance: 15,
   initialRotation: { x: 0, y: 0 },
@@ -727,6 +742,8 @@ export function Globe3D({
   onMarkerClick,
   onMarkerHover,
   hub,
+  dpr = [1, 2],
+  frameloop = "always",
 }: Globe3DProps) {
   const mergedConfig = useMemo(
     () => ({ ...defaultConfig, ...config }),
@@ -734,14 +751,17 @@ export function Globe3D({
   );
 
   return (
-    <div className={cn("relative h-[500px] w-full overflow-visible", className)}>
+    <div
+      className={cn("relative h-[500px] w-full overflow-visible", className)}
+    >
       <Canvas
         gl={{
           antialias: true,
           alpha: true,
           powerPreference: "high-performance",
         }}
-        dpr={[1, 2]}
+        dpr={dpr}
+        frameloop={frameloop}
         camera={{
           fov: 45,
           near: 0.1,

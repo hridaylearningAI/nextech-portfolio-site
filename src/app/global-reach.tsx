@@ -25,7 +25,7 @@ const Globe3D = dynamic(
     ssr: false,
     loading: () => (
       <div
-        className="h-[420px] w-full lg:h-[520px]"
+        className="h-[340px] w-full sm:h-[420px] lg:h-[520px]"
         aria-hidden
         role="presentation"
       />
@@ -51,10 +51,16 @@ export default function GlobalReach() {
   const [inView, setInView] = useState(false);
   const globeRegionRef = useRef<HTMLDivElement>(null);
 
-  // The globe is decoration: the list beside it carries every fact it plots.
-  // Gating it at lg means phones never pay the ~600KB three.js download for a
-  // decorative canvas. Because the import lives inside a conditional render,
-  // not fetching it is automatic.
+  // Phones get the globe too, but not the desktop settings: see `compact`.
+  // `settled` holds the canvas back until the media queries have been read,
+  // so it mounts once with its final dpr instead of being re-created.
+  const [compact, setCompact] = useState(false);
+  const [settled, setSettled] = useState(false);
+
+  // The ~600KB of three + fiber + drei is fetched only once the section comes
+  // within a screen of the viewport, so arriving on this page costs nothing
+  // until the visitor scrolls towards it. The import lives inside the
+  // conditional render, so not fetching it is automatic.
   const [showGlobe, setShowGlobe] = useState(false);
 
   useEffect(() => {
@@ -62,7 +68,8 @@ export default function GlobalReach() {
     const wide = window.matchMedia("(min-width: 1024px)");
     const apply = () => {
       setPreferSpin(!motion.matches);
-      setShowGlobe(wide.matches);
+      setCompact(!wide.matches);
+      setSettled(true);
     };
     apply();
     motion.addEventListener("change", apply);
@@ -75,18 +82,32 @@ export default function GlobalReach() {
 
   useEffect(() => {
     const node = globeRegionRef.current;
-    if (!showGlobe || !node) return;
-    const io = new IntersectionObserver(
+    if (!node) return;
+
+    // Two observers with different jobs. The near one decides when to pay for
+    // the bundle; the visible one decides when the canvas is allowed to draw.
+    const near = new IntersectionObserver(
       ([entry]) => {
-        if (entry?.isIntersecting) setInView(true);
+        if (entry?.isIntersecting) {
+          setShowGlobe(true);
+          near.disconnect();
+        }
       },
+      { rootMargin: "100% 0px" },
+    );
+    const visible = new IntersectionObserver(
+      ([entry]) => setInView(!!entry?.isIntersecting),
       // Start once a meaningful slice of the canvas is visible — not on the
       // first pixel tip — so the hub reads as centred before orbit begins.
       { threshold: 0.4 },
     );
-    io.observe(node);
-    return () => io.disconnect();
-  }, [showGlobe]);
+    near.observe(node);
+    visible.observe(node);
+    return () => {
+      near.disconnect();
+      visible.disconnect();
+    };
+  }, []);
 
   const spin = preferSpin && inView ? 0.3 : 0;
 
@@ -99,19 +120,20 @@ export default function GlobalReach() {
         src: flag(code),
         // Upstream's 8px default renders a flag as an indistinct dot; much
         // past 16 and neighbouring markers collide. Europe holds five of the
-        // eleven countries in a small patch of globe, so those ride smaller.
-        size: EUROPE.has(code) ? 11 : 16,
+        // countries in a small patch of globe, so those ride smaller. Marker
+        // size is in screen pixels, so a narrower canvas needs them scaled
+        // down or the flags crowd the sphere they sit on.
+        size: (EUROPE.has(code) ? 11 : 16) * (compact ? 0.72 : 1),
       })),
-    [],
+    [compact],
   );
 
   return (
     <section className="bg-gradient-to-b from-[var(--tint-a)] to-[var(--tint-b)] section-space">
-      <div className="site-container grid items-center gap-12 lg:grid-cols-12">
-        {/* Copy and the readable list. Ordered first in the DOM so the
-            substance is what a screen reader and a crawler meet, and what
-            renders if WebGL is unavailable. */}
-        <div data-reveal className="lg:col-span-5">
+      <div className="site-container grid items-center gap-x-12 gap-y-8 lg:grid-cols-12 lg:gap-y-4">
+        {/* Copy first in the DOM so the substance is what a screen reader
+            and a crawler meet, and what renders if WebGL is unavailable. */}
+        <div data-reveal className="lg:col-span-5 lg:row-start-1">
           <h2 className="text-3xl font-bold leading-tight text-text-1 sm:text-4xl">
             Partners Across the Globe
           </h2>
@@ -135,26 +157,6 @@ export default function GlobalReach() {
               <span className="text-text-2"> in {HQ.label}</span>
             </p>
           </div>
-
-          <ul className="mt-4 grid grid-cols-1 gap-x-6 gap-y-1 sm:grid-cols-2">
-            {COUNTRIES.map(([label, code]) => (
-              <li
-                key={code}
-                className="flex items-center gap-3 border-b border-line py-2.5 text-sm text-text-1 last:border-b-0 sm:last:border-b"
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={flag(code)}
-                  alt=""
-                  width={32}
-                  height={20}
-                  loading="lazy"
-                  className="h-5 w-8 shrink-0 rounded-[3px] object-cover object-left ring-1 ring-black/10"
-                />
-                {label}
-              </li>
-            ))}
-          </ul>
         </div>
 
         {/* Decoration. Hidden from assistive tech: every country it plots is
@@ -162,14 +164,29 @@ export default function GlobalReach() {
         <div
           ref={globeRegionRef}
           data-reveal
-          className="hidden lg:col-span-7 lg:block"
+          // Decoration, so on compact screens it is inert: a drag over the
+          // canvas scrolls the page instead of grabbing the globe.
+          // min-w-0: r3f writes a pixel width onto the canvas from the
+          // container it measured, and a grid item defaults to
+          // min-width:auto, so that width becomes the column's floor and
+          // the globe can never shrink back when the viewport narrows.
+          className={`min-w-0 lg:col-span-7 lg:col-start-6 lg:row-span-2 lg:row-start-1 ${
+            compact ? "pointer-events-none" : ""
+          }`}
           aria-hidden
           role="presentation"
         >
-          {showGlobe && (
+          {showGlobe && settled && (
             <Globe3D
-              className="h-[420px] w-full lg:h-[520px]"
+              className="h-[340px] w-full sm:h-[420px] lg:h-[520px]"
               markers={markers}
+              // A phone at dpr 3 would draw nine times the pixels for a globe
+              // this size. Capped, it looks the same and costs a third.
+              dpr={compact ? [1, 1.5] : [1, 2]}
+              // Off screen the loop idles on "demand" rather than running a
+              // WebGL render behind the rest of the page. Not "never", which
+              // also swallows the first paint, leaving a blank canvas.
+              frameloop={inView ? "always" : "demand"}
               hub={{
                 lat: HQ.lat,
                 lng: HQ.lng,
@@ -178,10 +195,11 @@ export default function GlobalReach() {
                 // Larger than the partner flags so the hub reads first.
                 // Width is derived as ~1.7× height so the UAE hoist stripe stays
                 // visible inside the rectangular chip.
-                size: 26,
+                size: compact ? 19 : 26,
               }}
               config={{
                 autoRotateSpeed: spin,
+                enableRotate: !compact,
                 arcColor: "#438b8d",
                 // Same switch as the rotation: reduced motion gets still arcs.
                 animateArcs: preferSpin,
@@ -192,7 +210,9 @@ export default function GlobalReach() {
                 // much wider than 500px so the detail is not missed.
                 textureUrl: "/textures/earth.webp",
                 bumpMapUrl: "/textures/earth-bump.webp",
-                showAtmosphere: true,
+                // The atmosphere is a blurred full-canvas pass; on phones it
+                // is the one effect worth dropping for frame rate.
+                showAtmosphere: !compact,
                 atmosphereColor: "#438b8d",
                 // Low intensity with a soft falloff. Higher values read as a
                 // solid teal rim rather than atmosphere.
@@ -211,6 +231,32 @@ export default function GlobalReach() {
               }}
             />
           )}
+        </div>
+        {/* The list is its own grid cell so the globe can sit between it and
+            the intro on a phone, while on desktop both stay in column one. */}
+        <div
+          data-reveal
+          className="lg:col-span-5 lg:col-start-1 lg:row-start-2"
+        >
+          <ul className="grid grid-cols-1 gap-x-6 gap-y-1 sm:grid-cols-2">
+            {COUNTRIES.map(([label, code]) => (
+              <li
+                key={code}
+                className="flex items-center gap-3 border-b border-line py-2.5 text-sm text-text-1 last:border-b-0 sm:last:border-b"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={flag(code)}
+                  alt=""
+                  width={32}
+                  height={20}
+                  loading="lazy"
+                  className="h-5 w-8 shrink-0 rounded-[3px] object-cover object-left ring-1 ring-black/10"
+                />
+                {label}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>
