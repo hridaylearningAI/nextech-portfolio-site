@@ -71,6 +71,14 @@ export const INDUSTRIES = [
   ],
 ] as const;
 
+/**
+ * Canonical origin, with no trailing slash. The apex 308s to www, so www is
+ * the form Google should see in the sitemap and in metadata.
+ */
+export const SITE_URL = (
+  process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://www.nextechgt.ae"
+).replace(/\/$/, "");
+
 export const COMPANY = {
   phone: "+971 2 446 1080",
   phoneHref: "tel:+97124461080",

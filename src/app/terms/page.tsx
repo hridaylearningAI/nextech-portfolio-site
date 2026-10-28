@@ -3,7 +3,7 @@ import { COMPANY } from "../nav";
 import { CtaBand, LegalBody, PageHero, type LegalSection } from "../ui";
 
 export const metadata: Metadata = {
-  title: "Terms of Service - Nextech Energy",
+  title: "Terms of Service",
   description: "The terms governing your use of the Nextech Energy website.",
 };
 

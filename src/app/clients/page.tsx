@@ -4,7 +4,7 @@ import ReviewForm from "../review-form";
 import { CtaBand, Photo, SectionHead } from "../ui";
 
 export const metadata: Metadata = {
-  title: "Clients - Nextech Energy",
+  title: "Clients",
   description:
     "The operators, utilities and industrial groups who buy from Nextech Energy.",
 };

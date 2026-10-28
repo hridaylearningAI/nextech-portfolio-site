@@ -7,7 +7,7 @@ import { Arrow, CtaBand, Eyebrow, SectionHead } from "../ui";
 import VideoBanner from "./video-banner";
 
 export const metadata: Metadata = {
-  title: "Who We Are - Nextech Energy",
+  title: "Who We Are",
   description:
     "Nextech Energy delivers top-quality products and services to the Oil and Gas, Refinery, and Power generation sectors in the United Arab Emirates.",
 };

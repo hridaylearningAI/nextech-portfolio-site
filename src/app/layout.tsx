@@ -1,15 +1,31 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { SITE_URL } from "./nav";
 import { accent, body, display } from "./fonts";
 import Motion from "./motion";
 import PageTransition from "./page-transition";
 import SiteFooter from "./site-footer";
 import SiteHeader from "./site-header";
 
+const DESCRIPTION =
+  "Delivering top-quality products and services to the Oil and Gas, Refinery, and Power generation sectors in the United Arab Emirates.";
+
 export const metadata: Metadata = {
-  title: "Nextech Energy - Fueling Industries. Powering Tomorrow.",
-  description:
-    "Delivering top-quality products and services to the Oil and Gas, Refinery, and Power generation sectors in the United Arab Emirates.",
+  // Gives every page a self-referential canonical URL and turns the relative
+  // OG image path below into an absolute one, which crawlers require.
+  metadataBase: new URL(SITE_URL),
+  alternates: { canonical: "./" },
+  // Page titles read "<Page> | Nextech Energy" in search results and tabs;
+  // the home page gets the bare brand name from `default`.
+  title: { default: "Nextech Energy", template: "%s | Nextech Energy" },
+  description: DESCRIPTION,
+  openGraph: {
+    type: "website",
+    siteName: "Nextech Energy",
+    title: "Nextech Energy",
+    description: DESCRIPTION,
+    url: "./",
+  },
 };
 
 /**

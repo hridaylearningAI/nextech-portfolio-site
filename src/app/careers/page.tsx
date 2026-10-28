@@ -3,7 +3,7 @@ import CareersForm from "../careers-form";
 import { CtaBand, SectionHead } from "../ui";
 
 export const metadata: Metadata = {
-  title: "Careers - Nextech Energy",
+  title: "Careers",
   description:
     "Join Nextech Energy in Abu Dhabi. Sales, technical, procurement and project roles supplying the United Arab Emirates energy sector.",
 };
