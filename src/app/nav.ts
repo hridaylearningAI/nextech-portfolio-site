@@ -74,18 +74,22 @@ export const INDUSTRIES = [
 /**
  * Canonical origin, with no trailing slash. The apex 308s to www, so www is
  * the form Google should see in the sitemap and in metadata.
+ *
+ * mail.ts reads this too: an email is read outside the site, so every URL in
+ * it must be absolute and its images (public/email/*.jpg) must already be
+ * live at this address for them to load in an inbox.
  */
 export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://www.nextechgt.ae"
+  process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://www.nextechenergy.ae"
 ).replace(/\/$/, "");
 
 export const COMPANY = {
   phone: "+971 2 446 1080",
   phoneHref: "tel:+97124461080",
-  email: "info@nextechgt.ae",
+  email: "info@nextechenergy.ae",
   /** Applications go to reception rather than the general inbox. */
-  careersEmail: "reception@nextechgt.ae",
-  site: "www.nextechgt.ae",
+  careersEmail: "reception@nextechenergy.ae",
+  site: "www.nextechenergy.ae",
   addressShort: "Global Tower, Electra Street, Abu Dhabi, United Arab Emirates",
   addressLines: [
     "Nextech Energy Development L.L.C -S.P.C",

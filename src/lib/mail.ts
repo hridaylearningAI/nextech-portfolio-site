@@ -1,5 +1,5 @@
 import { Resend } from "resend";
-import { COMPANY, SOCIALS, STATS } from "@/app/nav";
+import { COMPANY, SITE_URL, SOCIALS, STATS } from "@/app/nav";
 import type { FormType } from "@/lib/form-types";
 
 export type { FormType } from "@/lib/form-types";
@@ -22,21 +22,12 @@ export function getMailConfig() {
     apiKey: requiredEnv("RESEND_API_KEY"),
     from:
       process.env.RESEND_FROM_EMAIL?.trim() ||
-      "Nextech Energy <hello@updates.nextechgt.ae>",
+      "Nextech Energy <hello@updates.nextechenergy.ae>",
     to: process.env.RESEND_TO_EMAIL?.trim() || COMPANY.email,
     /** Applications go to reception, not the general inbox. */
     careersTo: process.env.RESEND_CAREERS_EMAIL?.trim() || COMPANY.careersEmail,
   };
 }
-
-/**
- * Where the email banners and links point. Emails are read outside the site,
- * so every URL in them must be absolute, and the images must already be live
- * at this address (public/email/*.jpg) for them to load in an inbox.
- */
-const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://nextechgt.ae"
-).replace(/\/+$/, "");
 
 // ── Palette ────────────────────────────────────────────────────────────────
 // Hard-coded rather than read from CSS: an email has no stylesheet, and
@@ -370,7 +361,7 @@ function teamEmail(opts: {
       ${sectionLabel("Details", 28)}
       ${summary(opts.rows)}
       ${button(`Reply to ${firstName(opts.name)}`, `mailto:${opts.email}?subject=${encodeURIComponent(opts.replySubject)}`)}`,
-    reason: "Sent automatically by the nextechgt.ae website forms.",
+    reason: "Sent automatically by the nextechenergy.ae website forms.",
   });
 }
 
@@ -571,7 +562,7 @@ function newsletterPair(data: NewsletterPayload): Pair {
           ],
         ])}
         ${statsBand()}
-        ${button("Visit nextechgt.ae", SITE_URL)}
+        ${button("Visit nextechenergy.ae", SITE_URL)}
         ${contactBlock()}`,
       reason: `You're receiving this because ${esc(data.email)} was subscribed on <a href="${SITE_URL}" style="color:${C.faint}">${esc(COMPANY.site)}</a>. To unsubscribe, simply reply to this email.`,
     }),
